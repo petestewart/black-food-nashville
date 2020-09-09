@@ -1,6 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+.vscode/
+package-lock.json
+dist/
+.firebase/
 /node_modules
 /.pnp
 .pnp.js
