@@ -24,7 +24,7 @@ const Navbar = (props) => {
     <div className="Navbar">
       <h2 className="Logo">OneBite</h2>
       <div className="location-controls">
-      <NumberInput click={setRadius}/>
+      <NumberInput click={setRadius} value={props.radius}/>
       miles within
       <SearchBar placeholder={props.placeholder} click={submitNewLocation}/>
       </div>

@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types';
 
 import './NumberInput.scss';
 
-const NumberInput = (props) => {
-  const [value, setValue] = useState(5);
+const numberInput = (props) => {
+  // const [value, setValue] = useState(props.radius); // removed this to make NumberInput a dumb component
 
-  useEffect(() => props.click(value), [value, props]);
+  // useEffect(() => props.click(value), [value, props]);
 
   const changeHandler = (e) => {
-    // props.click(value);
-    setValue(e.target.value);
+    props.click(e.target.value);
   };
 
   return (
@@ -21,7 +20,7 @@ const NumberInput = (props) => {
         name="quantity"
         min="1"
         max="20"
-        value={value}
+        value={props.value}
         onChange={changeHandler} />
     </div>
   );
@@ -29,4 +28,4 @@ const NumberInput = (props) => {
 
 // NumberInput.propTypes = {}
 
-export default NumberInput;
+export default numberInput;

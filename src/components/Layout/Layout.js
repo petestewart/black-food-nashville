@@ -38,7 +38,7 @@ const Layout = (props) => {
 
   return (
     <React.Fragment>
-      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius}/>
+      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius}/>
       <div className="content">
         <Filters/>
         <Results/>
