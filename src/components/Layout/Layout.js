@@ -11,6 +11,8 @@ import mapquestData from '../../helpers/data/mapquestData';
 const Layout = (props) => {
   const [location, setLocation] = useState({ latitude: 0, longitude: 0, name: '' });
 
+  const [radius, setRadius] = useState(5);
+
   const getCurrentLocation = () => {
     const success = (res) => {
       const { latitude, longitude } = res.coords;
@@ -36,7 +38,7 @@ const Layout = (props) => {
 
   return (
     <React.Fragment>
-      <Navbar placeholder={displayLocation()} setLocation={setLocation}/>
+      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius}/>
       <div className="content">
         <Filters/>
         <Results/>
