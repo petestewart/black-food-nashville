@@ -10,10 +10,10 @@ import './Navbar.scss';
 const Navbar = (props) => {
   return (
     <div className="Navbar">
-      <h1 className="Logo">OneBite</h1>
-      <SearchBar placeholder={'Here I am'} width={'400px'}/>
+      <h2 className="Logo">OneBite</h2>
+      <SearchBar placeholder={props.placeholder}/>
       <div className="userMenu">
-      <i class="fas fa-user-circle fa-2x"></i>
+        <i className="fas fa-user-circle fa-2x ml-auto mr-2"></i>
       </div>
     </div>
   );

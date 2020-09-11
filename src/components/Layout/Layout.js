@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 
 import Navbar from '../Navbar/Navbar';
@@ -6,25 +6,37 @@ import Filters from '../Filters/Filters';
 import Results from '../Results/Results';
 
 import './Layout.scss';
+import mapquestData from '../../helpers/data/mapquestData';
 
 const Layout = (props) => {
-  // const [location, setLocation] = useState();
+  const [location, setLocation] = useState({ latitude: 0, longitude: 0, name: '' });
 
-  function success(pos) {
-    const crd = pos.coords;
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-  }
+  const getCurrentLocation = () => {
+    const success = (res) => {
+      const { latitude, longitude } = res.coords;
+      mapquestData.getCity({ latitude, longitude })
+        .then((name) => setLocation({ latitude, longitude, name }))
+        .catch((err) => console.error(err));
+    };
+    navigator.geolocation.getCurrentPosition(success);
+  };
 
-  const location = navigator.geolocation.getCurrentPosition(success);
+  useEffect(getCurrentLocation, []);
 
-  console.warn(location);
+  // console.warn('location', location);
+
+  const displayLocation = () => {
+    let placeholder = 'Enter your location';
+    if (location.name) {
+      const { name } = location;
+      placeholder = `${name.city} ${name.state} ${name.zipCode}`;
+    }
+    return placeholder;
+  };
 
   return (
     <React.Fragment>
-      <Navbar/>
+      <Navbar placeholder={displayLocation()}/>
       <div className="content">
         <Filters/>
         <Results/>
