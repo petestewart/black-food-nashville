@@ -1,15 +1,11 @@
 @import '../../styles/variables';
 
 .Results {
-  background-color: $bgAlt;
-}
-
-.Results {
   position: relative;
   width: 100%;
   height: calc(100vh - 56px);
   z-index: 200;
-  background-color: $accentDark;
+  background-color: $bgMain;
   padding: 32px 16px;
   box-sizing: border-box;
   margin: 0px;
