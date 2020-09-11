@@ -36,7 +36,7 @@ const Layout = (props) => {
 
   return (
     <React.Fragment>
-      <Navbar placeholder={displayLocation()}/>
+      <Navbar placeholder={displayLocation()} setLocation={setLocation}/>
       <div className="content">
         <Filters/>
         <Results/>
