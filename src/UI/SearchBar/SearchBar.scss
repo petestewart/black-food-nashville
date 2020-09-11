@@ -24,7 +24,10 @@
 
 @media (max-width: 760px) {
   #location-input {
-    width: 200px !important;
+    width: 80vw !important;
+  }
+  .search-button {
+    display: none;
   }
 }
 
