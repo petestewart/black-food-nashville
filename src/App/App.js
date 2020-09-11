@@ -1,12 +1,14 @@
 import React from 'react';
+
+import Layout from '../components/Layout/Layout';
+
 import './App.scss';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h2>APP</h2>
-        <button className="btn btn-info">I am a button</button>
+        <Layout className="Layout" />
       </div>
     );
   }
