@@ -11,9 +11,12 @@ const getCoordinates = (address) => new Promise((resolve, reject) => {
       const location = {
         latitude: res.data.results[0].locations[0].latLng.lat,
         longitude: res.data.results[0].locations[0].latLng.lng,
-        city: res.data.results[0].locations[0].adminArea5,
-        state: res.data.results[0].locations[0].adminArea3,
-        zipCode: res.data.results[0].locations[0].postalCode.substring(0, 5),
+        name: {
+          city: res.data.results[0].locations[0].adminArea5,
+          state: res.data.results[0].locations[0].adminArea3,
+          zipCode: res.data.results[0].locations[0].postalCode.substring(0, 5),
+        },
+
       };
       resolve(location);
     })
