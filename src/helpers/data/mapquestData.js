@@ -3,7 +3,22 @@ import apiKeys from '../apiKeys.json';
 
 const { baseURL, apiKey } = apiKeys.mapquestConfig;
 
-const getCoordinates = (address) => axios.get(`${baseURL}/address?key=${apiKey}&location=${address}&outFormat=json&thumbMaps=false`);
+// const getCoordinates = (address) => axios.get(`${baseURL}/address?key=${apiKey}&location=${address}&outFormat=json&thumbMaps=false`);
+
+const getCoordinates = (address) => new Promise((resolve, reject) => {
+  axios.get(`${baseURL}/address?key=${apiKey}&location=${address}&outFormat=json&thumbMaps=false`)
+    .then((res) => {
+      const location = {
+        latitude: res.data.results[0].locations[0].latLng.lat,
+        longitude: res.data.results[0].locations[0].latLng.lng,
+        city: res.data.results[0].locations[0].adminArea5,
+        state: res.data.results[0].locations[0].adminArea3,
+        zipCode: res.data.results[0].locations[0].postalCode.substring(0, 5),
+      };
+      resolve(location);
+    })
+    .catch((err) => reject(err));
+});
 
 const getCity = ({ latitude, longitude }) => new Promise((resolve, reject) => {
   axios.get(`${baseURL}/reverse?key=${apiKey}&location=${latitude},${longitude}&outFormat=json&thumbMaps=false`)
@@ -13,7 +28,6 @@ const getCity = ({ latitude, longitude }) => new Promise((resolve, reject) => {
         state: res.data.results[0].locations[0].adminArea3,
         zipCode: res.data.results[0].locations[0].postalCode.substring(0, 5),
       };
-      console.warn(res.data.results[0].locations[0]);
       resolve(name);
     })
     .catch((err) => reject(err));

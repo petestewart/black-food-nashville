@@ -3,13 +3,16 @@ import React from 'react';
 
 import SearchBar from '../../UI/SearchBar/SearchBar';
 
-// import mapquestData from '../../helpers/data/mapquestData';
+import mapquestData from '../../helpers/data/mapquestData';
 
 import './Navbar.scss';
 
 const Navbar = (props) => {
   const submitNewLocation = (newLocation) => {
     console.warn(newLocation);
+    mapquestData.getCoordinates(newLocation)
+      .then((res) => props.setLocation(res))
+      .catch((err) => console.error(err));
   };
 
   return (
