@@ -13,6 +13,15 @@ const getAllRestaurants = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+// const getAreaRestaurants = (coords, radius) => new Promise((resolve, reject) => {
+//   axios.get(`${baseUrl}/restaurants.json?orderBy="longitude"&startAt="-86.7"&endAt="-86.9"`)
+//     .then((res) => {
+//       console.warn(res);
+//       resolve(res);
+//     })
+//     .catch((err) => reject(err));
+// });
+
 const getSingleRestaurant = (restId) => axios.get(`${baseUrl}/restaurants/${restId}.json`);
 
 const deleteRestaurant = (restId) => axios.delete(`${baseUrl}/restaurants/${restId}.json`);

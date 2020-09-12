@@ -9,7 +9,7 @@ const numberInput = (props) => {
   // useEffect(() => props.click(value), [value, props]);
 
   const changeHandler = (e) => {
-    props.click(e.target.value);
+    props.click(Number(e.target.value));
   };
 
   return (

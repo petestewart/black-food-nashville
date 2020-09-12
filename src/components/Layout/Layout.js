@@ -7,11 +7,12 @@ import Results from '../Results/Results';
 
 import './Layout.scss';
 import mapquestData from '../../helpers/data/mapquestData';
+// import restaurantData from '../../helpers/data/restaurantData';
 
 const Layout = (props) => {
   const [location, setLocation] = useState({ latitude: 0, longitude: 0, name: '' });
-
   const [radius, setRadius] = useState(5);
+  // const [results, setResults] = useState([]);
 
   const getCurrentLocation = () => {
     const success = (res) => {
@@ -24,8 +25,6 @@ const Layout = (props) => {
   };
 
   useEffect(getCurrentLocation, []);
-
-  // console.warn('location', location);
 
   const displayLocation = () => {
     let placeholder = 'Enter your location';
@@ -41,7 +40,7 @@ const Layout = (props) => {
       <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius}/>
       <div className="content">
         <Filters/>
-        <Results/>
+        <Results location={location} radius={radius} />
       </div>
 
     </React.Fragment>

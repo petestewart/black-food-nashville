@@ -10,7 +10,6 @@ import './Navbar.scss';
 
 const Navbar = (props) => {
   const submitNewLocation = (newLocation) => {
-    console.warn(newLocation);
     mapquestData.getCoordinates(newLocation)
       .then((res) => props.setLocation(res))
       .catch((err) => console.error(err));
