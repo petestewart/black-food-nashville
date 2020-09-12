@@ -11,8 +11,6 @@ const yelpREST = axios.create({
   },
 });
 
-// const getRestaurantInfo = (yelpId) => yelpREST(`/businesses/${yelpId}`);
-
 const getRestaurantInfo = (yelpId) => new Promise((resolve, reject) => {
   yelpREST(`/businesses/${yelpId}`)
     .then(({ data }) => {
