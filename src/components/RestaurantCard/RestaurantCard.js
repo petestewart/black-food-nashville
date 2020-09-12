@@ -16,13 +16,15 @@ const RestaurantCard = (props) => {
           <h6 className="mb0">{rest.name}</h6>
           <div className="rest-body">
           <div className="rest-subheading">
-                <StarRatings
-                  rating={rest.rating}
+            {rest.rating
+              ? <StarRatings
+                  rating={Number(rest.rating)}
                   starRatedColor="black"
                   numberOfStars={5}
                   starDimension="13px"
-                  starSpacing="1px"
-                  name='rating' />
+                  starSpacing="1px"/>
+              : ''
+                }
               </div>
             <div className="location">
               <span>{rest.location.address1}</span>
