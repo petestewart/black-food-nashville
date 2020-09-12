@@ -1,0 +1,61 @@
+@import '../../styles/variables';
+
+.RestaurantCard {
+  color: $textMain;
+  border: 1px solid black;
+  background-color: white;
+  // padding: 3px;
+  border-radius: 5%;
+  overflow: hidden;
+  min-width: 390px;
+  max-width: 390px;
+  height: 270px;
+  margin: 5px;
+    h6 {
+      margin-left: 3px;
+    }
+    img {
+      width: 100%; /* width of container */
+      height: 150px; /* height of container */
+      object-fit: cover;
+      object-position: 50%; 
+      // border: 1px solid black;
+      // border-radius: 5%;
+      // margin: 5px;
+  }
+    .rest-body {
+      display: flex;
+      flex-direction: column;
+      margin-left: 3px;
+
+      .rest-subheading {
+        display: flex;
+        
+        .price {
+          margin-left: 20px;
+          vertical-align: sub
+        }
+      }
+
+        .location {
+          display: flex;
+          // color: grey;
+        
+          span {
+            margin-right: 15px;
+          }
+        }
+
+        .categories {
+          font-weight: 600;
+          // color: grey;
+        }
+
+        .controls {
+          padding: 0px;
+          display: flex;
+          justify-content: space-between;
+        }
+        
+    }
+}

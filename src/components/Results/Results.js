@@ -30,8 +30,7 @@ const Results = (props) => {
   };
 
   return (
-    <div className="Results">
-      <h2>RESULTS:</h2>
+    <div className="Results card-columns">
       {cards(results)}
     </div>
   );
