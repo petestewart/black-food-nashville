@@ -1,0 +1,21 @@
+{
+  "firebaseConfig": {
+    "apiKey": "",
+    "authDomain": "",
+    "databaseURL": "",
+    "projectId": "",
+    "storageBucket": "",
+    "messagingSenderId": "",
+    "appId": ""
+  },
+  "yelpConfig": {
+    "apiKey": "",
+    "clientId": "",
+    "baseURL": ""
+  },
+  "mapquestConfig": {
+    "apiKey": "",
+    "consumerSecret": "",
+    "baseURL": ""
+  }
+}

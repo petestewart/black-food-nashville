@@ -3,8 +3,6 @@ import apiKeys from '../apiKeys.json';
 
 const { baseURL, apiKey } = apiKeys.mapquestConfig;
 
-// const getCoordinates = (address) => axios.get(`${baseURL}/address?key=${apiKey}&location=${address}&outFormat=json&thumbMaps=false`);
-
 const getCoordinates = (address) => new Promise((resolve, reject) => {
   axios.get(`${baseURL}/address?key=${apiKey}&location=${address}&outFormat=json&thumbMaps=false`)
     .then((res) => {
