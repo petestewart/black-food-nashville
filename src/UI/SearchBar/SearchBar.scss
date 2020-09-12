@@ -1,0 +1,36 @@
+.SearchBar {
+  margin-left: 5px;
+
+  #location-input {
+    width: 350px;
+  }
+  
+  .filled { 
+    ::-webkit-input-placeholder {
+      color: black;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+      color: black;  
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+      color: black;  
+    }
+
+    :-ms-input-placeholder {  
+      color: black;  
+    }}
+}
+
+
+@media (max-width: 760px) {
+  #location-input {
+    width: 80vw !important;
+  }
+  .search-button {
+    display: none;
+  }
+}
+
+

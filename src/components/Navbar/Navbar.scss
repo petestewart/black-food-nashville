@@ -6,14 +6,19 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: $accentLight;
+  background-color: $bgMain;
   color: $accentDark;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
-  z-index: 90;
+  z-index: 200;
+}
+
+.location-controls {
+  display: flex;
+  align-items: center;
 }
 
 // .Navbar nav {
@@ -24,8 +29,12 @@
 //   height: 80%;
 // }
 
-// @media (max-width: 759px) {
-//   .DesktopOnly {
-//     display: none;
-//   }
-// }
+@media (max-width: 759px) {
+  // .DesktopOnly {
+  //   display: none;
+  // }
+  .Navbar {
+    height: 100px;
+    flex-direction: column;
+  }
+}
