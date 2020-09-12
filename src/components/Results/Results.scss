@@ -2,6 +2,8 @@
 
 .Results {
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
   top: 10px;
   width: 100%;
   height: calc(100vh - 100px);
