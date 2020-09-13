@@ -15,6 +15,7 @@ const Console = (props) => {
   const [location, setLocation] = useState({ latitude: 0, longitude: 0, name: '' });
   const [radius, setRadius] = useState(5);
   const [results, setResults] = useState([]);
+  const [activeFilters, setActiveFilters] = useState([]);
 
   const updateResults = () => {
     restaurantData.getAllRestaurants()
@@ -34,6 +35,21 @@ const Console = (props) => {
     navigator.geolocation.getCurrentPosition(success);
   };
 
+  const updateFilters = (filter, status) => {
+    // const currentActive = [...activeFilters];
+    const updatedFilters = [...activeFilters];
+    // let updatedFilters = [];
+    if (!status) {
+      updatedFilters.splice((updatedFilters.indexOf(filter)), 1);
+      // updatedFilters = [...activeFilters].filter((e) => e !== filter)
+    } else if (!activeFilters.includes(filter)) {
+      updatedFilters.push(filter);
+    }
+    if (updatedFilters !== activeFilters) {
+      setActiveFilters(updatedFilters);
+    }
+  };
+
   useEffect(getUserLocation, []);
   useEffect(updateResults, [location, radius]);
 
@@ -50,7 +66,7 @@ const Console = (props) => {
     <React.Fragment>
       <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius}/>
       <div className="content">
-        <Filters/>
+        <Filters updateFilters={updateFilters} results={results}/>
         <Results location={location} results={results} />
       </div>
 
