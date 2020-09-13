@@ -5,10 +5,10 @@ import Navbar from '../Navbar/Navbar';
 import Filters from '../Filters/Filters';
 import Results from '../Results/Results';
 
-import './Layout.scss';
+import './Console.scss';
 import mapquestData from '../../helpers/data/mapquestData';
 
-const Layout = (props) => {
+const Console = (props) => {
   const [location, setLocation] = useState({ latitude: 0, longitude: 0, name: '' });
   const [radius, setRadius] = useState(5);
 
@@ -45,6 +45,6 @@ const Layout = (props) => {
   );
 };
 
-// Layout.propTypes = {}
+// Console.propTypes = {}
 
-export default Layout;
+export default Console;
