@@ -7,12 +7,10 @@ import Results from '../Results/Results';
 
 import './Layout.scss';
 import mapquestData from '../../helpers/data/mapquestData';
-// import restaurantData from '../../helpers/data/restaurantData';
 
 const Layout = (props) => {
   const [location, setLocation] = useState({ latitude: 0, longitude: 0, name: '' });
   const [radius, setRadius] = useState(5);
-  // const [results, setResults] = useState([]);
 
   const getCurrentLocation = () => {
     const success = (res) => {
