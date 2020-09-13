@@ -5,14 +5,26 @@ import Navbar from '../Navbar/Navbar';
 import Filters from '../Filters/Filters';
 import Results from '../Results/Results';
 
-import './Layout.scss';
+import filterActions from '../../helpers/filterActions';
+import restaurantData from '../../helpers/data/restaurantData';
 import mapquestData from '../../helpers/data/mapquestData';
 
-const Layout = (props) => {
+import './Console.scss';
+
+const Console = (props) => {
   const [location, setLocation] = useState({ latitude: 0, longitude: 0, name: '' });
   const [radius, setRadius] = useState(5);
+  const [results, setResults] = useState([]);
 
-  const getCurrentLocation = () => {
+  const updateResults = () => {
+    restaurantData.getAllRestaurants()
+      .then((res) => {
+        setResults(filterActions.radiusSearch(location, radius, res));
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const getUserLocation = () => {
     const success = (res) => {
       const { latitude, longitude } = res.coords;
       mapquestData.getCity({ latitude, longitude })
@@ -22,7 +34,8 @@ const Layout = (props) => {
     navigator.geolocation.getCurrentPosition(success);
   };
 
-  useEffect(getCurrentLocation, []);
+  useEffect(getUserLocation, []);
+  useEffect(updateResults, [location, radius]);
 
   const displayLocation = () => {
     let placeholder = 'Enter your location';
@@ -38,13 +51,13 @@ const Layout = (props) => {
       <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius}/>
       <div className="content">
         <Filters/>
-        <Results location={location} radius={radius} />
+        <Results location={location} results={results} />
       </div>
 
     </React.Fragment>
   );
 };
 
-// Layout.propTypes = {}
+// Console.propTypes = {}
 
-export default Layout;
+export default Console;

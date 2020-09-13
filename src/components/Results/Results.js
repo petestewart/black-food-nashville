@@ -3,23 +3,23 @@ import React, { useState, useEffect } from 'react';
 
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
 
-import filters from '../../helpers/filters';
-import restaurantData from '../../helpers/data/restaurantData';
+// import filters from '../../helpers/filters';
+// import restaurantData from '../../helpers/data/restaurantData';
 
 import './Results.scss';
 
 const Results = (props) => {
-  const [results, setResults] = useState([]);
+  // const [results, setResults] = useState([]);
 
-  const updateResults = () => {
-    restaurantData.getAllRestaurants()
-      .then((res) => {
-        setResults(filters.radiusSearch(props.location, props.radius, res));
-      })
-      .catch((err) => console.error(err));
-  };
+  // const updateResults = () => {
+  //   restaurantData.getAllRestaurants()
+  //     .then((res) => {
+  //       setResults(filters.radiusSearch(props.location, props.radius, res));
+  //     })
+  //     .catch((err) => console.error(err));
+  // };
 
-  useEffect(updateResults, [props]);
+  // useEffect(updateResults, [props]);
 
   const cards = (restaurants) => {
     let cardList = 'No Results To Display';
@@ -31,7 +31,7 @@ const Results = (props) => {
 
   return (
     <div className="Results card-columns">
-      {cards(results)}
+      {cards(props.results)}
     </div>
   );
 };
