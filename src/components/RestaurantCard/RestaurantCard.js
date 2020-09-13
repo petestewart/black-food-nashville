@@ -1,13 +1,19 @@
 import React from 'react';
 import StarRatings from 'react-star-ratings';
 
-// import PropTypes from 'prop-types';
+import * as geolib from 'geolib';
 
-// import Rating from '../../UI/Rating/Rating';
+// import PropTypes from 'prop-types';
 
 import './RestaurantCard.scss';
 
 const RestaurantCard = (props) => {
+  const distanceTo = () => {
+    const distMeters = geolib.getDistance(props.userLocation, { latitude: props.restaurant.latitude, longitude: props.restaurant.longitude });
+    const distMiles = geolib.convertDistance(distMeters, 'mi');
+    return `${Math.round(distMiles * 10) / 10} miles`;
+  };
+
   const rest = props.restaurant;
   return (
       <div className="RestaurantCard">
@@ -25,6 +31,7 @@ const RestaurantCard = (props) => {
                   starSpacing="1px"/>
               : ''
                 }
+                {distanceTo()}
               </div>
             <div className="location">
               <span>{rest.location.address1}</span>
