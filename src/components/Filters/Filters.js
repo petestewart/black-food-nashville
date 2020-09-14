@@ -7,6 +7,7 @@ import FoodTypes from '../FoodTypes/FoodTypes';
 
 const Filters = (props) => {
   const [availableFilters, setAvailableFilters] = useState([]);
+  const [allActive, setAllActive] = useState(true);
 
   const updateAvailableFilters = () => {
     const allFilters = [];
@@ -19,7 +20,7 @@ const Filters = (props) => {
     const currentFilters = Object.keys(props.filters);
     availableFilters.forEach((filter) => {
       if (!currentFilters.includes(filter)) {
-        updatedFilters[filter] = true;
+        updatedFilters[filter] = allActive;
       }
     });
     props.setFilters(updatedFilters);
@@ -45,7 +46,7 @@ const Filters = (props) => {
 
   return (
     <div className="Filters">
-      <FoodTypes filters={props.filters} availableFilters={availableFilters} toggleFilter={props.toggleFilter} resetFilters={resetFilters} setSoloFilter={setSoloFilter}/>
+      <FoodTypes filters={props.filters} availableFilters={availableFilters} toggleFilter={props.toggleFilter} resetFilters={resetFilters} setSoloFilter={setSoloFilter} setAllActive={setAllActive} allActive={allActive}/>
     </div>
   );
 };
