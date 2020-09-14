@@ -33,13 +33,19 @@ const Filters = (props) => {
     props.setFilters(updatedFilters);
   };
 
+  const setSoloFilter = (filter) => {
+    const soloFilter = {};
+    soloFilter[filter] = true;
+    props.setFilters(soloFilter);
+  };
+
   useEffect(updateAvailableFilters, [props.areaRests]);
 
   useEffect(addNewFilters, [availableFilters]);
 
   return (
     <div className="Filters">
-      <FoodTypes filters={props.filters} availableFilters={availableFilters} toggleFilter={props.toggleFilter} resetFilters={resetFilters}/>
+      <FoodTypes filters={props.filters} availableFilters={availableFilters} toggleFilter={props.toggleFilter} resetFilters={resetFilters} setSoloFilter={setSoloFilter}/>
     </div>
   );
 };
