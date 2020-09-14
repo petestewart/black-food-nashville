@@ -25,13 +25,21 @@ const Filters = (props) => {
     props.setFilters(updatedFilters);
   };
 
+  const resetFilters = () => {
+    const updatedFilters = {};
+    Object.keys(availableFilters).forEach((i) => {
+      updatedFilters[availableFilters[i]] = true;
+    });
+    props.setFilters(updatedFilters);
+  };
+
   useEffect(updateAvailableFilters, [props.areaRests]);
 
   useEffect(addNewFilters, [availableFilters]);
 
   return (
     <div className="Filters">
-      <FoodTypes filters={props.filters} availableFilters={availableFilters} toggleFilter={props.toggleFilter}/>
+      <FoodTypes filters={props.filters} availableFilters={availableFilters} toggleFilter={props.toggleFilter} resetFilters={resetFilters}/>
     </div>
   );
 };
