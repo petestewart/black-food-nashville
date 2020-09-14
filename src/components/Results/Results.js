@@ -3,23 +3,34 @@ import React, { useState, useEffect } from 'react';
 
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
 
-// import filters from '../../helpers/filters';
-// import restaurantData from '../../helpers/data/restaurantData';
-
 import './Results.scss';
 
 const Results = (props) => {
-  // const [results, setResults] = useState([]);
+  const [results, setResults] = useState([]);
+  const [activeFilters, setActiveFilters] = useState([]);
 
-  // const updateResults = () => {
-  //   restaurantData.getAllRestaurants()
-  //     .then((res) => {
-  //       setResults(filters.radiusSearch(props.location, props.radius, res));
-  //     })
-  //     .catch((err) => console.error(err));
-  // };
+  const updateActiveFilters = () => {
+    if (props.filters === {}) { return; }
+    const updatedFilters = [];
+    Object.keys(props.filters).forEach((filter) => {
+      if (props.filters[filter]) {
+        updatedFilters.push(filter);
+      }
+    });
+    setActiveFilters(updatedFilters);
+  };
 
-  // useEffect(updateResults, [props]);
+  useEffect(updateActiveFilters, [props]);
+
+  const applyFilters = () => {
+    if (props.areaRests.length > 0) {
+      const allRests = [...props.areaRests];
+      const filteredRests = allRests.filter((rest) => rest.categories.some((restCat) => activeFilters.includes(restCat)));
+      setResults(filteredRests);
+    }
+  };
+
+  useEffect(applyFilters, [activeFilters]);
 
   const cards = (restaurants) => {
     let cardList = 'No Results To Display';
@@ -31,7 +42,7 @@ const Results = (props) => {
 
   return (
     <div className="Results card-columns">
-      {cards(props.areaRests)}
+      {cards(results)}
     </div>
   );
 };

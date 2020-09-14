@@ -15,7 +15,7 @@ const Console = (props) => {
   const [location, setLocation] = useState({ latitude: 0, longitude: 0, name: '' });
   const [radius, setRadius] = useState(5);
   const [areaRests, setAreaRests] = useState([]);
-  const [filters, setFilters] = useState({ vegOnly: false });
+  const [filters, setFilters] = useState({});
 
   const updateAreaRests = () => {
     restaurantData.getAllRestaurants()
@@ -34,19 +34,6 @@ const Console = (props) => {
     };
     navigator.geolocation.getCurrentPosition(success);
   };
-
-  // const toggleFilter = (filter, status) => {
-  //   console.warn(`change ${filter} to ${status}`);
-  //   const updatedFilters = [...filters];
-  //   if (!status) {
-  //     updatedFilters.splice((updatedFilters.indexOf(filter)), 1);
-  //   } else if (!filters.includes(filter)) {
-  //     updatedFilters.push(filter);
-  //   }
-  //   if (updatedFilters !== filters) {
-  //     setFilters(updatedFilters);
-  //   }
-  // };
 
   const toggleFilter = (filter) => {
     const updatedFilters = { ...filters };
@@ -71,7 +58,7 @@ const Console = (props) => {
       <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius}/>
       <div className="content">
         <Filters filters={filters} setFilters={setFilters} areaRests={areaRests} toggleFilter={toggleFilter}/>
-        <Results location={location} areaRests={areaRests} />
+        <Results filters={filters} location={location} areaRests={areaRests} />
       </div>
 
     </React.Fragment>
