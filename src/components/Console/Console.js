@@ -14,12 +14,13 @@ import './Console.scss';
 const Console = (props) => {
   const [location, setLocation] = useState({ latitude: 0, longitude: 0, name: '' });
   const [radius, setRadius] = useState(5);
-  const [results, setResults] = useState([]);
+  const [areaRests, setAreaRests] = useState([]);
+  const [filters, setFilters] = useState({});
 
-  const updateResults = () => {
+  const updateAreaRests = () => {
     restaurantData.getAllRestaurants()
       .then((res) => {
-        setResults(filterActions.radiusSearch(location, radius, res));
+        setAreaRests(filterActions.radiusSearch(location, radius, res));
       })
       .catch((err) => console.error(err));
   };
@@ -34,8 +35,14 @@ const Console = (props) => {
     navigator.geolocation.getCurrentPosition(success);
   };
 
+  const toggleFilter = (filter) => {
+    const updatedFilters = { ...filters };
+    updatedFilters[filter] = !filters[filter];
+    setFilters(updatedFilters);
+  };
+
   useEffect(getUserLocation, []);
-  useEffect(updateResults, [location, radius]);
+  useEffect(updateAreaRests, [location, radius]);
 
   const displayLocation = () => {
     let placeholder = 'Enter your location';
@@ -50,8 +57,8 @@ const Console = (props) => {
     <React.Fragment>
       <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius}/>
       <div className="content">
-        <Filters/>
-        <Results location={location} results={results} />
+        <Filters filters={filters} setFilters={setFilters} areaRests={areaRests} toggleFilter={toggleFilter}/>
+        <Results filters={filters} location={location} areaRests={areaRests} />
       </div>
 
     </React.Fragment>
