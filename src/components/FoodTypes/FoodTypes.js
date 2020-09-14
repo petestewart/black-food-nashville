@@ -23,7 +23,7 @@ const FoodTypes = (props) => {
           props.setSoloFilter(filter);
         };
       }
-      return (<FilterButton click={click} isActive={isActive} key={index}>{filter}</FilterButton>);
+      return (<FilterButton click={click} isActive={isActive} dim={props.allActive} key={index}>{filter}</FilterButton>);
     });
     return buttons;
   };
@@ -31,7 +31,7 @@ const FoodTypes = (props) => {
   return (
     <div className="FoodTypes">
       Food Types:<br/>
-      <FilterButton isActive={props.allActive} click={props.resetFilters}>Show All</FilterButton><br/>
+      <FilterButton isActive={props.allActive} dim={!props.allActive} click={props.resetFilters}>Show All</FilterButton><br/>
       {createFilterButtons()}
     </div>
   );

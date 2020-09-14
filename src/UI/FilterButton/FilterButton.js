@@ -4,7 +4,7 @@ import React from 'react';
 import './FilterButton.scss';
 
 const FilterButton = (props) => (
-    <button className={`btn btn-sm m-1 ${props.isActive ? 'btn-info' : 'btn-light'}`} onClick={props.click}>
+    <button className={`btn btn-sm m-1 ${props.isActive ? 'btn-info' : 'btn-light'}`} style={props.dim ? { color: 'grey' } : {} } onClick={props.click}>
       {props.children}
     </button>
 );
