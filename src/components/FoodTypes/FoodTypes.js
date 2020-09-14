@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 // import PropTypes from 'prop-types';
 
 import FilterButton from '../../UI/FilterButton/FilterButton';
+import Switch from '../../UI/Switch/Switch';
 
 // import './FoodTypes.scss';
 
@@ -31,6 +32,7 @@ const FoodTypes = (props) => {
   return (
     <div className="FoodTypes">
       Food Types:<br/>
+      <Switch />
       <FilterButton isActive={props.allActive} dim={!props.allActive} click={props.resetFilters}>Show All</FilterButton><br/>
       {createFilterButtons()}
     </div>
