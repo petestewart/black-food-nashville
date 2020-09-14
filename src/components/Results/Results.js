@@ -31,7 +31,7 @@ const Results = (props) => {
 
   return (
     <div className="Results card-columns">
-      {cards(props.results)}
+      {cards(props.areaRests)}
     </div>
   );
 };

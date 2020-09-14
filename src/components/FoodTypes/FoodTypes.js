@@ -1,26 +1,23 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
 
-const FoodTypeButtons = () => {
-  const shops = data.getBusinesses();
-  const typesRaw = [];
-  shops.forEach((shop) => z
-    shop.type.forEach((type) => {
-      typesRaw.push(type);
-    });
-  });
-  const types = [...new Set(typesRaw)];
-  types.sort();
-  let domString = `
-  <div class='filter-group'>
-    <span class="category-title">Category</span>
-    <ul>
-      <li><i class="far fa-check-square filter-btn" id="filter-f-all"></i> All</li>`;
-  types.forEach((type) => {
-    const buttonId = type.replace(/ /g, '_');
-    domString += `<li><i class="far fa-square filter-btn" id="filter-f-${buttonId}"></i> ${type}</li>`;
-  });
-  domString += '</ul></div>';
-  return domString;
+import FilterButton from '../../UI/FilterButton/FilterButton';
+
+// import './FoodTypes.scss';
+
+const FoodTypes = (props) => {
+  const createFilterButtons = () => {
+    const buttons = props.availableFilters.map((filter, index) => (<FilterButton click={() => props.toggleFilter(filter)} isActive={props.filters[filter]} key={index}>{filter}</FilterButton>));
+    return buttons;
+  };
+  return (
+    <div className="FoodTypes">
+      Food Types:<br/>
+      {createFilterButtons()}
+    </div>
+  );
 };
 
-export FoodTypeButtons
+// FoodTypes.propTypes = {}
+
+export default FoodTypes;
