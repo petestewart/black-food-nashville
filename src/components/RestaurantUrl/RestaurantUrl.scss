@@ -1,0 +1,13 @@
+.RestaurantUrl {
+  a:link {
+    cursor: pointer;
+  }
+  
+  a:visited {
+    cursor: pointer;
+  }
+
+  .link-disabled {
+  opacity: 0.5;
+}
+}
