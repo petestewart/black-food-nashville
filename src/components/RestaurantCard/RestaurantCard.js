@@ -1,9 +1,10 @@
 import React from 'react';
 import StarRatings from 'react-star-ratings';
-
 import * as geolib from 'geolib';
 
 // import PropTypes from 'prop-types';
+
+import OrderLinks from '../OrderLinks/OrderLinks';
 
 import './RestaurantCard.scss';
 
@@ -42,11 +43,12 @@ const RestaurantCard = (props) => {
               {rest.categories.join(', ')}
             </div>
             <div className="controls px-3 mt-2">
-            <i className="fas fa-external-link-alt fa-2x text-muted"></i>
+            <i className="fas fa-external-link-alt fa-2x cardlink text-muted"></i>
               {/* <i className="far fa-heart fa-2x text-muted"></i> */}
-              <i className="far fa-bookmark fa-2x text-muted"></i>
-              <i className="fas fa-share-alt fa-2x text-muted"></i>
-              <i className="fas fa-car-side fa-2x text-muted"></i>
+              <i className="far fa-bookmark fa-2x cardlink text-muted"></i>
+              <i className="fas fa-share-alt fa-2x cardlink text-muted"></i>
+              <OrderLinks className="cardlink" rest={rest} />
+              {/* <Dropdown className="cardlink" links={links}><i className="fas fa-car-side fa-2x text-muted" ></i></Dropdown> */}
             </div>
           </div>
         </div>
