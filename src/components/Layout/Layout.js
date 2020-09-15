@@ -6,12 +6,15 @@ import fbConnection from '../../helpers/data/connection';
 
 import Console from '../Console/Console';
 
+import authData from '../../helpers/data/authData';
+
 // import './Layout.scss';
 
 fbConnection();
 
 const Layout = (props) => {
   const [authed, setAuthed] = useState(false);
+  const [uid, setUid] = useState('');
 
   const removeListener = () => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -20,15 +23,21 @@ const Layout = (props) => {
       } else {
         setAuthed(false);
       }
-      console.warn('listener removed');
     });
   };
 
   useEffect(removeListener, []);
+  useEffect(() => {
+    if (authed) {
+      setUid(authData.getUid());
+    } else {
+      setUid('');
+    }
+  }, [authed]);
 
   return (
       <div className="Layout">
-        <Console authed={authed} />
+        <Console authed={authed} uid={uid}/>
       </div>
   );
 };

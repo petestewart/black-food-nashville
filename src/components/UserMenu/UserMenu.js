@@ -7,10 +7,6 @@ import auth from '../Auth/Auth';
 import './UserMenu.scss';
 
 const UserMenu = (props) => {
-  const clicked = () => {
-    console.warn('CLICKED');
-  };
-
   const menuItems = () => {
     const items = [];
     items.push(auth.auth(props.authed));
