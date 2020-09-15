@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import './Filters.scss';
 
+import OpenNow from '../OpenNow/OpenNow';
 import DeliveryOnly from '../DeliveryOnly/DeliveryOnly';
 import VegOnly from '../VegOnly/VegOnly';
 import FoodTypes from '../FoodTypes/FoodTypes';
@@ -48,6 +49,7 @@ const Filters = (props) => {
 
   return (
     <div className="Filters">
+      <OpenNow status={props.openNow} toggleFilter={props.toggleFilter} />
       <DeliveryOnly status={props.deliveryOnly} toggleFilter={props.toggleFilter} />
       <VegOnly status={props.vegOnly} toggleFilter={props.toggleFilter} />
       <FoodTypes foodFilters={props.foodFilters} availableFilters={availableFilters} toggleFilter={props.toggleFilter} resetFilters={resetFilters} setSoloFilter={setSoloFilter} setAllActive={setAllActive} allActive={allActive}/>

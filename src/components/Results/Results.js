@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
+
 // import PropTypes from 'prop-types';
 
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
@@ -22,6 +24,22 @@ const Results = (props) => {
 
   useEffect(updateActiveFilters, [props]);
 
+  const checkIfOpen = (rest) => {
+    if (!rest.hours) { return false; }
+    const today = moment().day();
+    const timeNow = Number(moment().format('HHmm'));
+    const hoursOpenToday = rest.hours.filter((obj) => obj.day === today);
+    const isOpenNow = hoursOpenToday.some((obj) => {
+      const openHours = { ...obj };
+      openHours.start = Number(openHours.start);
+      if (openHours.is_overnight) {
+        openHours.end = 2400;
+      } else { openHours.end = Number(openHours.end); }
+      return (timeNow >= openHours.start && timeNow <= openHours.end);
+    });
+    return isOpenNow;
+  };
+
   const applyFilters = () => {
     if (props.areaRests.length > 0) {
       const allRests = [...props.areaRests];
@@ -31,6 +49,9 @@ const Results = (props) => {
       }
       if (props.deliveryOnly) {
         filteredRests = filteredRests.filter((rest) => rest.doorDash || rest.grubhub || rest.uberEats);
+      }
+      if (props.openNow) {
+        filteredRests = filteredRests.filter((rest) => checkIfOpen(rest));
       }
       setResults(filteredRests);
     }
