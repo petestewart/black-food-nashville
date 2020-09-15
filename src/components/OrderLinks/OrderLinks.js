@@ -25,7 +25,7 @@ const OrderLinks = (props) => {
   };
 
   return (
-    <Dropdown links={links()}><i className="fas fa-car-side fa-2x text-muted" /></Dropdown>
+    <Dropdown links={links()}>{props.children}</Dropdown>
   );
 };
 
