@@ -28,7 +28,13 @@ class Dropdown extends React.Component {
 
   menuItems = () => {
     const { links } = this.props;
-    const items = links.map((item, index) => <a href={item.link} key={index} target={item.external ? '_blank' : '_self'}><li>{item.name}</li></a>);
+    const items = links.map((item, index) => {
+      if (item.link) {
+        return (
+      <a href={item.link} key={index} target={item.external ? '_blank' : '_self'}><li>{item.name}</li></a>);
+      }
+      return (<li onClick={item.click} key={index}>{item.name}</li>);
+    });
     return items;
   };
 
