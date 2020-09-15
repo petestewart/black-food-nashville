@@ -7,7 +7,7 @@ import FilterButton from '../../UI/FilterButton/FilterButton';
 
 const FoodTypes = (props) => {
   const checkAllShownStatus = () => {
-    const status = props.availableFilters.every((filter) => props.filters[filter] === true);
+    const status = props.availableFilters.every((filter) => props.foodFilters[filter] === true);
     props.setAllActive(status);
   };
 
@@ -16,7 +16,7 @@ const FoodTypes = (props) => {
   const createFilterButtons = () => {
     const buttons = props.availableFilters.map((filter, index) => {
       let click = () => props.toggleFilter(filter);
-      let isActive = props.filters[filter];
+      let isActive = props.foodFilters[filter];
       if (props.allActive) {
         isActive = false;
         click = () => {

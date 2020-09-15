@@ -10,10 +10,10 @@ const Results = (props) => {
   const [activeFilters, setActiveFilters] = useState([]);
 
   const updateActiveFilters = () => {
-    if (props.filters === {}) { return; }
+    if (props.foodFilters === {}) { return; }
     const updatedFilters = [];
-    Object.keys(props.filters).forEach((filter) => {
-      if (props.filters[filter]) {
+    Object.keys(props.foodFilters).forEach((filter) => {
+      if (props.foodFilters[filter]) {
         updatedFilters.push(filter);
       }
     });
@@ -25,7 +25,10 @@ const Results = (props) => {
   const applyFilters = () => {
     if (props.areaRests.length > 0) {
       const allRests = [...props.areaRests];
-      const filteredRests = allRests.filter((rest) => rest.categories.some((restCat) => activeFilters.includes(restCat)));
+      let filteredRests = allRests.filter((rest) => rest.categories.some((restCat) => activeFilters.includes(restCat)));
+      if (props.vegOnly) {
+        filteredRests = filteredRests.filter((rest) => rest.vegFriendly === true);
+      }
       setResults(filteredRests);
     }
   };
