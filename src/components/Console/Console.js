@@ -43,14 +43,14 @@ const Console = (props) => {
   const getUserInfo = () => {
     if (props.uid) {
       userData.getUser(props.uid)
-        .then(({ data }) => {
-          console.warn('getUserInfo recieved', data);
-          if (!data.name) {
-            userData.createNewUser(props.uid)
-              .then((res) => setUser(res))
-              .catch((err) => console.error(err));
+        .then(([res]) => {
+          console.warn('getUserInfo recieved', res);
+          if (res.name) {
+            setUser(res);
           } else {
-            setUser(data);
+            userData.createNewUser(props.uid)
+              .then((resp) => setUser(resp))
+              .catch((err) => console.error(err));
           }
         })
         .catch((err) => console.error('problem getting user', err));

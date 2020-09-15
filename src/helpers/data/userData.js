@@ -3,9 +3,15 @@ import apiKeys from '../apiKeys.json';
 
 import authData from './authData';
 
+import utils from '../utils';
+
 const baseUrl = apiKeys.firebaseConfig.databaseURL;
 
-const getUser = (uid) => axios.get(`${baseUrl}/users.json?orderBy="uid"&equalTo="${uid}"`);
+const getUser = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/users.json?orderBy="uid"&equalTo="${uid}"`)
+    .then(({ data }) => resolve(utils.convertFirebaseCollection(data)))
+    .catch((err) => console.error(err));
+});
 
 const createNewUser = (uid) => new Promise((resolve, reject) => {
   const authedUser = authData.getAuthInfo(uid);
