@@ -15,8 +15,9 @@ const Console = (props) => {
   const [location, setLocation] = useState({ latitude: 0, longitude: 0, name: '' });
   const [radius, setRadius] = useState(5);
   const [areaRests, setAreaRests] = useState([]);
-  const [foodFilters, setFoodFilters] = useState({});
+  const [deliveryOnly, setDeliveryOnly] = useState(false);
   const [vegOnly, setVegOnly] = useState(false);
+  const [foodFilters, setFoodFilters] = useState({});
 
   const updateAreaRests = () => {
     restaurantData.getAllRestaurants()
@@ -41,6 +42,9 @@ const Console = (props) => {
       case 'vegOnly':
         setVegOnly(!vegOnly);
         break;
+      case 'deliveryOnly':
+        setDeliveryOnly(!deliveryOnly);
+        break;
       default: {
         const updatedFilters = { ...foodFilters };
         updatedFilters[filter] = !foodFilters[filter];
@@ -64,8 +68,8 @@ const Console = (props) => {
     <React.Fragment>
       <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius}/>
       <div className="content">
-        <Filters foodFilters={foodFilters} vegOnly={vegOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter}/>
-        <Results foodFilters={foodFilters} vegOnly={vegOnly} location={location} areaRests={areaRests} />
+        <Filters foodFilters={foodFilters} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter}/>
+        <Results foodFilters={foodFilters} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} />
       </div>
 
     </React.Fragment>

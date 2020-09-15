@@ -29,6 +29,9 @@ const Results = (props) => {
       if (props.vegOnly) {
         filteredRests = filteredRests.filter((rest) => rest.vegFriendly === true);
       }
+      if (props.deliveryOnly) {
+        filteredRests = filteredRests.filter((rest) => rest.doorDash || rest.grubhub || rest.uberEats);
+      }
       setResults(filteredRests);
     }
   };
