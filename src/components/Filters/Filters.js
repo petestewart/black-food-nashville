@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import './Filters.scss';
 
+import VegOnly from '../VegOnly/VegOnly';
 import FoodTypes from '../FoodTypes/FoodTypes';
 
 const Filters = (props) => {
@@ -16,14 +17,14 @@ const Filters = (props) => {
   };
 
   const addNewFilters = () => {
-    const updatedFilters = { ...props.filters };
-    const currentFilters = Object.keys(props.filters);
+    const updatedFilters = { ...props.foodFilters };
+    const currentFilters = Object.keys(props.foodFilters);
     availableFilters.forEach((filter) => {
       if (!currentFilters.includes(filter)) {
         updatedFilters[filter] = allActive;
       }
     });
-    props.setFilters(updatedFilters);
+    props.setFoodFilters(updatedFilters);
   };
 
   const resetFilters = () => {
@@ -31,13 +32,13 @@ const Filters = (props) => {
     Object.keys(availableFilters).forEach((i) => {
       updatedFilters[availableFilters[i]] = true;
     });
-    props.setFilters(updatedFilters);
+    props.setFoodFilters(updatedFilters);
   };
 
   const setSoloFilter = (filter) => {
     const soloFilter = {};
     soloFilter[filter] = true;
-    props.setFilters(soloFilter);
+    props.setFoodFilters(soloFilter);
   };
 
   useEffect(updateAvailableFilters, [props.areaRests]);
@@ -46,7 +47,8 @@ const Filters = (props) => {
 
   return (
     <div className="Filters">
-      <FoodTypes filters={props.filters} availableFilters={availableFilters} toggleFilter={props.toggleFilter} resetFilters={resetFilters} setSoloFilter={setSoloFilter} setAllActive={setAllActive} allActive={allActive}/>
+      <VegOnly status={props.vegOnly} toggleFilter={props.toggleFilter} />
+      <FoodTypes foodFilters={props.foodFilters} availableFilters={availableFilters} toggleFilter={props.toggleFilter} resetFilters={resetFilters} setSoloFilter={setSoloFilter} setAllActive={setAllActive} allActive={allActive}/>
     </div>
   );
 };

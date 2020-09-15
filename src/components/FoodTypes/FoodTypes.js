@@ -2,13 +2,12 @@ import React, { useEffect } from 'react';
 // import PropTypes from 'prop-types';
 
 import FilterButton from '../../UI/FilterButton/FilterButton';
-import Switch from '../../UI/Switch/Switch';
 
 // import './FoodTypes.scss';
 
 const FoodTypes = (props) => {
   const checkAllShownStatus = () => {
-    const status = props.availableFilters.every((filter) => props.filters[filter] === true);
+    const status = props.availableFilters.every((filter) => props.foodFilters[filter] === true);
     props.setAllActive(status);
   };
 
@@ -17,7 +16,7 @@ const FoodTypes = (props) => {
   const createFilterButtons = () => {
     const buttons = props.availableFilters.map((filter, index) => {
       let click = () => props.toggleFilter(filter);
-      let isActive = props.filters[filter];
+      let isActive = props.foodFilters[filter];
       if (props.allActive) {
         isActive = false;
         click = () => {
@@ -32,7 +31,6 @@ const FoodTypes = (props) => {
   return (
     <div className="FoodTypes">
       Food Types:<br/>
-      <Switch />
       <FilterButton isActive={props.allActive} dim={!props.allActive} click={props.resetFilters}>Show All</FilterButton><br/>
       {createFilterButtons()}
     </div>

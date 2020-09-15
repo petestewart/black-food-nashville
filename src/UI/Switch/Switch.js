@@ -1,25 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Switch from 'react-switch';
+// import PropTypes from 'prop-types';
 
-class SwitchExample extends Component {
-  constructor() {
-    super();
-    this.state = { checked: false };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(checked) {
-    this.setState({ checked });
-  }
-
-  render() {
-    return (
-      <label>
-        <span>Switch with default style</span>
-        <Switch onChange={this.handleChange} checked={this.state.checked} />
+const VegOnly = (props) => (
+      <label className="d-flex align-items-center">
+        <Switch className={`mr-2 ${props.className}`} onChange={props.onChange} checked={props.checked} onColor={'#17A2B8'} uncheckedIcon={false} checkedIcon={false} height={20} width={35}/>
+        <span>{props.children}</span>
       </label>
-    );
-  }
-}
+);
 
-export default SwitchExample;
+// Switch.propTypes = {}
+
+export default VegOnly;
