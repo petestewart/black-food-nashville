@@ -1,9 +1,11 @@
 import React from 'react';
 import StarRatings from 'react-star-ratings';
-
 import * as geolib from 'geolib';
 
 // import PropTypes from 'prop-types';
+
+import OrderLinks from '../OrderLinks/OrderLinks';
+import Dropdown from '../../UI/Dropdown/Dropdown';
 
 import './RestaurantCard.scss';
 
@@ -46,7 +48,8 @@ const RestaurantCard = (props) => {
               {/* <i className="far fa-heart fa-2x text-muted"></i> */}
               <i className="far fa-bookmark fa-2x text-muted"></i>
               <i className="fas fa-share-alt fa-2x text-muted"></i>
-              <i className="fas fa-car-side fa-2x text-muted"></i>
+              {/* <OrderLinks rest={rest} /> */}
+              <Dropdown></Dropdown>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@
   background-color: white;
   // padding: 3px;
   border-radius: 5%;
-  overflow: hidden;
+  // overflow: hidden;
   min-width: 390px;
   max-width: 390px;
   height: 270px;
@@ -23,6 +23,11 @@
       // border-radius: 5%;
       // margin: 5px;
   }
+    .rest-img {
+      overflow: hidden;
+      border-radius: 5% 5% 0 0;
+    }
+    
     .rest-body {
       display: flex;
       flex-direction: column;
