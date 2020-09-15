@@ -1,6 +1,7 @@
 .dd-container {
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 
 // .button {
@@ -23,6 +24,15 @@
   z-index: 900;
   border: 1px solid rgba(0, 0, 0, 0.04);
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+  a:link {
+    text-decoration: none;
+    color: black
+  }
+  
+  a:visited {
+    text-decoration: none;
+    color: black
+  }
 
   ul {
   list-style: none;
@@ -39,3 +49,6 @@
   }
 }
 
+.dd-disabled {
+  opacity: 0.5;
+}

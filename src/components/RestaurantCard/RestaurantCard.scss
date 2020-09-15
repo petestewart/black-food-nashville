@@ -60,6 +60,10 @@
           padding: 0px;
           display: flex;
           justify-content: space-between;
+
+          .cardlink {
+            cursor: pointer;
+          }
         }
         
     }

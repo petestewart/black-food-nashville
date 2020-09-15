@@ -10,6 +10,8 @@ class Dropdown extends React.Component {
     open: false,
   };
 
+  // static propTypes = {}
+
   handleButtonClick = () => {
     this.setState((state) => ({
       open: !state.open,
@@ -24,7 +26,11 @@ class Dropdown extends React.Component {
     }
   };
 
-  // static propTypes = {}
+  menuItems = () => {
+    const { links } = this.props;
+    const items = links.map((item, index) => <a href={item.link} key={index} target={item.external ? '_blank' : '_self'}><li>{item.name}</li></a>);
+    return items;
+  };
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside);
@@ -36,19 +42,16 @@ class Dropdown extends React.Component {
 
   render() {
     return (
-    <div className="dd-container" ref={this.container}>
-        <i className="fas fa-car-side fa-2x text-muted" onClick={this.handleButtonClick}></i>
-      {this.state.open && (
-      <div class="dd-menu">
-        <ul>
-          <li>Option 1</li>
-          <li>Option 2</li>
-          <li>Option 3</li>
-          <li>Option 4</li>
-        </ul>
+      <div className={this.props.links.length > 0 ? 'dd-container' : 'dd-disabled'} ref={this.container} onClick={this.props.links.length > 0 ? this.handleButtonClick : ''}>
+        {this.props.children}
+        {this.state.open && (
+        <div className="dd-menu">
+          <ul>
+            {this.menuItems()}
+          </ul>
+        </div>
+        )}
       </div>
-      )}
-    </div>
     );
   }
 }
