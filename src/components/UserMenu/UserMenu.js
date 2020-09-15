@@ -2,6 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 import Dropdown from '../../UI/Dropdown/Dropdown';
+import auth from '../Auth/Auth';
 
 import './UserMenu.scss';
 
@@ -10,14 +11,16 @@ const UserMenu = (props) => {
     console.warn('CLICKED');
   };
 
-  const links = [
-    { name: 'Option 1', click: clicked },
-  ];
+  const menuItems = () => {
+    const items = [];
+    items.push(auth.auth(props.authed));
+    return items;
+  };
 
   return (
     <div className="UserMenu">
-      <Dropdown links={links}>
-        USER MENU
+      <Dropdown links={menuItems()}>
+      <i className="fas fa-user-circle fa-2x ml-auto mr-2"></i>
       </Dropdown>
     </div>
   );

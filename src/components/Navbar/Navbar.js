@@ -29,8 +29,7 @@ const Navbar = (props) => {
       <SearchBar placeholder={props.placeholder} click={submitNewLocation}/>
       </div>
       <div className="userMenu">
-        {/* <i className="fas fa-user-circle fa-2x ml-auto mr-2"></i> */}
-        <UserMenu />
+        <UserMenu user={props.user} authed={props.authed}/>
       </div>
     </div>
   );
