@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Console from '../components/Console/Console';
+import Layout from '../components/Layout/Layout';
 
 import './App.scss';
 
@@ -8,7 +8,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Console className="Console" />
+        <Layout className="Layout" />
       </div>
     );
   }

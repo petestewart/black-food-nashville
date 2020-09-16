@@ -2,6 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 import SearchBar from '../../UI/SearchBar/SearchBar';
+import UserMenu from '../UserMenu/UserMenu';
 import NumberInput from '../../UI/NumberInput/NumberInput';
 
 import mapquestData from '../../helpers/data/mapquestData';
@@ -28,7 +29,7 @@ const Navbar = (props) => {
       <SearchBar placeholder={props.placeholder} click={submitNewLocation}/>
       </div>
       <div className="userMenu">
-        <i className="fas fa-user-circle fa-2x ml-auto mr-2"></i>
+        <UserMenu user={props.user} authed={props.authed}/>
       </div>
     </div>
   );

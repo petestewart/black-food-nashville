@@ -8,6 +8,7 @@ import Results from '../Results/Results';
 import filterActions from '../../helpers/filterActions';
 import restaurantData from '../../helpers/data/restaurantData';
 import mapquestData from '../../helpers/data/mapquestData';
+import userData from '../../helpers/data/userData';
 
 import './Console.scss';
 
@@ -19,6 +20,7 @@ const Console = (props) => {
   const [openNow, setOpenNow] = useState(false);
   const [vegOnly, setVegOnly] = useState(false);
   const [foodFilters, setFoodFilters] = useState({});
+  const [user, setUser] = useState({});
 
   const updateAreaRests = () => {
     restaurantData.getAllRestaurants()
@@ -36,6 +38,27 @@ const Console = (props) => {
         .catch((err) => console.error(err));
     };
     navigator.geolocation.getCurrentPosition(success);
+  };
+
+  const getUserInfo = () => {
+    if (!props.authed) {
+      setUser({});
+      return;
+    }
+    if (props.uid) {
+      userData.getUser(props.uid)
+        .then(([res]) => {
+          console.warn('getUserInfo recieved', res);
+          if (res.name) {
+            setUser(res);
+          } else {
+            userData.createNewUser(props.uid)
+              .then((resp) => setUser(resp))
+              .catch((err) => console.error(err));
+          }
+        })
+        .catch((err) => console.error('problem getting user', err));
+    }
   };
 
   const toggleFilter = (filter) => {
@@ -58,6 +81,7 @@ const Console = (props) => {
 
   useEffect(getUserLocation, []);
   useEffect(updateAreaRests, [location, radius]);
+  useEffect(getUserInfo, [props.authed, props.uid]);
 
   const displayLocation = () => {
     let placeholder = 'Enter your location';
@@ -70,7 +94,7 @@ const Console = (props) => {
 
   return (
     <React.Fragment>
-      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius}/>
+      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius} authed={props.authed} user={user}/>
       <div className="content">
         <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter}/>
         <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} />
