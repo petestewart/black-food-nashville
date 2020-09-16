@@ -7,7 +7,7 @@ import FilterButton from '../../UI/FilterButton/FilterButton';
 
 const FoodTypes = (props) => {
   const checkAllShownStatus = () => {
-    if (Object.keys(props.foodFilters).every((filter) => props.foodFilters[filter] === false)) { props.resetFilters(); }
+    if (Object.keys(props.foodFilters).every((filter) => props.foodFilters[filter] === false)) { props.resetFilters(); return; }
     const status = props.availableFilters.every((filter) => props.foodFilters[filter] === true);
     props.setAllActive(status);
   };

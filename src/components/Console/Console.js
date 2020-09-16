@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Filters from '../Filters/Filters';
 import Results from '../Results/Results';
+import SubmitRestaurant from '../SubmitRestaurant/SubmitRestaurant';
 
 import filterActions from '../../helpers/filterActions';
 import restaurantData from '../../helpers/data/restaurantData';
@@ -21,6 +22,7 @@ const Console = (props) => {
   const [vegOnly, setVegOnly] = useState(false);
   const [foodFilters, setFoodFilters] = useState({});
   const [user, setUser] = useState({});
+  const [openForm, setOpenForm] = useState(false);
 
   const updateAreaRests = () => {
     restaurantData.getAllRestaurants()
@@ -92,12 +94,20 @@ const Console = (props) => {
     return placeholder;
   };
 
+  const openNewRestForm = () => setOpenForm(true);
+  const closeForm = () => setOpenForm(false);
+
   return (
     <React.Fragment>
-      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius} authed={props.authed} user={user}/>
+      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius} authed={props.authed} user={user} openNewRestForm={openNewRestForm}/>
       <div className="content">
+        {openForm
+          ? <SubmitRestaurant />
+          : <React.Fragment>
         <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter}/>
-        <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} />
+        <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed}/>
+        </React.Fragment>
+        }
       </div>
 
     </React.Fragment>
