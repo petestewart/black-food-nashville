@@ -9,6 +9,9 @@ import './UserMenu.scss';
 const UserMenu = (props) => {
   const menuItems = () => {
     const items = [];
+    if (props.user.name) {
+      items.push({ name: `Hi, ${props.user.name}` });
+    }
     items.push(auth.auth(props.authed));
     return items;
   };

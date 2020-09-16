@@ -41,6 +41,10 @@ const Console = (props) => {
   };
 
   const getUserInfo = () => {
+    if (!props.authed) {
+      setUser({});
+      return;
+    }
     if (props.uid) {
       userData.getUser(props.uid)
         .then(([res]) => {
@@ -90,7 +94,7 @@ const Console = (props) => {
 
   return (
     <React.Fragment>
-      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius} authed={props.authed}/>
+      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius} authed={props.authed} user={user}/>
       <div className="content">
         <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter}/>
         <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} />
