@@ -1,6 +1,8 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
 
+import utils from '../utils';
+
 const { baseURL, apiKey } = apiKeys.yelpConfig;
 
 const yelpREST = axios.create({
@@ -15,6 +17,14 @@ const getRestaurantInfo = (yelpId) => new Promise((resolve, reject) => {
   yelpREST(`/businesses/${yelpId}`)
     .then(({ data }) => {
       resolve(data);
+    })
+    .catch((err) => reject(err));
+});
+
+const searchByName = (restName) => new Promise((resolve, reject) => {
+  yelpREST(`/businesses/search?location=%22Nashville,%20TN%22&term=%22${restName}%22`)
+    .then(({ data }) => {
+      resolve(utils.convertYelpSearchResult(data.businesses));
     })
     .catch((err) => reject(err));
 });
@@ -49,4 +59,4 @@ const insertYelpData = (yelpId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getRestaurantInfo, insertYelpData };
+export default { getRestaurantInfo, insertYelpData, searchByName };

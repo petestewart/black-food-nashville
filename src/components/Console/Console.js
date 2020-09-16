@@ -103,7 +103,7 @@ const Console = (props) => {
       <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius} authed={props.authed} user={user} openNewRestForm={openNewRestForm}/>
       <div className="content">
         {openForm
-          ? <SubmitRestaurant />
+          ? <SubmitRestaurant newRest={true}/>
           : <React.Fragment>
         <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter}/>
         <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed}/>

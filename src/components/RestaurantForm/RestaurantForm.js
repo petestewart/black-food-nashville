@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 
-import yelpData from '../../helpers/data/yelpData';
 
 import './RestaurantForm.scss';
 
@@ -44,43 +43,9 @@ const RestaurantForm = (props) => {
     setRestaurant(updatedRest);
   };
 
-  const yelpInputHandler = (e) => {
-    e.preventDefault();
-    if (restaurant.yelp.slice(0, 25) !== 'https://www.yelp.com/biz/') {
-      return;
-    }
-    const getYelpId = (url) => {
-      let yelpId = url.substring(25);
-      if (yelpId.includes('?')) {
-        yelpId = yelpId.substring(0, yelpId.indexOf('?'));
-      }
-      return yelpId;
-    };
-    console.warn('YELP ID IS', getYelpId(restaurant.yelp));
-    yelpData.insertYelpData(getYelpId(restaurant.yelp))
-      .then((res) => {
-        console.warn(res);
-        setRestaurant({ ...restaurant, ...res });
-      })
-      .catch((err) => console.error(err));
-  };
-
   return (
     <div className="restaurant-form">
     <form className="col-6">
-      <div className="form-group">
-        <label htmlFor="yelp">Yelp URL</label>
-        <input
-          type="text"
-          className="form-control"
-          id="yelp"
-          value={restaurant.yelp}
-          onChange={inputHandler}
-          // onSubmit={yelpInputHandler}
-          />
-      </div>
-      <button onClick={yelpInputHandler}>Search Yelp</button>
-
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input
