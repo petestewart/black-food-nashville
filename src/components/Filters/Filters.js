@@ -13,12 +13,14 @@ const Filters = (props) => {
   const [allActive, setAllActive] = useState(true);
 
   const updateAvailableFilters = () => {
+    if (props.areaRests.length === 0) { return; } // LOOP-PREVENTION
     const allFilters = [];
     props.areaRests.forEach((rest) => rest.categories.forEach((category) => allFilters.push(category)));
     setAvailableFilters([...new Set(allFilters)].sort());
   };
 
   const addNewFilters = () => {
+    if (availableFilters.length === 0) { return; } // LOOP-PREVENTION
     const updatedFilters = { ...props.foodFilters };
     const currentFilters = Object.keys(props.foodFilters);
     availableFilters.forEach((filter) => {

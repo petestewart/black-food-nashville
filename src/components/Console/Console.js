@@ -25,6 +25,7 @@ const Console = (props) => {
   const [openForm, setOpenForm] = useState(false);
 
   const updateAreaRests = () => {
+    if (location.latitude === 0) { return; } // LOOP-PREVENTION
     restaurantData.getAllRestaurants()
       .then((res) => {
         setAreaRests(filterActions.radiusSearch(location, radius, res));
@@ -82,7 +83,7 @@ const Console = (props) => {
   };
 
   useEffect(getUserLocation, []);
-  useEffect(updateAreaRests, [location, radius]);
+  useEffect(updateAreaRests, [location.latitude, radius]); // LOOP-PREVENTION (was location)
   useEffect(getUserInfo, [props.authed, props.uid]);
 
   const displayLocation = () => {
