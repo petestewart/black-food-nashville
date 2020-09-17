@@ -66,7 +66,13 @@ const RestaurantForm = (props) => {
     e.preventDefault();
     console.warn('submitRest called to create', restaurant);
     restaurantData.createRestaurant(restaurant)
-      .then((res) => console.warn(res))
+      .then(() => {
+        props.history.push({
+          pathname: '/splash',
+          message: 'Thank-you for your contribution',
+          next: '/search',
+        });
+      })
       .catch((err) => console.error(err));
   };
 

@@ -10,6 +10,7 @@ import Filters from '../Filters/Filters';
 import Results from '../Results/Results';
 import SubmitRestaurant from '../SubmitRestaurant/SubmitRestaurant';
 import RestaurantForm from '../RestaurantForm/RestaurantForm';
+import SplashScreen from '../../UI/SplashScreen/SplashScreen';
 
 import filterActions from '../../helpers/filterActions';
 import restaurantData from '../../helpers/data/restaurantData';
@@ -121,6 +122,9 @@ const Console = (props) => {
           </Route>
           <Route path="/restaurantform">
             <RestaurantForm />
+          </Route>
+          <Route path="/splash">
+            <SplashScreen />
           </Route>
           <Redirect from="*" to="/search" />
         </Switch>
