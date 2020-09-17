@@ -11,6 +11,7 @@ import Results from '../Results/Results';
 import SubmitRestaurant from '../SubmitRestaurant/SubmitRestaurant';
 import RestaurantForm from '../RestaurantForm/RestaurantForm';
 import SplashScreen from '../../UI/SplashScreen/SplashScreen';
+import SingleRestaurant from '../SingleRestaurant/SingleRestaurant';
 
 import filterActions from '../../helpers/filterActions';
 import restaurantData from '../../helpers/data/restaurantData';
@@ -29,6 +30,12 @@ const Console = (props) => {
   const [foodFilters, setFoodFilters] = useState({});
   const [user, setUser] = useState({});
   const [openForm, setOpenForm] = useState(false);
+
+  // *** URL MANIPULATION:
+  // const params = new URLSearchParams(location.search);
+  // params.set('search', 2.0);
+
+  // window.history.replaceState({}, '', `${location.pathname}?${params}`);
 
   const updateAreaRests = () => {
     if (location.latitude === 0) { return; } // LOOP-PREVENTION
@@ -115,6 +122,9 @@ const Console = (props) => {
               <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter}/>
               <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed}/>
             </React.Fragment>
+          </Route>
+          <Route path="/business/:restId">
+            <SingleRestaurant authed={props.authed} />
           </Route>
           <Route path="/submit">
             {/* this should load if openForm is set to true (newRest prop will eventually change based on new or existing restaurant) */}
