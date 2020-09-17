@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router';
 
+// import PropTypes from 'prop-types';
 
 import './RestaurantForm.scss';
 
 const RestaurantForm = (props) => {
+  // console.warn('IS THIS IT?', props.location.appState);
+
   const [restaurant, setRestaurant] = useState({
     categories: [],
     doordash: '',
@@ -28,6 +31,14 @@ const RestaurantForm = (props) => {
     website: '',
     yelp: '',
   });
+
+  useEffect(() => {
+    // warning below about adding restaurant to the dependency array, but that isn't what we want (?)
+    if (props.location.restaurantInfo) {
+      setRestaurant({ ...restaurant, ...props.location.restaurantInfo });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const inputHandler = (e) => {
     e.preventDefault();
@@ -183,4 +194,4 @@ const RestaurantForm = (props) => {
 
 // RestaurantForm.propTypes = {}
 
-export default RestaurantForm;
+export default withRouter(RestaurantForm);

@@ -74,7 +74,7 @@ const YelpSearch = (props) => {
       </form>
       <div className="searchResults">
         { showResult
-          ? <YelpSearchResult result={result} />
+          ? <YelpSearchResult result={result}/>
           : ''
         }
       </div>

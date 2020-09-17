@@ -9,6 +9,7 @@ import Navbar from '../Navbar/Navbar';
 import Filters from '../Filters/Filters';
 import Results from '../Results/Results';
 import SubmitRestaurant from '../SubmitRestaurant/SubmitRestaurant';
+import RestaurantForm from '../RestaurantForm/RestaurantForm';
 
 import filterActions from '../../helpers/filterActions';
 import restaurantData from '../../helpers/data/restaurantData';
@@ -118,6 +119,9 @@ const Console = (props) => {
           <Route path="/submit">
             {/* this should load if openForm is set to true (newRest prop will eventually change based on new or existing restaurant) */}
             <SubmitRestaurant newRest={true}/>
+          </Route>
+          <Route path="/restaurantform">
+            <RestaurantForm />
           </Route>
           <Redirect from="*" to="/search" />
         </Switch>

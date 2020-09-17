@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router';
+
 // import PropTypes from 'prop-types';
 
 import './YelpSearchResults.scss';
@@ -25,7 +27,14 @@ const YelpSearchResults = (props) => {
 
   const acceptResultHandler = () => {
     yelpData.insertYelpData(rest.yelpId)
-      .then((res) => console.warn(res))
+      .then((res) => {
+        console.warn(res);
+        // props.openFormHandler(res);
+        props.history.push({
+          pathname: '/restaurantform',
+          restaurantInfo: res,
+        });
+      })
       .catch((err) => console.error(err));
   };
 
@@ -71,4 +80,4 @@ const YelpSearchResults = (props) => {
 
 // YelpSearchResults.propTypes = {}
 
-export default YelpSearchResults;
+export default withRouter(YelpSearchResults);
