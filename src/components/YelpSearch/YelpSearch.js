@@ -16,6 +16,10 @@ const YelpSearch = (props) => {
     setSearchInput(e.target.value);
   };
 
+  const goToForm = (rest) => {
+    // TAKE USER TO FORM WITH rest DATA AS PROPS
+  };
+
   // ** FOR URL INPUT ONLY **
   // const yelpInputHandler = (e) => {
   //   e.preventDefault();
@@ -54,7 +58,7 @@ const YelpSearch = (props) => {
 
   return (
     <div className = "YelpSearch">
-      <form>
+      <form className="col-6">
         <div className="form-group">
         <label htmlFor="yelp">Yelp search</label>
         <input

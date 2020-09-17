@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter, Redirect, Route, Switch,
+} from 'react-router-dom';
+
 // import PropTypes from 'prop-types';
 
 import Navbar from '../Navbar/Navbar';
@@ -99,19 +103,27 @@ const Console = (props) => {
   const closeForm = () => setOpenForm(false);
 
   return (
+  <BrowserRouter>
     <React.Fragment>
       <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius} authed={props.authed} user={user} openNewRestForm={openNewRestForm}/>
       <div className="content">
-        {openForm
-          ? <SubmitRestaurant newRest={true}/>
-          : <React.Fragment>
-        <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter}/>
-        <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed}/>
-        </React.Fragment>
-        }
+        <Switch>
+          <Route path="/search">
+            {/* this should load if openForm is set to false */}
+            <React.Fragment>
+              <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter}/>
+              <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed}/>
+            </React.Fragment>
+          </Route>
+          <Route path="/submit">
+            {/* this should load if openForm is set to true (newRest prop will eventually change based on new or existing restaurant) */}
+            <SubmitRestaurant newRest={true}/>
+          </Route>
+          <Redirect from="*" to="/search" />
+        </Switch>
       </div>
-
     </React.Fragment>
+  </BrowserRouter>
   );
 };
 
