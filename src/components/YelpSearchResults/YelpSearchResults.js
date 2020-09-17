@@ -16,7 +16,7 @@ const YelpSearchResults = (props) => {
   const [currentRest, setCurrentRest] = useState(0);
 
   const showResults = () => {
-    if (currentRest + 1 >= props.result.length) {
+    if (currentRest >= props.result.length) {
       console.warn('WE COULDNT FIND YOUR RESTAURANT - GO TO FORM');
     } else {
       setRest(props.result[currentRest]);

@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 // import PropTypes from 'prop-types';
 
 import './Dropdown.scss';
@@ -26,12 +28,22 @@ class Dropdown extends React.Component {
     }
   };
 
+  // props.links is an [array] that contains an {object} for each menu-item with the following configuration:
+  //  .name is the name of the menu-item that shows
+  //  .click will create an onClick action for the menu item
+  //  .rrlink will create a react-router <Navlink>
+  //  .link will create an <a> tag, and if .external is true, it will open in an external window
+
   menuItems = () => {
     const { links } = this.props;
     const items = links.map((item, index) => {
+      if (item.rrlink) {
+        return (
+        <NavLink key={index} tag={NavLink} to={item.rrlink}><li>{item.name}</li></NavLink>);
+      }
       if (item.link) {
         return (
-      <a href={item.link} key={index} target={item.external ? '_blank' : '_self'}><li>{item.name}</li></a>);
+        <a href={item.link} key={index} target={item.external ? '_blank' : '_self'}><li>{item.name}</li></a>);
       }
       return (<li onClick={item.click} key={index}>{item.name}</li>);
     });

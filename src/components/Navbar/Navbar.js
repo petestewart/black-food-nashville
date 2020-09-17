@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 // import PropTypes from 'prop-types';
 
 import SearchBar from '../../UI/SearchBar/SearchBar';
@@ -22,7 +24,7 @@ const Navbar = (props) => {
 
   return (
     <div className="Navbar">
-      <h2 className="Logo">OneBite</h2>
+      <NavLink tag={NavLink} to="/search"><h2 className="Logo">OneBite</h2></NavLink>
       <div className="location-controls">
       <NumberInput click={setRadius} value={props.radius}/>
       miles within
