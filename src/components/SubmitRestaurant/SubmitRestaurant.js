@@ -6,16 +6,16 @@ import RestaurantForm from '../RestaurantForm/RestaurantForm';
 
 import './SubmitRestaurant.scss';
 
-const SubmitRestaurant = (props) => (
-    <div className="SubmitRestaurant">
+const SubmitRestaurant = (props) => {
+  return (<div className="SubmitRestaurant">
       <h3>Submit A New Restaurant</h3>
       { props.newRest
         ? <YelpSearch />
         : 'EXISTING RESTAURANT FORM'
       }
       {/* <RestaurantForm newRest={true} /> */}
-    </div>
-);
+    </div>);
+};
 
 // SubmitRestaurant.propTypes = {}
 

@@ -9,6 +9,8 @@ import Navbar from '../Navbar/Navbar';
 import Filters from '../Filters/Filters';
 import Results from '../Results/Results';
 import SubmitRestaurant from '../SubmitRestaurant/SubmitRestaurant';
+import RestaurantForm from '../RestaurantForm/RestaurantForm';
+import SplashScreen from '../../UI/SplashScreen/SplashScreen';
 
 import filterActions from '../../helpers/filterActions';
 import restaurantData from '../../helpers/data/restaurantData';
@@ -55,7 +57,6 @@ const Console = (props) => {
     if (props.uid) {
       userData.getUser(props.uid)
         .then(([res]) => {
-          console.warn('getUserInfo recieved', res);
           if (res.name) {
             setUser(res);
           } else {
@@ -118,6 +119,12 @@ const Console = (props) => {
           <Route path="/submit">
             {/* this should load if openForm is set to true (newRest prop will eventually change based on new or existing restaurant) */}
             <SubmitRestaurant newRest={true}/>
+          </Route>
+          <Route path="/restaurantform">
+            <RestaurantForm />
+          </Route>
+          <Route path="/splash">
+            <SplashScreen />
           </Route>
           <Redirect from="*" to="/search" />
         </Switch>

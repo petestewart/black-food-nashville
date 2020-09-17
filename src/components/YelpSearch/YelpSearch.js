@@ -49,7 +49,6 @@ const YelpSearch = (props) => {
     }
     yelpData.searchByName(searchInput)
       .then((res) => {
-        console.warn(res);
         setResult(res);
         setShowResult(true);
       })
@@ -74,7 +73,7 @@ const YelpSearch = (props) => {
       </form>
       <div className="searchResults">
         { showResult
-          ? <YelpSearchResult result={result} />
+          ? <YelpSearchResult result={result}/>
           : ''
         }
       </div>
