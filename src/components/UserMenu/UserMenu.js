@@ -12,6 +12,9 @@ const UserMenu = (props) => {
     if (props.user.name) {
       items.push({ name: `Hi, ${props.user.name}` });
     }
+    if (props.authed) {
+      items.push({ name: 'Submit a restaurant', click: props.openNewRestForm });
+    }
     items.push(auth.auth(props.authed));
     return items;
   };

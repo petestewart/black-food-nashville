@@ -29,7 +29,7 @@ const Navbar = (props) => {
       <SearchBar placeholder={props.placeholder} click={submitNewLocation}/>
       </div>
       <div className="userMenu">
-        <UserMenu user={props.user} authed={props.authed}/>
+        <UserMenu user={props.user} authed={props.authed} openNewRestForm={props.openNewRestForm}/>
       </div>
     </div>
   );
