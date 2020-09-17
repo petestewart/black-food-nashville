@@ -56,7 +56,6 @@ const Console = (props) => {
     if (props.uid) {
       userData.getUser(props.uid)
         .then(([res]) => {
-          console.warn('getUserInfo recieved', res);
           if (res.name) {
             setUser(res);
           } else {

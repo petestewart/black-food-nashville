@@ -3,11 +3,12 @@ import { withRouter } from 'react-router';
 
 // import PropTypes from 'prop-types';
 
+import restaurantData from '../../helpers/data/restaurantData';
+import authData from '../../helpers/data/authData';
+
 import './RestaurantForm.scss';
 
 const RestaurantForm = (props) => {
-  // console.warn('IS THIS IT?', props.location.appState);
-
   const [restaurant, setRestaurant] = useState({
     categories: [],
     doordash: '',
@@ -35,7 +36,8 @@ const RestaurantForm = (props) => {
   useEffect(() => {
     // warning below about adding restaurant to the dependency array, but that isn't what we want (?)
     if (props.location.restaurantInfo) {
-      setRestaurant({ ...restaurant, ...props.location.restaurantInfo });
+      const uid = authData.getUid();
+      setRestaurant({ ...restaurant, ...props.location.restaurantInfo, submittedBy: uid });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -52,6 +54,20 @@ const RestaurantForm = (props) => {
       updatedRest[key] = e.target.value;
     }
     setRestaurant(updatedRest);
+  };
+
+  const vegInputHandler = (e) => {
+    const updatedRest = { ...restaurant };
+    updatedRest.vegFriendly = e.target.checked;
+    setRestaurant(updatedRest);
+  };
+
+  const submitRest = (e) => {
+    e.preventDefault();
+    console.warn('submitRest called to create', restaurant);
+    restaurantData.createRestaurant(restaurant)
+      .then((res) => console.warn(res))
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -183,10 +199,11 @@ const RestaurantForm = (props) => {
           type="checkbox"
           className="form-control"
           id="vegFriendly"
-          value={restaurant.vegFriendly}
-          onChange={inputHandler}
+          checked={restaurant.vegFriendly}
+          onChange={vegInputHandler}
           />
       </div>
+      <button className="btn-btn-info" onClick={submitRest}>Submit</button>
     </form>
   </div>
   );

@@ -49,7 +49,6 @@ const YelpSearch = (props) => {
     }
     yelpData.searchByName(searchInput)
       .then((res) => {
-        console.warn(res);
         setResult(res);
         setShowResult(true);
       })

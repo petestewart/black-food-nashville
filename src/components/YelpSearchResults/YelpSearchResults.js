@@ -28,7 +28,6 @@ const YelpSearchResults = (props) => {
   const acceptResultHandler = () => {
     yelpData.insertYelpData(rest.yelpId)
       .then((res) => {
-        console.warn(res);
         // props.openFormHandler(res);
         props.history.push({
           pathname: '/restaurantform',
