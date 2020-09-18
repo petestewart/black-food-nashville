@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import StarRatings from 'react-star-ratings';
 import * as geolib from 'geolib';
 
@@ -16,10 +17,18 @@ const RestaurantCard = (props) => {
     return `${Math.round(distMiles * 10) / 10} miles`;
   };
 
+  const goToSingleView = (e) => {
+    console.warn(e);
+    props.history.push({
+      pathname: `/business/${props.restaurant.id}`,
+      restaurantInfo: props.restaurant,
+    });
+  };
+
   const rest = props.restaurant;
   return (
       <div className="RestaurantCard">
-        <div className="rest-img"><img className="card-img-top" src={rest.photo} alt="" /></div>
+        <div className="rest-img" onClick={goToSingleView}><img className="card-img-top" src={rest.photo} alt="" /></div>
         <div className="">
           <h6 className="mb0">{rest.name}</h6>
           <div className="rest-body">
@@ -59,4 +68,4 @@ const RestaurantCard = (props) => {
 
 // RestaurantCard.propTypes = {}
 
-export default RestaurantCard;
+export default withRouter(RestaurantCard);

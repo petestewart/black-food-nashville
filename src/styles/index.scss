@@ -2,6 +2,15 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import 'variables';
 
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* Chrome/Safari/Webkit */
+  }
+}
+
 body {
   background-color: $bgMain;
   color: $textMain;

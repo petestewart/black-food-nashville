@@ -1,0 +1,13 @@
+.Schedule {
+  font-size: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 5px;
+    td {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .day {
+      font-weight: bold;
+    }
+}
