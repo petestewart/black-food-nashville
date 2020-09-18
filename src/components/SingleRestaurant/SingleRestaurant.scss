@@ -17,9 +17,11 @@
     }
     
     .rest-body {
+      margin-left: 10vw;
+      margin-right: 10vw;
       display: flex;
       flex-direction: column;
-      width: 100%;
+      // width: 100%;
 
       .rest-body-top {
         display: flex;

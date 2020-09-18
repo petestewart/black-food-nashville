@@ -9,9 +9,9 @@ import './SubmitRestaurant.scss';
 const SubmitRestaurant = (props) => {
   return (<div className="SubmitRestaurant">
       <h3>Submit A New Restaurant</h3>
-      { props.newRest
+      { props.authed
         ? <YelpSearch />
-        : 'EXISTING RESTAURANT FORM'
+        : 'You must log in to submit a new restaurant'
       }
       {/* <RestaurantForm newRest={true} /> */}
     </div>);

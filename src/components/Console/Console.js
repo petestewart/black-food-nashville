@@ -9,6 +9,7 @@ import Navbar from '../Navbar/Navbar';
 import Filters from '../Filters/Filters';
 import Results from '../Results/Results';
 import SubmitRestaurant from '../SubmitRestaurant/SubmitRestaurant';
+import EditRestaurant from '../EditRestaurant/EditRestaurant';
 import RestaurantForm from '../RestaurantForm/RestaurantForm';
 import SplashScreen from '../../UI/SplashScreen/SplashScreen';
 import SingleRestaurant from '../SingleRestaurant/SingleRestaurant';
@@ -107,6 +108,7 @@ const Console = (props) => {
     return placeholder;
   };
 
+  // ARE WE NOT USING THIS ANYMORE?
   const openNewRestForm = () => setOpenForm(true);
   const closeForm = () => setOpenForm(false);
 
@@ -126,9 +128,12 @@ const Console = (props) => {
           <Route path="/business/:restId">
             <SingleRestaurant authed={props.authed} />
           </Route>
+          <Route path="/edit/:restId">
+            <EditRestaurant authed={props.authed} />
+          </Route>
           <Route path="/submit">
             {/* this should load if openForm is set to true (newRest prop will eventually change based on new or existing restaurant) */}
-            <SubmitRestaurant newRest={true}/>
+            <SubmitRestaurant authed={props.authed}/>
           </Route>
           <Route path="/restaurantform">
             <RestaurantForm />

@@ -47,7 +47,7 @@ const YelpSearchResults = (props) => {
 
   useEffect(showResults, [currentRest]);
 
-  // 2. If user clicks yes, perform Yelp search by Id and send result back to SubmitRestaurant with props function
+  // ** TODO:
   // 5. If there are no results, take user to form (with a message that we could not find your restaurant)
 
   return (
