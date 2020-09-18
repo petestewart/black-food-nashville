@@ -89,6 +89,14 @@ const SingleRestaurant = (props) => {
         link: `tel:${rest.phone.replace(/[^\d]/g, '')}`,
       });
     }
+    if (rest.yelp) {
+      restLinks.push({
+        name: 'Yelp',
+        faIcon: 'fab fa-yelp',
+        link: rest.yelp,
+        external: true,
+      });
+    }
     if (rest.website) {
       restLinks.push({
         name: 'Website',
