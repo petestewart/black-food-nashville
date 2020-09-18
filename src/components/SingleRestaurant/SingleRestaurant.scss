@@ -28,6 +28,10 @@
         .categories {
           font-weight: 600;
           // color: grey;
+          .open-now {
+            color: green;
+            font-weight: normal;
+          }
         }
         .rest-hours {
           border: 1px solid $accentLight;
@@ -55,10 +59,6 @@
         flex-direction: row;
         justify-content: space-between;
 
-          .rest-body-btm-l {
-
-          }
-
           .rest-body-btm-r {
             width: 250px;
           }
@@ -68,5 +68,13 @@
           // }
         }
         
+    }
+
+    .submit-link {
+      font-size: 0.9rem;
+    }
+    .submit-link:hover {
+      color:blue !important;
+      cursor: pointer;
     }
 }

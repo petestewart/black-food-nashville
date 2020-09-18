@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 const convertFirebaseCollection = (data) => {
   const objectCollection = data;
   const arrayCollection = [];
@@ -28,4 +30,31 @@ const convertYelpSearchResult = (data) => {
   return result;
 };
 
-export default { convertFirebaseCollection, convertYelpSearchResult };
+const getWeeklyHours = (hours) => {
+  const schedule = [];
+  hours.forEach((block) => {
+    const day = moment(block.day, 'd').format('dddd');
+    schedule.push({ day, hours: `${moment(block.start, 'HHmm').format('h:mm a')} - ${moment(block.end, 'HHmm').format('h:mm a')}` });
+  });
+  return schedule;
+};
+
+const checkIfOpen = (hours) => {
+  if (!hours) { return false; }
+  const today = moment().day();
+  const timeNow = Number(moment().format('HHmm'));
+  const hoursOpenToday = hours.filter((obj) => obj.day === today);
+  const isOpenNow = hoursOpenToday.some((obj) => {
+    const openHours = { ...obj };
+    openHours.start = Number(openHours.start);
+    if (openHours.is_overnight) {
+      openHours.end = 2400;
+    } else { openHours.end = Number(openHours.end); }
+    return (timeNow >= openHours.start && timeNow <= openHours.end);
+  });
+  return isOpenNow;
+};
+
+export default {
+  convertFirebaseCollection, convertYelpSearchResult, checkIfOpen, getWeeklyHours,
+};

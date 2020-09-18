@@ -5,8 +5,9 @@ import StarRatings from 'react-star-ratings';
 // import PropTypes from 'prop-types';
 
 import LinksMenu from '../../UI/LinksMenu/LinksMenu';
-import RestaurantUrl from '../RestaurantUrl/RestaurantUrl';
-import OrderLinks from '../OrderLinks/OrderLinks';
+import Schedule from '../../UI/Schedule/Schedule';
+
+import utils from '../../helpers/utils';
 
 import restaurantData from '../../helpers/data/restaurantData';
 
@@ -49,13 +50,6 @@ const SingleRestaurant = (props) => {
   const rest = restaurant;
 
   const links = () => {
-    const directionsLink = () => {
-      const { location } = rest;
-      const url = `${rest.name} ${location.address1} ${location.city} ${location.zipcode}`;
-      console.warn(encodeURIComponent(url));
-      return ((url));
-    };
-
     const restLinks = [];
 
     if (rest.doordash) {
@@ -130,8 +124,8 @@ const SingleRestaurant = (props) => {
                 {rest.location.address1}, {rest.location.city} {rest.location.zipcode}
               </div>
               <div className="categories">
-                {/* TODO: add openNow */}
                 {rest.categories.join(', ')}
+                {utils.checkIfOpen(rest.hours) ? <span className="open-now ml-3">Open Now</span> : ''}
               </div>
               <div className="rest-rating">
                 {rest.rating
@@ -148,20 +142,20 @@ const SingleRestaurant = (props) => {
             </div>
           </div>
           <div className="rest-body-top-r">
-            <div className="rest-edit text-right">
-              <span className="text-muted text-nowrap"><i className="fas fa-edit"></i> Submit changes</span>
+            <div className="rest-edit text-right pt-1">
+              <span className="text-muted text-nowrap submit-link"><i className="fas fa-edit"></i> Submit changes</span>
               {/* TODO: add submit link */}
             </div>
-            <div className="controls px-3">
-              <i className="fas fa-share-alt fa-2x cardlink text-muted"></i>
-              <i className="far fa-heart fa-2x text-muted"></i>
+            <div className="controls px-3 pb-2">
+              <button className="btn btn-outline-secondary "><i className="fas fa-share-alt"></i> Share</button>
+              <button className="btn btn-outline-secondary "><i className="far fa-heart"></i> Save</button>
             </div>
           </div>
         </div>
         <div className="rest-body-btm">
           <div className="rest-body-btm-l">
             <div className="rest-hours my-2">
-              <h3>HOURS</h3>
+              {rest.hours ? <Schedule schedule={utils.getWeeklyHours(rest.hours)} /> : ''}
               {/* TODO: add price */}
             </div>
           </div>
