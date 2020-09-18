@@ -4,6 +4,7 @@ import StarRatings from 'react-star-ratings';
 
 // import PropTypes from 'prop-types';
 
+import LinksMenu from '../../UI/LinksMenu/LinksMenu';
 import RestaurantUrl from '../RestaurantUrl/RestaurantUrl';
 import OrderLinks from '../OrderLinks/OrderLinks';
 
@@ -46,6 +47,67 @@ const SingleRestaurant = (props) => {
   }, [restId]);
 
   const rest = restaurant;
+
+  const links = () => {
+    const directionsLink = () => {
+      const { location } = rest;
+      const url = `${rest.name} ${location.address1} ${location.city} ${location.zipcode}`;
+      console.warn(encodeURIComponent(url));
+      return ((url));
+    };
+
+    const restLinks = [];
+
+    if (rest.doordash) {
+      restLinks.push({
+        name: 'DoorDash',
+        faIcon: 'fas fa-car-side',
+        link: rest.doordash,
+        external: true,
+      });
+    }
+    if (rest.grubhub) {
+      restLinks.push({
+        name: 'GrubHub',
+        faIcon: 'fas fa-car-side',
+        link: rest.grubhub,
+        external: true,
+      });
+    }
+    if (rest.ubereats) {
+      restLinks.push({
+        name: 'UberEats',
+        faIcon: 'fas fa-car-side',
+        link: rest.ubereats,
+        external: true,
+      });
+    }
+    if (rest.phone) {
+      restLinks.push({
+        name: rest.phone,
+        faIcon: 'fas fa-phone-alt',
+        link: `tel:${rest.phone.replace(/[^\d]/g, '')}`,
+      });
+    }
+    if (rest.website) {
+      restLinks.push({
+        name: 'Website',
+        faIcon: 'fas fa-external-link-alt',
+        link: rest.website,
+        external: true,
+      });
+    }
+    if (rest.location) {
+      restLinks.push({
+        name: 'Get Directions',
+        faIcon: 'fas fa-location-arrow',
+        link: `https://www.google.com/maps/search/?api=1&query="${rest.name} ${rest.location.address1} ${rest.location.city} ${rest.location.zipcode}"`,
+        external: true,
+      });
+    }
+    return restLinks;
+  };
+
   return (
     <div className="SingleRestaurant">
       <div className="rest-img">
@@ -78,15 +140,13 @@ const SingleRestaurant = (props) => {
             </div>
           </div>
           <div className="rest-body-top-r">
-            <div className="rest-edit">
-              <h6>submit changes</h6>
+            <div className="rest-edit text-right">
+              <span className="text-muted text-nowrap"><i className="fas fa-edit"></i> Submit changes</span>
               {/* TODO: add submit link */}
             </div>
             <div className="controls px-3">
-              <RestaurantUrl url={rest.website}><i className="fas fa-external-link-alt fa-2x cardlink text-muted"></i></RestaurantUrl>
-              <i className="far fa-bookmark fa-2x cardlink text-muted"></i>
               <i className="fas fa-share-alt fa-2x cardlink text-muted"></i>
-              <OrderLinks className="cardlink" rest={rest}><i className="fas fa-car-side fa-2x text-muted" /></OrderLinks>
+              <i className="far fa-heart fa-2x text-muted"></i>
             </div>
           </div>
         </div>
@@ -98,7 +158,10 @@ const SingleRestaurant = (props) => {
             </div>
           </div>
           <div className="rest-body-btm-r">
-            <h3>LINKS</h3>
+            <div className="rest-links">
+              <LinksMenu className="mt-1" links={links()} />
+            </div>
+            {/* <h3>LINKS</h3><OrderLinks className="cardlink" rest={rest}><i className="fas fa-car-side fa-2x text-muted" /></OrderLinks><RestaurantUrl url={rest.website}><i className="fas fa-external-link-alt fa-2x cardlink text-muted"></i></RestaurantUrl> */}
           </div>
         </div>
       </div>

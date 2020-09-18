@@ -1,0 +1,47 @@
+// .dd-container {
+//   position: relative;
+//   display: inline-block;
+//   cursor: pointer;
+// }
+
+// .button {
+//   padding: 0;
+//   // width: 50px;
+//   border: 0;
+//   background-color: #fff;
+//   color: #333;
+//   cursor: pointer;
+//   outline: 0;
+//   // font-size: 40px;
+// }
+
+.LinksMenu {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  
+  a:link {
+    text-decoration: none;
+    color: black
+  }
+  
+  a:visited {
+    text-decoration: none;
+    color: black
+  }
+
+  ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  }
+  li {
+    padding: 8px 12px;
+  }
+
+  li:hover {
+    background-color: rgba(0, 0, 0, 0.14);
+    cursor: pointer;
+  }
+}
