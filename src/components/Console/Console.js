@@ -31,6 +31,8 @@ const Console = (props) => {
   const [vegOnly, setVegOnly] = useState(false);
   const [foodFilters, setFoodFilters] = useState({});
   const [user, setUser] = useState({});
+  const [favorites, setFavorites] = useState([]);
+
   // const [openForm, setOpenForm] = useState(false);
 
   // *** URL MANIPULATION:
@@ -96,9 +98,28 @@ const Console = (props) => {
     }
   };
 
+  const getFavorites = () => {
+    userData.getFavorites(props.uid)
+      .then((res) => setFavorites(res))
+      .catch((err) => console.error(err));
+  };
+
   useEffect(getUserLocation, []);
   useEffect(updateAreaRests, [location.latitude, radius]);
   useEffect(getUserInfo, [props.authed, props.uid]);
+  useEffect(getFavorites, [props.uid]);
+
+  const toggleFavorite = (restId) => {
+    if (favorites.some((fav) => fav.id === restId)) {
+      userData.removeFavorite(restId)
+        .then(() => getFavorites())
+        .catch((err) => console.error(err));
+    } else {
+      userData.addFavorite(restId)
+        .then(() => getFavorites())
+        .catch((err) => console.error(err));
+    }
+  };
 
   const displayLocation = () => {
     let placeholder = 'Enter your location';
@@ -123,7 +144,7 @@ const Console = (props) => {
             {/* this should load if openForm is set to false */}
             <React.Fragment>
               <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter} updateAreaRests={updateAreaRests}/>
-              <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed}/>
+              <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed} favorites={favorites} toggleFavorite={toggleFavorite}/>
             </React.Fragment>
           </Route>
           <Route path="/business/:restId">
@@ -140,7 +161,7 @@ const Console = (props) => {
             <RestaurantForm updateAreaRests={updateAreaRests}/>
           </Route>
           <Route path="/favorites">
-            <Favorites uid={props.uid} location={location}/>
+            <Favorites uid={props.uid} location={location} favorites={favorites}/>
           </Route>
           <Route path="/splash">
             <SplashScreen />
