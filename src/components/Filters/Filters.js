@@ -49,7 +49,7 @@ const Filters = (props) => {
 
   useEffect(addNewFilters, [availableFilters]);
 
-  useEffect(props.updateAreaRests, []);
+  // useEffect(() => { if (props.refresh) { props.updateAreaRests(); } }, [props, props.refresh, props.updateAreaRests]); THIS DOESNT SEEM RIGHT
 
   return (
     <div className="Filters">
