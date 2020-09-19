@@ -73,6 +73,7 @@ const RestaurantForm = (props) => {
     if (props.restId) {
       restaurantData.updateRestaurant(restaurant, props.restId)
         .then(() => {
+          props.updateAreaRests();
           props.history.push({
             pathname: '/splash',
             message: 'Thank-you for your contribution. We will review and update the restaurant with your changes.',
@@ -83,6 +84,7 @@ const RestaurantForm = (props) => {
     } else {
       restaurantData.createRestaurant(restaurant)
         .then(() => {
+          props.updateAreaRests();
           props.history.push({
             pathname: '/splash',
             message: 'Thank-you for your contribution',
@@ -98,6 +100,7 @@ const RestaurantForm = (props) => {
     if (deleteWarning) {
       restaurantData.deleteRestaurant(props.restId)
         .then((res) => {
+          props.updateAreaRests();
           props.history.push({
             pathname: '/splash',
             message: `${restaurant.name} has been deleted from the database.`,
@@ -111,7 +114,7 @@ const RestaurantForm = (props) => {
   };
 
   return (
-    <div className="restaurant-form">
+    <div className="restaurant-form d-flex justify-content-center w-100 m-3">
     <form className="col-6">
       <div className="form-group">
         <label htmlFor="name">Name</label>

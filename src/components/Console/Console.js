@@ -138,7 +138,7 @@ const Console = (props) => {
             <SubmitRestaurant authed={props.authed}/>
           </Route>
           <Route path="/restaurantform">
-            <RestaurantForm />
+            <RestaurantForm updateAreaRests={updateAreaRests}/>
           </Route>
           <Route path="/splash">
             <SplashScreen />

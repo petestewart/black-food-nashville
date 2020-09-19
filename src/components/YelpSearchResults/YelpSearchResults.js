@@ -39,7 +39,7 @@ const YelpSearchResults = (props) => {
 
   const denyResultHandler = () => {
     if (currentRest + 1 >= props.result.length) {
-      console.warn('WE COULDNT FIND YOUR RESTAURANT - GO TO FORM');
+      props.noMatches();
     } else {
       setCurrentRest((prevCount) => prevCount + 1);
     }
