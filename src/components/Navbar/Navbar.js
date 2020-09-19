@@ -25,10 +25,12 @@ const Navbar = (props) => {
   return (
     <div className="Navbar">
       <NavLink tag={NavLink} to="/search"><h2 className="Logo">OneBite</h2></NavLink>
-      <div className="location-controls">
-      <NumberInput click={setRadius} value={props.radius}/>
-      miles within
-      <SearchBar placeholder={props.placeholder} click={submitNewLocation}/>
+      <div className="navbar-middle">
+        <div className="location-controls">
+          <NumberInput click={setRadius} value={props.radius}/>
+          miles within
+          <SearchBar placeholder={props.placeholder} click={submitNewLocation}/>
+        </div>
       </div>
       <div className="userMenu">
         <UserMenu user={props.user} authed={props.authed} openNewRestForm={props.openNewRestForm}/>
