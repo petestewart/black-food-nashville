@@ -5,7 +5,7 @@ import './Schedule.scss';
 
 const Schedule = (props) => {
   const content = (data) => data.map((item, index) => (
-      <tr>
+      <tr key={index}>
         <td className="day">{index === 0 || data[index - 1].day !== item.day ? item.day : ''}</td>
         <td className="hours font-weight-light">{item.hours}</td>
       </tr>
@@ -14,7 +14,9 @@ const Schedule = (props) => {
   return (
     <div className="Schedule">
       <table>
-        {content(props.schedule)}
+        <tbody>
+          {content(props.schedule)}
+        </tbody>
       </table>
     </div>
   );
