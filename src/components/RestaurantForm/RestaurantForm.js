@@ -38,6 +38,9 @@ const RestaurantForm = (props) => {
     if (props.location.restaurantInfo) {
       const uid = authData.getUid();
       setRestaurant({ ...restaurant, ...props.location.restaurantInfo, submittedBy: uid });
+    } else if (props.restId) {
+      const uid = authData.getUid();
+      setRestaurant({ ...restaurant, ...props.restInfo, editedBy: uid });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -66,14 +69,22 @@ const RestaurantForm = (props) => {
   const submitRest = (e) => {
     e.preventDefault();
     if (props.restId) {
-      // update restaurant
+      restaurantData.updateRestaurant(restaurant, props.restId)
+        .then(() => {
+          props.history.push({
+            pathname: '/splash',
+            message: 'Thank-you for your contribution. We will review and update the restaurant with your changes.',
+            next: '/home',
+          });
+        })
+        .catch((err) => console.error(err));
     } else {
       restaurantData.createRestaurant(restaurant)
         .then(() => {
           props.history.push({
             pathname: '/splash',
             message: 'Thank-you for your contribution',
-            next: '/search',
+            next: '/home',
           });
         })
         .catch((err) => console.error(err));

@@ -150,7 +150,7 @@ const SingleRestaurant = (props) => {
           <div className="rest-body-top-r">
             <div className="rest-edit text-right pt-1">
               <span className="text-muted text-nowrap submit-link">
-                <Link to = {{ pathname: `/edit/${restId}` }}>
+                <Link to={{ pathname: `/edit/${restId}`, state: { restaurant } }}>
                   <i className="fas fa-edit"></i> Submit changes
                 </Link>
               </span>

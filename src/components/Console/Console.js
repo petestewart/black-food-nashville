@@ -30,7 +30,7 @@ const Console = (props) => {
   const [vegOnly, setVegOnly] = useState(false);
   const [foodFilters, setFoodFilters] = useState({});
   const [user, setUser] = useState({});
-  const [openForm, setOpenForm] = useState(false);
+  // const [openForm, setOpenForm] = useState(false);
 
   // *** URL MANIPULATION:
   // const params = new URLSearchParams(location.search);
@@ -58,6 +58,7 @@ const Console = (props) => {
   };
 
   const getUserInfo = () => {
+    console.warn('getUserInfo called');
     if (!props.authed) {
       setUser({});
       return;
@@ -65,12 +66,13 @@ const Console = (props) => {
     if (props.uid) {
       userData.getUser(props.uid)
         .then(([res]) => {
-          if (res.name) {
-            setUser(res);
-          } else {
+          console.warn('from userData call', res);
+          if (!res) {
             userData.createNewUser(props.uid)
               .then((resp) => setUser(resp))
               .catch((err) => console.error(err));
+          } else {
+            setUser(res);
           }
         })
         .catch((err) => console.error('problem getting user', err));
@@ -109,19 +111,19 @@ const Console = (props) => {
   };
 
   // ARE WE NOT USING THIS ANYMORE?
-  const openNewRestForm = () => setOpenForm(true);
-  const closeForm = () => setOpenForm(false);
+  // const openNewRestForm = () => setOpenForm(true);
+  // const closeForm = () => setOpenForm(false);
 
   return (
   <BrowserRouter>
     <React.Fragment>
-      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius} authed={props.authed} user={user} openNewRestForm={openNewRestForm}/>
+      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius} authed={props.authed} user={user}/>
       <div className="content">
         <Switch>
           <Route path="/search">
             {/* this should load if openForm is set to false */}
             <React.Fragment>
-              <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter}/>
+              <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter} updateAreaRests={updateAreaRests}/>
               <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed}/>
             </React.Fragment>
           </Route>

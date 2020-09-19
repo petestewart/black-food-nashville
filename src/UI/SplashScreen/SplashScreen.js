@@ -13,7 +13,8 @@ const SplashScreen = (props) => {
   const leaveSplash = () => {
     props.history.push({
       pathname: props.location.next,
-    });
+    },
+    { state: {} });
   };
 
   return (
