@@ -17,6 +17,7 @@ const ShareMenu = (props) => {
   const url = `http://blackownednashville.com/${rest.id}`;
 
   const links = () => {
+    const message = `Check out ${rest.name} and support #Blackowned businesses in Nashville!`;
     const items = [
       {
         component: (
@@ -31,7 +32,7 @@ const ShareMenu = (props) => {
         <FacebookShareButton
          className="network__share-button w-100 text-left"
          url={url}
-         quote={'I AM A FACEBOOK POST'}
+         quote={message}
         >
           <div className="d-flex align-items-center w-100 m-1"><i className="fab fa-facebook-square fa-2x mx-3"></i> Share to Facebook</div>
         </FacebookShareButton>),
@@ -41,7 +42,7 @@ const ShareMenu = (props) => {
         <TwitterShareButton
         className="network__share-button"
         url={url}
-        title={'I AM A TWITTER TITLE'}
+        title={message}
       >
         <div className="d-flex align-items-center w-100 m-1"><i className="fab fa-twitter-square fa-2x mx-3"></i> Share to Twitter</div>
       </TwitterShareButton>),
@@ -50,8 +51,8 @@ const ShareMenu = (props) => {
         component: (<EmailShareButton
         className="network__share-button"
         url={url}
-        subject={`Check out ${rest.name}`}
-        body={'I AM AN EMAIL'}
+        subject={message}
+        body={''}
       >
         <div className="d-flex align-items-center w-100 m-1"><i className="fas fa-paper-plane fa-2x mx-3"></i> Share via Email</div>
       </EmailShareButton>),
