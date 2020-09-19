@@ -1,12 +1,12 @@
 {
   "firebaseConfig": {
-    "apiKey": "AIzaSyBZGyqix37LvELFsyBaW1JWXKBObxxdyp8",
-    "authDomain": "onebite-6424e.firebaseapp.com",
-    "databaseURL": "https://onebite-6424e.firebaseio.com",
-    "projectId": "onebite-6424e",
-    "storageBucket": "onebite-6424e.appspot.com",
-    "messagingSenderId": "653382260424",
-    "appId": "1:653382260424:web:c941ae8a24120cd18c37fd"
+    "apiKey": "AIzaSyAl-KsBv4kkaXnCQryOj7plsssXKyTbY4s",
+    "authDomain": "blackownednashville-1af30.firebaseapp.com",
+    "databaseURL": "https://blackownednashville-1af30.firebaseio.com",
+    "projectId": "blackownednashville-1af30",
+    "storageBucket": "blackownednashville-1af30.appspot.com",
+    "messagingSenderId": "416870332248",
+    "appId": "1:416870332248:web:b003eda3c12c49e122572d"
   },
   "yelpConfig": {
     "apiKey": "lLzCledxvSk7d2p2K677vv44mS2B3vwjXvhI5d5R-0vz8V1J9nUWG_kmtGzyjSr8xpgH0BfDOob63XvBBRUbBlZ80P23__Qekc9uQmCxmD4koC5o0jkqRV37ydtSX3Yx",

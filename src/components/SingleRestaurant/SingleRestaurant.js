@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
 
 // import PropTypes from 'prop-types';
@@ -39,6 +39,7 @@ const SingleRestaurant = (props) => {
   });
 
   const { restId } = useParams();
+  const rest = restaurant;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -47,7 +48,12 @@ const SingleRestaurant = (props) => {
       .catch((err) => console.error(err));
   }, [restId]);
 
-  const rest = restaurant;
+  // const editRestaurant = () => {
+  //   props.history.push({
+  //     pathname: `/edit/${restId}`,
+  //     authed: props.authed,
+  //   });
+  // };
 
   const links = () => {
     const restLinks = [];
@@ -143,7 +149,11 @@ const SingleRestaurant = (props) => {
           </div>
           <div className="rest-body-top-r">
             <div className="rest-edit text-right pt-1">
-              <span className="text-muted text-nowrap submit-link"><i className="fas fa-edit"></i> Submit changes</span>
+              <span className="text-muted text-nowrap submit-link">
+                <Link to={{ pathname: `/edit/${restId}`, state: { restaurant } }}>
+                  <i className="fas fa-edit"></i> Submit changes
+                </Link>
+              </span>
               {/* TODO: add submit link */}
             </div>
             <div className="controls px-3 pb-2">

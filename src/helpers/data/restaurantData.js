@@ -28,6 +28,8 @@ const deleteRestaurant = (restId) => axios.delete(`${baseUrl}/restaurants/${rest
 
 const createRestaurant = (restaurant) => axios.post(`${baseUrl}/restaurants.json`, restaurant);
 
+const updateRestaurant = (restaurant, restId) => axios.put(`${baseUrl}/restaurants/${restId}.json`, restaurant);
+
 // const convertYelpRestaurant = (oldRest) => {
 // const yelpId = oldRest.yelp.slice(25);
 // console.warn('yelpId', yelpId);
@@ -101,5 +103,5 @@ const createRestaurant = (restaurant) => axios.post(`${baseUrl}/restaurants.json
 // };
 
 export default {
-  getAllRestaurants, getSingleRestaurant, deleteRestaurant, createRestaurant,
+  getAllRestaurants, getSingleRestaurant, deleteRestaurant, createRestaurant, updateRestaurant,
 };

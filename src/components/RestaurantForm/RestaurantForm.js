@@ -34,10 +34,13 @@ const RestaurantForm = (props) => {
   });
 
   useEffect(() => {
-    // warning below about adding restaurant to the dependency array, but that isn't what we want (?)
+    // warning below about not adding restaurant to the dependency array, but that isn't what we want (?)
     if (props.location.restaurantInfo) {
       const uid = authData.getUid();
       setRestaurant({ ...restaurant, ...props.location.restaurantInfo, submittedBy: uid });
+    } else if (props.restId) {
+      const uid = authData.getUid();
+      setRestaurant({ ...restaurant, ...props.restInfo, editedBy: uid });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -62,18 +65,30 @@ const RestaurantForm = (props) => {
     setRestaurant(updatedRest);
   };
 
+  // ** TODO: MUST ADD SWITCH TO EDIT OR CREATE RESTAURANT
   const submitRest = (e) => {
     e.preventDefault();
-    console.warn('submitRest called to create', restaurant);
-    restaurantData.createRestaurant(restaurant)
-      .then(() => {
-        props.history.push({
-          pathname: '/splash',
-          message: 'Thank-you for your contribution',
-          next: '/search',
-        });
-      })
-      .catch((err) => console.error(err));
+    if (props.restId) {
+      restaurantData.updateRestaurant(restaurant, props.restId)
+        .then(() => {
+          props.history.push({
+            pathname: '/splash',
+            message: 'Thank-you for your contribution. We will review and update the restaurant with your changes.',
+            next: '/home',
+          });
+        })
+        .catch((err) => console.error(err));
+    } else {
+      restaurantData.createRestaurant(restaurant)
+        .then(() => {
+          props.history.push({
+            pathname: '/splash',
+            message: 'Thank-you for your contribution',
+            next: '/home',
+          });
+        })
+        .catch((err) => console.error(err));
+    }
   };
 
   return (
