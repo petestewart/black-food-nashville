@@ -140,7 +140,7 @@ const Console = (props) => {
             <RestaurantForm updateAreaRests={updateAreaRests}/>
           </Route>
           <Route path="/favorites">
-            <Favorites uid={props.uid}/>
+            <Favorites uid={props.uid} location={location}/>
           </Route>
           <Route path="/splash">
             <SplashScreen />

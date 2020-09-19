@@ -22,7 +22,16 @@ const getAllRestaurants = () => new Promise((resolve, reject) => {
 //     .catch((err) => reject(err));
 // });
 
-const getSingleRestaurant = (restId) => axios.get(`${baseUrl}/restaurants/${restId}.json`);
+// const getSingleRestaurant = (restId) => axios.get(`${baseUrl}/restaurants/${restId}.json`);
+
+const getSingleRestaurant = (restId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/restaurants/${restId}.json`)
+    .then((res) => {
+      console.warn(res, restId);
+      resolve({ ...res.data, id: restId });
+    })
+    .catch((err) => reject(err));
+});
 
 const deleteRestaurant = (restId) => axios.delete(`${baseUrl}/restaurants/${restId}.json`);
 

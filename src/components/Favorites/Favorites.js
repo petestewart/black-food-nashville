@@ -12,7 +12,7 @@ import userData from '../../helpers/data/userData';
 const Favorites = (props) => {
   useEffect(() => {
     userData.getFavorites(props.uid)
-      .then((res) => console.warn(res))
+      .then((res) => setFavorites(res))
       .catch((err) => console.error(err));
   }, [props.uid]);
 

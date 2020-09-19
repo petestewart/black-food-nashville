@@ -45,7 +45,7 @@ const SingleRestaurant = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     restaurantData.getSingleRestaurant(restId)
-      .then(({ data }) => setRestaurant(data))
+      .then((res) => setRestaurant(res))
       .catch((err) => console.error(err));
   }, [restId]);
 

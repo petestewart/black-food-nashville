@@ -2,6 +2,7 @@ import axios from 'axios';
 import apiKeys from '../apiKeys.json';
 
 import authData from './authData';
+import restaurantData from './restaurantData';
 
 import utils from '../utils';
 
@@ -34,8 +35,15 @@ const createNewUser = (uid) => new Promise((resolve, reject) => {
 
 const getFavorites = (uid) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/userFavorites.json?orderBy="uid"&equalTo"${uid}"`)
-    .then(({ data }) => resolve(utils.convertFirebaseCollection(data)))
-    .catch((err) => reject(err));
+    .then(({ data }) => {
+      const allPromises = utils.convertFirebaseCollection(data).map((obj) => restaurantData.getSingleRestaurant(obj.restId));
+      Promise.all(allPromises)
+        .then((res) => {
+          const favorites = res.map((rest) => rest);
+          resolve(favorites);
+        })
+        .catch((err) => reject(err));
+    });
 });
 
 export default {
