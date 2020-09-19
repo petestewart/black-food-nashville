@@ -19,7 +19,6 @@ const RestaurantCard = (props) => {
   };
 
   const goToSingleView = (e) => {
-    console.warn(e);
     props.history.push({
       pathname: `/business/${props.restaurant.id}`,
       restaurantInfo: props.restaurant,

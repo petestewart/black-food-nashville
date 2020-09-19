@@ -13,6 +13,7 @@ import EditRestaurant from '../EditRestaurant/EditRestaurant';
 import RestaurantForm from '../RestaurantForm/RestaurantForm';
 import SplashScreen from '../../UI/SplashScreen/SplashScreen';
 import SingleRestaurant from '../SingleRestaurant/SingleRestaurant';
+import Favorites from '../Favorites/Favorites';
 
 import filterActions from '../../helpers/filterActions';
 import restaurantData from '../../helpers/data/restaurantData';
@@ -58,7 +59,6 @@ const Console = (props) => {
   };
 
   const getUserInfo = () => {
-    console.warn('getUserInfo called');
     if (!props.authed) {
       setUser({});
       return;
@@ -66,7 +66,6 @@ const Console = (props) => {
     if (props.uid) {
       userData.getUser(props.uid)
         .then(([res]) => {
-          console.warn('from userData call', res);
           if (!res) {
             userData.createNewUser(props.uid)
               .then((resp) => setUser(resp))
@@ -98,7 +97,7 @@ const Console = (props) => {
   };
 
   useEffect(getUserLocation, []);
-  useEffect(updateAreaRests, [location.latitude, radius]); // LOOP-PREVENTION (was location)
+  useEffect(updateAreaRests, [location.latitude, radius]);
   useEffect(getUserInfo, [props.authed, props.uid]);
 
   const displayLocation = () => {
@@ -139,6 +138,9 @@ const Console = (props) => {
           </Route>
           <Route path="/restaurantform">
             <RestaurantForm updateAreaRests={updateAreaRests}/>
+          </Route>
+          <Route path="/favorites">
+            <Favorites uid={props.uid}/>
           </Route>
           <Route path="/splash">
             <SplashScreen />

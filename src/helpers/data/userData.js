@@ -32,6 +32,12 @@ const createNewUser = (uid) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const getFavorites = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/userFavorites.json?orderBy="uid"&equalTo"${uid}"`)
+    .then(({ data }) => resolve(utils.convertFirebaseCollection(data)))
+    .catch((err) => reject(err));
+});
+
 export default {
-  getUser, createNewUser,
+  getUser, createNewUser, getFavorites,
 };
