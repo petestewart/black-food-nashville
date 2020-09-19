@@ -56,8 +56,9 @@
     padding: 0px !important;
 
     button: {
-      min-height: 100%;
-      min-width: 100%;
+      min-height: 100% !important;
+      min-width: 100% !important;
+      margin: 0 !important;
     }
   }
 

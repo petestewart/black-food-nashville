@@ -33,6 +33,7 @@ const ShareMenu = (props) => {
          className="network__share-button w-100 text-left"
          url={url}
          quote={message}
+         style={{ width: '100%' }}
         >
           <div className="d-flex align-items-center w-100 m-1"><i className="fab fa-facebook-square fa-2x mx-3"></i> Share to Facebook</div>
         </FacebookShareButton>),
@@ -43,6 +44,7 @@ const ShareMenu = (props) => {
         className="network__share-button"
         url={url}
         title={message}
+        style={{ width: '100%' }}
       >
         <div className="d-flex align-items-center w-100 m-1"><i className="fab fa-twitter-square fa-2x mx-3"></i> Share to Twitter</div>
       </TwitterShareButton>),
@@ -53,6 +55,7 @@ const ShareMenu = (props) => {
         url={url}
         subject={message}
         body={''}
+        style={{ width: '100%' }}
       >
         <div className="d-flex align-items-center w-100 m-1"><i className="fas fa-paper-plane fa-2x mx-3"></i> Share via Email</div>
       </EmailShareButton>),
