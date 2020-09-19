@@ -109,16 +109,18 @@ const Console = (props) => {
   useEffect(getUserInfo, [props.authed, props.uid]);
   useEffect(getFavorites, [props.uid]);
 
-  const toggleFavorite = (restId) => {
-    if (favorites.some((fav) => fav.id === restId)) {
-      userData.removeFavorite(restId)
-        .then(() => getFavorites())
-        .catch((err) => console.error(err));
-    } else {
-      userData.addFavorite(restId)
-        .then(() => getFavorites())
-        .catch((err) => console.error(err));
-    }
+  const addFavorite = (restId) => {
+    userData.addFavorite(restId)
+      .then(() => getFavorites())
+      .catch((err) => console.error(err));
+  };
+
+  const removeFavorite = (restId) => {
+    const favIndex = favorites.findIndex((fav) => fav.id === restId);
+    const { favId } = favorites[favIndex];
+    userData.removeFavorite(favId)
+      .then(() => getFavorites())
+      .catch((err) => console.error(err));
   };
 
   const displayLocation = () => {
@@ -144,7 +146,7 @@ const Console = (props) => {
             {/* this should load if openForm is set to false */}
             <React.Fragment>
               <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter} updateAreaRests={updateAreaRests}/>
-              <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed} favorites={favorites} toggleFavorite={toggleFavorite}/>
+              <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed} favorites={favorites} addFavorite={addFavorite} removeFavorite={removeFavorite}/>
             </React.Fragment>
           </Route>
           <Route path="/business/:restId">

@@ -48,7 +48,7 @@ const Results = (props) => {
   const cards = (restaurants) => {
     let cardList = 'No Results To Display';
     if (restaurants.length > 0) {
-      cardList = restaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant} userLocation={props.location} isFavorite={isFavorite(restaurant.id)} toggleFavorite={props.toggleFavorite} />);
+      cardList = restaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant} userLocation={props.location} isFavorite={isFavorite(restaurant.id)} addFavorite={props.addFavorite} removeFavorite={props.removeFavorite} />);
     }
     return cardList;
   };
