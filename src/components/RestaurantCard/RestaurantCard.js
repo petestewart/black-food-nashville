@@ -55,8 +55,10 @@ const RestaurantCard = (props) => {
             </div>
             <div className="controls px-3 mt-2">
               <RestaurantUrl url={rest.website}><i className="fas fa-external-link-alt fa-2x cardlink text-muted"></i></RestaurantUrl>
-              {/* <i className="far fa-heart fa-2x text-muted"></i> */}
-              <FavoriteSwitch addFavorite={props.addFavorite} removeFavorite={props.removeFavorite} isFavorite={props.isFavorite} restId={rest.id}/>
+              {props.authed
+                ? <FavoriteSwitch addFavorite={props.addFavorite} removeFavorite={props.removeFavorite} isFavorite={props.isFavorite} restId={rest.id}/>
+                : ''
+              }
               <ShareMenu className="cardlink" rest={rest}><i className="fas fa-share-alt fa-2x cardlink text-muted"></i></ShareMenu>
               <OrderLinks className="cardlink" rest={rest}><i className="fas fa-car-side fa-2x text-muted" /></OrderLinks>
               {/* <Dropdown className="cardlink" links={links}><i className="fas fa-car-side fa-2x text-muted" ></i></Dropdown> */}

@@ -1,0 +1,25 @@
+@import '../../styles/variables';
+
+.Favorites {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  top: 10px;
+  width: 100%;
+  height: calc(100vh - 100px);
+  z-index: 100;
+  background-color: $bgMain;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  margin: 0px;
+  // display: none
+}
+
+@media (min-width: 760px) {
+  .Favorites {
+    position: relative;
+    top: 0px;
+    // margin-left: 280px;
+    height: calc(100vh - 56px);
+  }
+}

@@ -112,12 +112,14 @@ const Console = (props) => {
   const isFavorite = (restId) => favorites.some((rest) => rest.id === restId);
 
   const addFavorite = (restId) => {
+    if (!props.authed) { return; }
     userData.addFavorite(restId)
       .then(() => getFavorites())
       .catch((err) => console.error(err));
   };
 
   const removeFavorite = (restId) => {
+    if (!props.authed) { return; }
     const favIndex = favorites.findIndex((fav) => fav.id === restId);
     const { favId } = favorites[favIndex];
     userData.removeFavorite(favId)
@@ -165,7 +167,7 @@ const Console = (props) => {
             <RestaurantForm updateAreaRests={updateAreaRests}/>
           </Route>
           <Route path="/favorites">
-            <Favorites uid={props.uid} location={location} favorites={favorites}/>
+            <Favorites uid={props.uid} location={location} favorites={favorites} authed={props.authed} removeFavorite={removeFavorite} isFavorite={isFavorite}/>
           </Route>
           <Route path="/splash">
             <SplashScreen />
