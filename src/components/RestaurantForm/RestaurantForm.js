@@ -33,6 +33,8 @@ const RestaurantForm = (props) => {
     yelp: '',
   });
 
+  const [deleteWarning, setDeleteWarning] = useState(false);
+
   useEffect(() => {
     // warning below about not adding restaurant to the dependency array, but that isn't what we want (?)
     if (props.location.restaurantInfo) {
@@ -88,6 +90,23 @@ const RestaurantForm = (props) => {
           });
         })
         .catch((err) => console.error(err));
+    }
+  };
+
+  const deleteRest = (e) => {
+    e.preventDefault();
+    if (deleteWarning) {
+      restaurantData.deleteRestaurant(props.restId)
+        .then((res) => {
+          props.history.push({
+            pathname: '/splash',
+            message: `${restaurant.name} has been deleted from the database.`,
+            next: '/home',
+          });
+        })
+        .catch((err) => console.error(err));
+    } else {
+      setDeleteWarning(true);
     }
   };
 
@@ -224,7 +243,16 @@ const RestaurantForm = (props) => {
           onChange={vegInputHandler}
           />
       </div>
+      { deleteWarning
+        ? <div className="alert alert-danger" role="alert">
+            Are you sure you want to delete {restaurant.name}?
+          </div>
+        : '' }
       <button className="btn-btn-info" onClick={submitRest}>Submit</button>
+      {props.restId
+        ? <button className="btn-btn-danger" onClick={deleteRest}>{deleteWarning ? 'Yes, ' : '' }Delete</button>
+        : ''
+    }
     </form>
   </div>
   );
