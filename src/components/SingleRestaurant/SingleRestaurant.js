@@ -6,6 +6,7 @@ import StarRatings from 'react-star-ratings';
 
 import LinksMenu from '../../UI/LinksMenu/LinksMenu';
 import Schedule from '../../UI/Schedule/Schedule';
+import ShareMenu from '../ShareMenu/ShareMenu';
 
 import utils from '../../helpers/utils';
 
@@ -157,8 +158,10 @@ const SingleRestaurant = (props) => {
               {/* TODO: add submit link */}
             </div>
             <div className="controls px-3 pb-2">
-              <button className="btn btn-outline-secondary "><i className="fas fa-share-alt"></i> Share</button>
-              <button className="btn btn-outline-secondary "><i className="far fa-heart"></i> Save</button>
+              <ShareMenu className="cardlink" rest={{ ...rest, id: restId }}>
+                <button className="btn btn-outline-secondary"><i className="fas fa-share-alt"></i> Share</button>
+              </ShareMenu>
+              <button className="btn btn-outline-secondary"><i className="far fa-heart"></i> Save</button>
             </div>
           </div>
         </div>

@@ -45,8 +45,21 @@
   padding: 0;
   margin: 0;
   }
+
   li {
     padding: 8px 12px;
+
+    
+  }
+
+  li.component {
+    padding: 0px !important;
+
+    button: {
+      min-height: 100% !important;
+      min-width: 100% !important;
+      margin: 0 !important;
+    }
   }
 
   li:hover {

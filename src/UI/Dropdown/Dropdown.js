@@ -45,6 +45,9 @@ class Dropdown extends React.Component {
         return (
         <a href={item.link} key={index} target={item.external ? '_blank' : '_self'}><li>{item.name}</li></a>);
       }
+      if (item.component) {
+        return (<li className="component" key={index}>{item.component}</li>);
+      }
       return (<li onClick={item.click} key={index}>{item.name}</li>);
     });
     return items;
