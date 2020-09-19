@@ -109,6 +109,8 @@ const Console = (props) => {
   useEffect(getUserInfo, [props.authed, props.uid]);
   useEffect(getFavorites, [props.uid]);
 
+  const isFavorite = (restId) => favorites.some((rest) => rest.id === restId);
+
   const addFavorite = (restId) => {
     userData.addFavorite(restId)
       .then(() => getFavorites())
@@ -150,7 +152,7 @@ const Console = (props) => {
             </React.Fragment>
           </Route>
           <Route path="/business/:restId">
-            <SingleRestaurant authed={props.authed} />
+            <SingleRestaurant authed={props.authed} isFavorite={isFavorite} addFavorite={addFavorite} removeFavorite={removeFavorite} />
           </Route>
           <Route path="/edit/:restId">
             <EditRestaurant authed={props.authed} />

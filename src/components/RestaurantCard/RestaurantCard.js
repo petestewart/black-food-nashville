@@ -8,9 +8,9 @@ import * as geolib from 'geolib';
 import RestaurantUrl from '../RestaurantUrl/RestaurantUrl';
 import ShareMenu from '../ShareMenu/ShareMenu';
 import OrderLinks from '../OrderLinks/OrderLinks';
+import FavoriteSwitch from '../FavoriteSwitch/FavoriteSwitch';
 
 import './RestaurantCard.scss';
-import FavoriteSwitch from '../FavoriteSwitch/FavoriteSwitch';
 
 const RestaurantCard = (props) => {
   const distanceTo = () => {
@@ -31,7 +31,7 @@ const RestaurantCard = (props) => {
       <div className="RestaurantCard">
         <div className="rest-img" onClick={goToSingleView}><img className="card-img-top" src={rest.photo} alt="" /></div>
         <div className="">
-          <h6 className="mb0">{rest.name}</h6>
+          <h6 className="mb0 rest-name" onClick={goToSingleView}>{rest.name}</h6>
           <div className="rest-body">
           <div className="rest-subheading">
             {rest.rating
