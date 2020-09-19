@@ -7,13 +7,13 @@ import FilterButton from '../../UI/FilterButton/FilterButton';
 
 const FoodTypes = (props) => {
   const checkAllShownStatus = () => {
-    if (props.availableFilters.length === 0) { return; } // LOOP-PREVENTION (new) **I think this fixed it**
-    if (Object.keys(props.foodFilters).every((filter) => props.foodFilters[filter] === false)) { props.resetFilters(); return; } // LOOP-PREVENTION (old)
+    if (props.availableFilters.length === 0) { return; }
+    if (Object.keys(props.foodFilters).every((filter) => props.foodFilters[filter] === false)) { props.resetFilters(); return; }
     const status = props.availableFilters.every((filter) => props.foodFilters[filter] === true);
     props.setAllActive(status);
   };
 
-  useEffect(checkAllShownStatus, [props.availableFilters, props.foodFilters]); // THIS MUST BE THE CULPRIT
+  useEffect(checkAllShownStatus, [props.availableFilters, props.foodFilters]);
 
   const createFilterButtons = () => {
     const buttons = props.availableFilters.map((filter, index) => {

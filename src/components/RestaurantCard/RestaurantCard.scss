@@ -27,6 +27,13 @@
       overflow: hidden;
       border-radius: 5% 5% 0 0;
     }
+    .rest-img:hover {
+      cursor: pointer;
+    }
+
+    .rest-name {
+      cursor: pointer;
+    }
     
     .rest-body {
       display: flex;

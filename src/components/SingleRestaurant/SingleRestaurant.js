@@ -39,15 +39,19 @@ const SingleRestaurant = (props) => {
     yelp: '',
   });
 
+  // const [isFavorite, setisFavorite] = useState(false);
+
   const { restId } = useParams();
   const rest = restaurant;
 
   useEffect(() => {
     window.scrollTo(0, 0);
     restaurantData.getSingleRestaurant(restId)
-      .then(({ data }) => setRestaurant(data))
+      .then((res) => setRestaurant(res))
       .catch((err) => console.error(err));
   }, [restId]);
+
+  // useEffect(() => setisFavorite(props.isFavorite))
 
   // const editRestaurant = () => {
   //   props.history.push({
@@ -117,6 +121,10 @@ const SingleRestaurant = (props) => {
     return restLinks;
   };
 
+  const favoriteButton = () => (props.isFavorite(restId)
+    ? <button className="btn btn-secondary" onClick={() => props.removeFavorite(restId)}><i className="fas fa-heart"></i> Saved</button>
+    : <button className="btn btn-outline-secondary" onClick={() => props.addFavorite(restId)}><i className="far fa-heart"></i> Save</button>);
+
   return (
     <div className="SingleRestaurant">
       <div className="rest-img">
@@ -161,7 +169,9 @@ const SingleRestaurant = (props) => {
               <ShareMenu className="cardlink" rest={{ ...rest, id: restId }}>
                 <button className="btn btn-outline-secondary"><i className="fas fa-share-alt"></i> Share</button>
               </ShareMenu>
-              <button className="btn btn-outline-secondary"><i className="far fa-heart"></i> Save</button>
+
+              { props.authed ? favoriteButton() : ''}
+
             </div>
           </div>
         </div>

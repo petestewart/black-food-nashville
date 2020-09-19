@@ -8,6 +8,7 @@ import * as geolib from 'geolib';
 import RestaurantUrl from '../RestaurantUrl/RestaurantUrl';
 import ShareMenu from '../ShareMenu/ShareMenu';
 import OrderLinks from '../OrderLinks/OrderLinks';
+import FavoriteSwitch from '../FavoriteSwitch/FavoriteSwitch';
 
 import './RestaurantCard.scss';
 
@@ -19,7 +20,6 @@ const RestaurantCard = (props) => {
   };
 
   const goToSingleView = (e) => {
-    console.warn(e);
     props.history.push({
       pathname: `/business/${props.restaurant.id}`,
       restaurantInfo: props.restaurant,
@@ -31,7 +31,7 @@ const RestaurantCard = (props) => {
       <div className="RestaurantCard">
         <div className="rest-img" onClick={goToSingleView}><img className="card-img-top" src={rest.photo} alt="" /></div>
         <div className="">
-          <h6 className="mb0">{rest.name}</h6>
+          <h6 className="mb0 rest-name" onClick={goToSingleView}>{rest.name}</h6>
           <div className="rest-body">
           <div className="rest-subheading">
             {rest.rating
@@ -55,8 +55,10 @@ const RestaurantCard = (props) => {
             </div>
             <div className="controls px-3 mt-2">
               <RestaurantUrl url={rest.website}><i className="fas fa-external-link-alt fa-2x cardlink text-muted"></i></RestaurantUrl>
-              {/* <i className="far fa-heart fa-2x text-muted"></i> */}
-              <i className="far fa-bookmark fa-2x cardlink text-muted"></i>
+              {props.authed
+                ? <FavoriteSwitch addFavorite={props.addFavorite} removeFavorite={props.removeFavorite} isFavorite={props.isFavorite} restId={rest.id}/>
+                : ''
+              }
               <ShareMenu className="cardlink" rest={rest}><i className="fas fa-share-alt fa-2x cardlink text-muted"></i></ShareMenu>
               <OrderLinks className="cardlink" rest={rest}><i className="fas fa-car-side fa-2x text-muted" /></OrderLinks>
               {/* <Dropdown className="cardlink" links={links}><i className="fas fa-car-side fa-2x text-muted" ></i></Dropdown> */}

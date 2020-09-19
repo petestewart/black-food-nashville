@@ -11,6 +11,8 @@ const Results = (props) => {
   const [results, setResults] = useState([]);
   const [activeFilters, setActiveFilters] = useState([]);
 
+  const isFavorite = (restId) => props.favorites.some((rest) => rest.id === restId);
+
   const updateActiveFilters = () => {
     if (props.foodFilters === {}) { return; }
     const updatedFilters = [];
@@ -46,7 +48,7 @@ const Results = (props) => {
   const cards = (restaurants) => {
     let cardList = 'No Results To Display';
     if (restaurants.length > 0) {
-      cardList = restaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant} userLocation={props.location} />);
+      cardList = restaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant} userLocation={props.location} isFavorite={isFavorite(restaurant.id)} addFavorite={props.addFavorite} removeFavorite={props.removeFavorite} authed={props.authed} />);
     }
     return cardList;
   };

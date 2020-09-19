@@ -13,6 +13,7 @@ import EditRestaurant from '../EditRestaurant/EditRestaurant';
 import RestaurantForm from '../RestaurantForm/RestaurantForm';
 import SplashScreen from '../../UI/SplashScreen/SplashScreen';
 import SingleRestaurant from '../SingleRestaurant/SingleRestaurant';
+import Favorites from '../Favorites/Favorites';
 
 import filterActions from '../../helpers/filterActions';
 import restaurantData from '../../helpers/data/restaurantData';
@@ -30,6 +31,8 @@ const Console = (props) => {
   const [vegOnly, setVegOnly] = useState(false);
   const [foodFilters, setFoodFilters] = useState({});
   const [user, setUser] = useState({});
+  const [favorites, setFavorites] = useState([]);
+
   // const [openForm, setOpenForm] = useState(false);
 
   // *** URL MANIPULATION:
@@ -58,7 +61,6 @@ const Console = (props) => {
   };
 
   const getUserInfo = () => {
-    console.warn('getUserInfo called');
     if (!props.authed) {
       setUser({});
       return;
@@ -66,7 +68,6 @@ const Console = (props) => {
     if (props.uid) {
       userData.getUser(props.uid)
         .then(([res]) => {
-          console.warn('from userData call', res);
           if (!res) {
             userData.createNewUser(props.uid)
               .then((resp) => setUser(resp))
@@ -97,9 +98,34 @@ const Console = (props) => {
     }
   };
 
+  const getFavorites = () => {
+    userData.getFavorites(props.uid)
+      .then((res) => setFavorites(res))
+      .catch((err) => console.error(err));
+  };
+
   useEffect(getUserLocation, []);
-  useEffect(updateAreaRests, [location.latitude, radius]); // LOOP-PREVENTION (was location)
+  useEffect(updateAreaRests, [location.latitude, radius]);
   useEffect(getUserInfo, [props.authed, props.uid]);
+  useEffect(getFavorites, [props.uid]);
+
+  const isFavorite = (restId) => favorites.some((rest) => rest.id === restId);
+
+  const addFavorite = (restId) => {
+    if (!props.authed) { return; }
+    userData.addFavorite(restId)
+      .then(() => getFavorites())
+      .catch((err) => console.error(err));
+  };
+
+  const removeFavorite = (restId) => {
+    if (!props.authed) { return; }
+    const favIndex = favorites.findIndex((fav) => fav.id === restId);
+    const { favId } = favorites[favIndex];
+    userData.removeFavorite(favId)
+      .then(() => getFavorites())
+      .catch((err) => console.error(err));
+  };
 
   const displayLocation = () => {
     let placeholder = 'Enter your location';
@@ -124,11 +150,11 @@ const Console = (props) => {
             {/* this should load if openForm is set to false */}
             <React.Fragment>
               <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter} updateAreaRests={updateAreaRests}/>
-              <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed}/>
+              <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed} favorites={favorites} addFavorite={addFavorite} removeFavorite={removeFavorite}/>
             </React.Fragment>
           </Route>
           <Route path="/business/:restId">
-            <SingleRestaurant authed={props.authed} />
+            <SingleRestaurant authed={props.authed} isFavorite={isFavorite} addFavorite={addFavorite} removeFavorite={removeFavorite} />
           </Route>
           <Route path="/edit/:restId">
             <EditRestaurant authed={props.authed} />
@@ -139,6 +165,9 @@ const Console = (props) => {
           </Route>
           <Route path="/restaurantform">
             <RestaurantForm updateAreaRests={updateAreaRests}/>
+          </Route>
+          <Route path="/favorites">
+            <Favorites uid={props.uid} location={location} favorites={favorites} authed={props.authed} removeFavorite={removeFavorite} isFavorite={isFavorite}/>
           </Route>
           <Route path="/splash">
             <SplashScreen />

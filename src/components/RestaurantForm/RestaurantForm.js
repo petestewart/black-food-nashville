@@ -67,13 +67,12 @@ const RestaurantForm = (props) => {
     setRestaurant(updatedRest);
   };
 
-  // ** TODO: MUST ADD SWITCH TO EDIT OR CREATE RESTAURANT
   const submitRest = (e) => {
     e.preventDefault();
     if (props.restId) {
       restaurantData.updateRestaurant(restaurant, props.restId)
         .then(() => {
-          props.updateAreaRests();
+          // props.updateAreaRests();
           props.history.push({
             pathname: '/splash',
             message: 'Thank-you for your contribution. We will review and update the restaurant with your changes.',
@@ -84,7 +83,7 @@ const RestaurantForm = (props) => {
     } else {
       restaurantData.createRestaurant(restaurant)
         .then(() => {
-          props.updateAreaRests();
+          // props.updateAreaRests();
           props.history.push({
             pathname: '/splash',
             message: 'Thank-you for your contribution',
@@ -100,7 +99,7 @@ const RestaurantForm = (props) => {
     if (deleteWarning) {
       restaurantData.deleteRestaurant(props.restId)
         .then((res) => {
-          props.updateAreaRests();
+          // props.updateAreaRests();
           props.history.push({
             pathname: '/splash',
             message: `${restaurant.name} has been deleted from the database.`,
