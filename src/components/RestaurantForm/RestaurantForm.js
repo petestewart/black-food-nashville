@@ -73,7 +73,7 @@ const RestaurantForm = (props) => {
     if (props.restId) {
       restaurantData.updateRestaurant(restaurant, props.restId)
         .then(() => {
-          // props.updateAreaRests();
+          props.updateAreaRests();
           props.history.push({
             pathname: '/splash',
             message: 'Thank-you for your contribution. We will review and update the restaurant with your changes.',
@@ -84,7 +84,7 @@ const RestaurantForm = (props) => {
     } else {
       restaurantData.createRestaurant(restaurant)
         .then(() => {
-          // props.updateAreaRests();
+          props.updateAreaRests();
           props.history.push({
             pathname: '/splash',
             message: 'Thank-you for your contribution',
@@ -100,7 +100,7 @@ const RestaurantForm = (props) => {
     if (deleteWarning) {
       restaurantData.deleteRestaurant(props.restId)
         .then((res) => {
-          // props.updateAreaRests();
+          props.updateAreaRests();
           props.history.push({
             pathname: '/splash',
             message: `${restaurant.name} has been deleted from the database.`,
@@ -111,6 +111,11 @@ const RestaurantForm = (props) => {
     } else {
       setDeleteWarning(true);
     }
+  };
+
+  const cancelDelete = (e) => {
+    e.preventDefault();
+    setDeleteWarning(false);
   };
 
   return (
@@ -261,7 +266,10 @@ const RestaurantForm = (props) => {
             Are you sure you want to delete {restaurant.name}?
           </div>
         : '' }
-      <button className="btn-btn-info" onClick={submitRest}>Submit</button>
+      { deleteWarning
+        ? <button className="btn-btn-info" onClick={cancelDelete}>Cancel</button>
+        : <button className="btn-btn-info" onClick={submitRest}>Submit</button>
+      }
       {props.restId
         ? <button className="btn-btn-danger" onClick={deleteRest}>{deleteWarning ? 'Yes, ' : '' }Delete</button>
         : ''
