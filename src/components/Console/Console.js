@@ -105,7 +105,7 @@ const Console = (props) => {
   };
 
   useEffect(getUserLocation, []);
-  useEffect(updateAreaRests, [location.latitude, radius]);
+  useEffect(updateAreaRests, [location.latitude, radius], props.authed);
   useEffect(getUserInfo, [props.authed, props.uid]);
   useEffect(getFavorites, [props.uid]);
 
