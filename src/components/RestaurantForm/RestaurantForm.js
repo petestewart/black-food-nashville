@@ -25,6 +25,7 @@ const RestaurantForm = (props) => {
     name: '',
     phone: '',
     photo: '',
+    postmates: '',
     price: '',
     rating: null,
     ubereats: '',
@@ -212,6 +213,16 @@ const RestaurantForm = (props) => {
           className="form-control"
           id="grubhub"
           value={restaurant.grubhub}
+          onChange={inputHandler}
+          />
+      </div>
+      <div className="form-group">
+        <label htmlFor="postmates">Postmates URL</label>
+        <input
+          type="url"
+          className="form-control"
+          id="postmates"
+          value={restaurant.postmates}
           onChange={inputHandler}
           />
       </div>

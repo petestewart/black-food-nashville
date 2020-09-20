@@ -31,6 +31,7 @@ const SingleRestaurant = (props) => {
     name: '',
     phone: '',
     photo: '',
+    postmates: '',
     price: '',
     rating: null,
     ubereats: '',
@@ -76,6 +77,14 @@ const SingleRestaurant = (props) => {
         name: 'GrubHub',
         faIcon: 'fas fa-car-side',
         link: rest.grubhub,
+        external: true,
+      });
+    }
+    if (rest.postmates) {
+      restLinks.push({
+        name: 'Postmates',
+        faIcon: 'fas fa-car-side',
+        link: rest.postmates,
         external: true,
       });
     }
