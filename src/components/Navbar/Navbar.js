@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 
 // import PropTypes from 'prop-types';
 
@@ -12,6 +12,14 @@ import mapquestData from '../../helpers/data/mapquestData';
 import './Navbar.scss';
 
 const Navbar = (props) => {
+  const [showSearchBar, setShowSearchBar] = useState(true);
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setShowSearchBar(pathname === '/search');
+  }, [pathname]);
+
   const submitNewLocation = (newLocation) => {
     mapquestData.getCoordinates(newLocation)
       .then((res) => props.setLocation(res))
@@ -26,11 +34,14 @@ const Navbar = (props) => {
     <div className="Navbar">
       <NavLink tag={NavLink} to="/search"><h2 className="Logo">OneBite</h2></NavLink>
       <div className="navbar-middle">
-        <div className="location-controls">
-          <NumberInput click={setRadius} value={props.radius}/>
-          miles within
-          <SearchBar placeholder={props.placeholder} click={submitNewLocation}/>
-        </div>
+        { showSearchBar
+          ? <div className="location-controls">
+              <NumberInput click={setRadius} value={props.radius}/>
+              miles within
+              <SearchBar placeholder={props.placeholder} click={submitNewLocation}/>
+            </div>
+          : ''
+        }
       </div>
       <div className="userMenu">
         <UserMenu user={props.user} authed={props.authed} openNewRestForm={props.openNewRestForm}/>
