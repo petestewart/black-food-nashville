@@ -2,6 +2,7 @@ import axios from 'axios';
 import apiKeys from '../apiKeys.json';
 
 import utils from '../utils';
+import userData from './userData';
 // import mapquestData from './mapquestData';
 // import yelpData from './yelpData';
 
@@ -13,27 +14,28 @@ const getAllRestaurants = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-// const getAreaRestaurants = (coords, radius) => new Promise((resolve, reject) => {
-//   axios.get(`${baseUrl}/restaurants.json?orderBy="longitude"&startAt="-86.7"&endAt="-86.9"`)
-//     .then((res) => {
-//       console.warn(res);
-//       resolve(res);
-//     })
-//     .catch((err) => reject(err));
-// });
-
-// const getSingleRestaurant = (restId) => axios.get(`${baseUrl}/restaurants/${restId}.json`);
-
 const getSingleRestaurant = (restId, extraData) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/restaurants/${restId}.json`)
     .then((res) => {
-      console.warn(res, restId);
       resolve({ ...res.data, ...extraData, id: restId });
     })
     .catch((err) => reject(err));
 });
 
-const deleteRestaurant = (restId) => axios.delete(`${baseUrl}/restaurants/${restId}.json`);
+// const deleteRestaurant = (restId) => axios.delete(`${baseUrl}/restaurants/${restId}.json`);
+
+const deleteRestaurant = (restId) => new Promise((resolve, reject) => {
+  axios.delete(`${baseUrl}/restaurants/${restId}.json`)
+    .then(() => {
+      axios.get(`${baseUrl}/userFavorites.json?orderBy="restId"&equalTo="${restId}"`)
+        .then(({ data }) => {
+          utils.convertFirebaseCollection(data).forEach((fav) => userData.removeFavorite(fav.id));
+          resolve();
+        })
+        .catch((err) => console.error(err));
+    })
+    .catch((err) => reject(err));
+});
 
 const createRestaurant = (restaurant) => axios.post(`${baseUrl}/restaurants.json`, restaurant);
 

@@ -34,7 +34,7 @@ const Results = (props) => {
         filteredRests = filteredRests.filter((rest) => rest.vegFriendly === true);
       }
       if (props.deliveryOnly) {
-        filteredRests = filteredRests.filter((rest) => rest.doorDash || rest.grubhub || rest.uberEats);
+        filteredRests = filteredRests.filter((rest) => rest.doorDash || rest.grubhub || rest.postmates || rest.uberEats);
       }
       if (props.openNow) {
         filteredRests = filteredRests.filter((rest) => utils.checkIfOpen(rest.hours));

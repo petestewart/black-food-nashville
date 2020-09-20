@@ -157,7 +157,7 @@ const Console = (props) => {
             <SingleRestaurant authed={props.authed} isFavorite={isFavorite} addFavorite={addFavorite} removeFavorite={removeFavorite} />
           </Route>
           <Route path="/edit/:restId">
-            <EditRestaurant authed={props.authed} />
+            <EditRestaurant authed={props.authed} updateAreaRests={updateAreaRests}/>
           </Route>
           <Route path="/submit">
             {/* this should load if openForm is set to true (newRest prop will eventually change based on new or existing restaurant) */}

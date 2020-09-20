@@ -12,7 +12,7 @@ const EditRestaurant = (props) => {
 
   return (
     <div>
-      <RestarauntForm restId={restId} authed={props.authed} restInfo={props.location.state.restaurant} />
+      <RestarauntForm restId={restId} authed={props.authed} restInfo={props.location.state.restaurant} updateAreaRests={props.updateAreaRests}/>
     </div>
   );
 };

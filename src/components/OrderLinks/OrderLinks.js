@@ -15,6 +15,9 @@ const OrderLinks = (props) => {
     if (rest.grubhub) {
       items.push({ name: 'GrubHub', link: rest.grubhub, external: true });
     }
+    if (rest.postmates) {
+      items.push({ name: 'Postmates', link: rest.postmates, external: true });
+    }
     if (rest.ubereats) {
       items.push({ name: 'UberEats', link: rest.ubereats, external: true });
     }

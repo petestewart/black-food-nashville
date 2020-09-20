@@ -2,7 +2,6 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 import YelpSearch from '../YelpSearch/YelpSearch';
-import RestaurantForm from '../RestaurantForm/RestaurantForm';
 
 import './SubmitRestaurant.scss';
 
@@ -13,7 +12,6 @@ const SubmitRestaurant = (props) => {
         ? <YelpSearch />
         : 'You must log in to submit a new restaurant'
       }
-      {/* <RestaurantForm newRest={true} /> */}
     </div>);
 };
 
