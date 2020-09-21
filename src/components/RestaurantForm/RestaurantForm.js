@@ -68,6 +68,13 @@ const RestaurantForm = (props) => {
     setRestaurant(updatedRest);
   };
 
+  const cancelForm = (e) => {
+    e.preventDefault();
+    props.history.push({
+      pathname: '/home',
+    });
+  };
+
   const submitRest = (e) => {
     e.preventDefault();
     if (props.restId) {
@@ -119,8 +126,9 @@ const RestaurantForm = (props) => {
   };
 
   return (
-    <div className="restaurant-form d-flex justify-content-center w-100 m-3">
-    <form className="col-6">
+    <div className="RestaurantForm d-flex justify-content-center w-100">
+    <form className="col-6 submit-form">
+      <h6 className="text-center m-3">Please enter the correct information</h6>
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input
@@ -141,6 +149,16 @@ const RestaurantForm = (props) => {
           onChange={inputHandler}
           />
       </div>
+      <div className="form-check mb-4 ml-1">
+        <input
+          type="checkbox"
+          className="form-check-input"
+          id="vegFriendly"
+          checked={restaurant.vegFriendly}
+          onChange={vegInputHandler}
+          />
+        <label className="form-check-label ml-2 text-dark" htmlFor="vegFriendly">Vegetarian-friendly</label>
+      </div>
       <div className="form-group">
         <label htmlFor="LOC_address1">Street Address</label>
         <input
@@ -152,7 +170,7 @@ const RestaurantForm = (props) => {
           />
       </div>
       <div className="form-group">
-        <label htmlFor="LOC_address2">Suite Number</label>
+        <label htmlFor="LOC_address2">Suite Number (optional)</label>
         <input
           type="text"
           className="form-control"
@@ -190,6 +208,12 @@ const RestaurantForm = (props) => {
           value={restaurant.phone}
           onChange={inputHandler}
           />
+      </div>
+      <div className="preview-pic">
+        {restaurant.photo && restaurant.photo.length > 15
+          ? <img className="preview-pic" src={restaurant.photo} alt="preview"/>
+          : ''
+        }
       </div>
       <div className="form-group">
         <label htmlFor="photo">Photo URL</label>
@@ -251,29 +275,27 @@ const RestaurantForm = (props) => {
           onChange={inputHandler}
           />
       </div>
-      <div className="form-group">
-        <label htmlFor="vegFriendly">Vegetarian-friendly</label>
-        <input
-          type="checkbox"
-          className="form-control"
-          id="vegFriendly"
-          checked={restaurant.vegFriendly}
-          onChange={vegInputHandler}
-          />
-      </div>
-      { deleteWarning
-        ? <div className="alert alert-danger" role="alert">
+      <div className="form-group d-flex justify-content-center">
+        <div className="">
+        { deleteWarning
+          ? <div className="alert alert-danger" role="alert">
             Are you sure you want to delete {restaurant.name}?
           </div>
-        : '' }
-      { deleteWarning
-        ? <button className="btn-btn-info" onClick={cancelDelete}>Cancel</button>
-        : <button className="btn-btn-info" onClick={submitRest}>Submit</button>
-      }
-      {props.restId
-        ? <button className="btn-btn-danger" onClick={deleteRest}>{deleteWarning ? 'Yes, ' : '' }Delete</button>
-        : ''
-    }
+          : '' }
+        { deleteWarning
+          ? <button className="btn btn-secondary mr-5" onClick={cancelDelete}>No, Cancel</button>
+          : <button className="btn btn-success mr-2" onClick={submitRest}>Submit</button>
+        }
+        { deleteWarning
+          ? ''
+          : <button className="btn btn-secondary mx-2" onClick={cancelForm}>Cancel</button>
+        }
+        {props.restId
+          ? <button className="btn btn-danger ml-2" onClick={deleteRest}>{deleteWarning ? 'Yes, ' : '' }Delete</button>
+          : ''
+        }
+        </div>
+      </div>
     </form>
   </div>
   );

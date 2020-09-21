@@ -1,25 +1,15 @@
-// .dd-container {
-//   position: relative;
-//   display: inline-block;
-//   cursor: pointer;
-// }
-
-// .button {
-//   padding: 0;
-//   // width: 50px;
-//   border: 0;
-//   background-color: #fff;
-//   color: #333;
-//   cursor: pointer;
-//   outline: 0;
-//   // font-size: 40px;
-// }
+@import '../../styles/variables';
 
 .LinksMenu {
   margin-top: 5px;
   margin-bottom: 5px;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.04);
+
+  i {
+    color: $accentDark;
+    margin-right: 5px;
+  }
   
   a:link {
     text-decoration: none;
@@ -43,5 +33,9 @@
   li:hover {
     background-color: rgba(0, 0, 0, 0.14);
     cursor: pointer;
+    color: $accentDark;
+
+    // i {
+    // }
   }
 }

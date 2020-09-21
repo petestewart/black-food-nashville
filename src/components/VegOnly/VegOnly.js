@@ -14,7 +14,7 @@ const VegOnly = (props) => {
 
   return (
         <Switch onChange={handleChange} checked={props.status}>
-          <span>Vegetarian-friendly</span>
+          <span className="filter-switch">Vegetarian-friendly</span>
         </Switch>
   );
 };

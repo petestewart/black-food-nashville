@@ -31,7 +31,7 @@
           font-weight: 600;
           // color: grey;
           .open-now {
-            color: green;
+            color: $accentDark;
             font-weight: normal;
           }
         }
@@ -73,10 +73,15 @@
     }
 
     .submit-link {
-      font-size: 0.9rem;
+      a {
+        font-size: 0.9rem;
+        color: $textMuted;
+      }
     }
     .submit-link:hover {
-      color:blue !important;
+      a {
+      color: $accentDark;
       cursor: pointer;
+    }
     }
 }

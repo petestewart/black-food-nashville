@@ -33,6 +33,8 @@ const insertYelpData = (yelpId) => new Promise((resolve, reject) => {
   getRestaurantInfo(yelpId)
     .then((res) => {
       const categories = res.categories.map((cat) => cat.title);
+      let hours = [];
+      if (res.hours) hours = res.hours[0].open;
       const newRest = {
         name: res.name,
         photo: res.image_url,
@@ -45,7 +47,7 @@ const insertYelpData = (yelpId) => new Promise((resolve, reject) => {
         phone: res.display_phone,
         latitude: res.coordinates.latitude,
         longitude: res.coordinates.longitude,
-        hours: res.hours[0].open,
+        hours,
         categories,
         rating: res.rating,
         price: res.price,

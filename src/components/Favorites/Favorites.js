@@ -16,8 +16,8 @@ const Favorites = (props) => {
   };
 
   return (
-    <div className="text-center">
-      <h3>My Favorites</h3>
+    <div className="Favorites">
+      <h3 className="text-center mt-2 w-100">Your Favorites</h3>
       <div className="d-flex justify-content-center">
         <div className="Favorites card-columns">
           {cards(props.favorites)}

@@ -2,10 +2,10 @@
 
 .RestaurantCard {
   color: $textMain;
-  border: 1px solid black;
+  // border: 1px solid grey;
   background-color: white;
   // padding: 3px;
-  border-radius: 5%;
+  border-radius: 3%;
   // overflow: hidden;
   min-width: 390px;
   max-width: 390px;
@@ -25,7 +25,7 @@
   }
     .rest-img {
       overflow: hidden;
-      border-radius: 5% 5% 0 0;
+      border-radius: 3% 3% 0 0;
     }
     .rest-img:hover {
       cursor: pointer;
@@ -33,6 +33,9 @@
 
     .rest-name {
       cursor: pointer;
+    }
+    .rest-name:hover {
+      color: $accentDark;
     }
     
     .rest-body {
@@ -67,11 +70,11 @@
           padding: 0px;
           display: flex;
           justify-content: space-between;
-
-          // .cardlink {
-          //   cursor: pointer;
-          // }
-        }
         
     }
+  }
+}
+
+.RestaurantCard:hover {
+  box-shadow: 5px 5px rgba(40, 167, 69, 0.1)
 }

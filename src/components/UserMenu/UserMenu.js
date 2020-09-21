@@ -10,7 +10,7 @@ const UserMenu = (props) => {
   const menuItems = () => {
     const items = [];
     if (props.user.name) {
-      items.push({ name: `Hi, ${props.user.name}` });
+      items.push({ name: `Hi, ${props.user.name}`, disabled: true });
     }
     if (props.authed) {
       items.push({ name: 'My Favorites', rrlink: '/favorites' });
@@ -25,7 +25,7 @@ const UserMenu = (props) => {
   return (
     <div className="UserMenu">
       <Dropdown links={menuItems()}>
-      <i className="fas fa-user-circle fa-2x ml-auto mr-2"></i>
+      <i className="fas fa-user-circle fa-2x ml-auto mr-2" id="user-menu"></i>
       </Dropdown>
     </div>
   );

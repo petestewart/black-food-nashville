@@ -14,7 +14,7 @@ const DeliveryOnly = (props) => {
 
   return (
         <Switch onChange={handleChange} checked={props.status}>
-          <span>Delivery Available</span>
+          <span className="filter-switch">Delivery Available</span>
         </Switch>
   );
 };
