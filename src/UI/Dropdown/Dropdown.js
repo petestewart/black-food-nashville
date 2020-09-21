@@ -48,7 +48,7 @@ class Dropdown extends React.Component {
       if (item.component) {
         return (<li className="component" key={index}>{item.component}</li>);
       }
-      return (<li onClick={item.click} key={index}>{item.name}</li>);
+      return (<li onClick={item.click} key={index} className={item.disabled ? 'disabled' : ''}>{item.name}</li>);
     });
     return items;
   };

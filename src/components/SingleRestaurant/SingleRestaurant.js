@@ -131,8 +131,8 @@ const SingleRestaurant = (props) => {
   };
 
   const favoriteButton = () => (props.isFavorite(restId)
-    ? <button className="btn btn-secondary" onClick={() => props.removeFavorite(restId)}><i className="fas fa-heart"></i> Saved</button>
-    : <button className="btn btn-outline-secondary" onClick={() => props.addFavorite(restId)}><i className="far fa-heart"></i> Save</button>);
+    ? <button className="btn btn-success" onClick={() => props.removeFavorite(restId)}><i className="fas fa-heart"></i> Saved</button>
+    : <button className="btn btn-outline-success" onClick={() => props.addFavorite(restId)}><i className="far fa-heart"></i> Save</button>);
 
   return (
     <div className="SingleRestaurant">
@@ -176,7 +176,7 @@ const SingleRestaurant = (props) => {
             </div>
             <div className="controls px-3 pb-2">
               <ShareMenu className="cardlink" rest={{ ...rest, id: restId }}>
-                <button className="btn btn-outline-secondary"><i className="fas fa-share-alt"></i> Share</button>
+                <button className="btn btn-outline-success"><i className="fas fa-share-alt"></i> Share</button>
               </ShareMenu>
 
               { props.authed ? favoriteButton() : ''}

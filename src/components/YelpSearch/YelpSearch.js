@@ -61,6 +61,13 @@ const YelpSearch = (props) => {
     setShowResult(false);
   };
 
+  const cancelForm = (e) => {
+    e.preventDefault();
+    props.history.push({
+      pathname: '/home',
+    });
+  };
+
   const performYelpSearch = (e) => {
     e.preventDefault();
     if (!searchInput) { return; }
@@ -88,8 +95,9 @@ const YelpSearch = (props) => {
   };
 
   return (
-    <div className = "YelpSearch">
+    <div className = "YelpSearch d-flex justify-content-center w-100">
       <form className="col-6 m-3">
+        <h6 className="text-center m-3">Let's see if we can find your restaurant on Yelp</h6>
         <div className="form-group">
           <label htmlFor="yelp">Name or Yelp URL</label>
           <input
@@ -112,8 +120,7 @@ const YelpSearch = (props) => {
             onSubmit={performYelpSearch}
             />
         </div>
-  <button onClick={performYelpSearch}>{notFound ? 'Try Again' : 'Search Yelp'}</button>
-      </form>
+  <button className="btn btn-outline-dark" onClick={performYelpSearch}>{notFound ? 'Try Again' : 'Search Yelp'}</button>
       <div className="searchResults mt-3">
         { notFound
           ? <div className="not-found">
@@ -125,9 +132,10 @@ const YelpSearch = (props) => {
                 Would you like to create a new restaurant from scratch?
               </p>
             </div>
-            <div className="ml-3">
-              <button onClick={createFromScratch}>Create New Restaurant</button>
-            </div>
+
+              <button className="btn btn-success" onClick={createFromScratch}>Yes, Create New Restaurant</button>
+              <button className="btn btn-outline-secondary ml-3" onClick={cancelForm}>No, thank-you</button>
+
           </div>
           : ''}
 
@@ -136,6 +144,7 @@ const YelpSearch = (props) => {
           : ''
         }
       </div>
+      </form>
     </div>
   );
 };

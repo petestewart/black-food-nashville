@@ -19,7 +19,7 @@ const numberInput = (props) => {
         id="quantity"
         name="quantity"
         min="1"
-        max="20"
+        max="50"
         value={props.value}
         onChange={changeHandler} />
     </div>

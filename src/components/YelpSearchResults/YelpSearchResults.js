@@ -25,7 +25,8 @@ const YelpSearchResults = (props) => {
     }
   };
 
-  const acceptResultHandler = () => {
+  const acceptResultHandler = (e) => {
+    e.preventDefault();
     yelpData.insertYelpData(rest.yelpId)
       .then((res) => {
         // props.openFormHandler(res);
@@ -37,7 +38,8 @@ const YelpSearchResults = (props) => {
       .catch((err) => console.error(err));
   };
 
-  const denyResultHandler = () => {
+  const denyResultHandler = (e) => {
+    e.preventDefault();
     if (currentRest + 1 >= props.result.length) {
       props.noMatches();
     } else {
@@ -51,9 +53,9 @@ const YelpSearchResults = (props) => {
   // 5. If there are no results, take user to form (with a message that we could not find your restaurant)
 
   return (
-    <div className="YelpSearchResults">
+    <div className="YelpSearchResults d-flex justify-content-center w-100">
       <div className="restaurant-chooser">
-        <h1>IS THIS YOUR RESTAURANT?</h1>
+        <h6 className="text-center m-3">Is this your restaurant?</h6>
         <div className="RestaurantCard">
           <div className="rest-img"><img className="card-img-top" src={rest.photo} alt="" /></div>
           <div className="">
@@ -70,8 +72,11 @@ const YelpSearchResults = (props) => {
             </div>
           </div>
         </div>
-        <button className={'btn btn-sm m-1 btn-info'} onClick={acceptResultHandler}>Yes</button>
-        <button className={'btn btn-sm m-1 btn-info'} onClick={denyResultHandler}>No</button>
+        <div className="d-flex justify-content-center w-100">
+        <button className={'btn btn-sm m-1 btn-outline-success'} onClick={acceptResultHandler}>Yes</button>
+        <button className={'btn btn-sm m-1 btn-outline-secondary'} onClick={denyResultHandler}>No</button>
+
+        </div>
       </div>
     </div>
   );

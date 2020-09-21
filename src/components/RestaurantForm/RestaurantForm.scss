@@ -1,0 +1,31 @@
+@import '../../styles/variables';
+
+.RestaurantForm {
+  background-color: $bgMain;
+  // width: 100vw;
+  margin: 0;
+  padding: 0;
+
+  .submit-form {
+    border: 1px solid $accentDark;
+    margin: 15px;
+    padding: 20px;
+    background-color: white;
+  }
+
+  label {
+    color: $accentDark;
+  }
+
+  input[type="checkbox"]{
+    width: 15px; /*Desired width*/
+    height: 15px; /*Desired height*/
+  }
+
+  .preview-pic {
+    img {
+      height: 100px;
+      width: auto;
+    }
+  }
+}

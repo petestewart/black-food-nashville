@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+
+.YelpSearch {
+  background-color: $bgMain;
+  // width: 100vw;
+  margin: 0;
+  padding: 0;
+
+  form {
+    border: 1px solid $accentDark;
+    margin: 15px;
+    padding: 20px;
+    background-color: white;
+  }
+
+  label {
+    color: $accentDark;
+  }
+
+  input[type="checkbox"]{
+    width: 15px; /*Desired width*/
+    height: 15px; /*Desired height*/
+  }
+}

@@ -24,7 +24,7 @@ const ShareMenu = (props) => {
         <CopyToClipboard
           text={url}
           onCopy={() => console.warn('COPIED!')}>
-          <div className="d-flex align-items-center w-100 m-1"><i className="fas fa-clipboard fa-2x mx-3"></i>Copy URL to clipboard</div>
+          <div className="d-flex align-items-center w-100 m-1"><i className="fas fa-clipboard fa-2x mx-3 text-muted"></i>Copy URL to clipboard</div>
         </CopyToClipboard>),
       },
       {
@@ -35,7 +35,7 @@ const ShareMenu = (props) => {
          quote={message}
          style={{ width: '100%' }}
         >
-          <div className="d-flex align-items-center w-100 m-1"><i className="fab fa-facebook-square fa-2x mx-3"></i> Share to Facebook</div>
+          <div className="d-flex align-items-center w-100 m-1"><i className="fab fa-facebook-square fa-2x mx-3 text-muted"></i> Share to Facebook</div>
         </FacebookShareButton>),
       },
       {
@@ -46,7 +46,7 @@ const ShareMenu = (props) => {
         title={message}
         style={{ width: '100%' }}
       >
-        <div className="d-flex align-items-center w-100 m-1"><i className="fab fa-twitter-square fa-2x mx-3"></i> Share to Twitter</div>
+        <div className="d-flex align-items-center w-100 m-1"><i className="fab fa-twitter-square fa-2x mx-3 text-muted"></i> Share to Twitter</div>
       </TwitterShareButton>),
       },
       {
@@ -57,7 +57,7 @@ const ShareMenu = (props) => {
         body={''}
         style={{ width: '100%' }}
       >
-        <div className="d-flex align-items-center w-100 m-1"><i className="fas fa-paper-plane fa-2x mx-3"></i> Share via Email</div>
+        <div className="d-flex align-items-center w-100 m-1"><i className="fas fa-paper-plane fa-2x mx-3 text-muted"></i> Share via Email</div>
       </EmailShareButton>),
       },
     ];

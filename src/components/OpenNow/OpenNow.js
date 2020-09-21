@@ -14,7 +14,7 @@ const OpenNow = (props) => {
 
   return (
         <Switch onChange={handleChange} checked={props.status}>
-          <span>OpenNow</span>
+          <span className="filter-switch">OpenNow</span>
         </Switch>
   );
 };

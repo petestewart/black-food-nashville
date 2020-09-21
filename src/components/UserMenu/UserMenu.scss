@@ -1,0 +1,9 @@
+@import '../../styles/variables';
+
+#user-menu {
+  color: $textMain;
+}
+
+#user-menu:hover {
+  color: $accentDark;
+}

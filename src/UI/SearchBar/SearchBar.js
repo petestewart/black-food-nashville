@@ -36,7 +36,7 @@ const SearchBar = (props) => {
           onBlur={resetInput}
           onChange={inputHandler}
           aria-label="Search" />
-        <button className="btn btn-outline-dark my-2 my-sm-0 search-button" type="submit" onClick={submitHandler}><i className="fas fa-search"></i></button>
+        <button className="btn btn-outline-success my-2 my-sm-0 search-button" type="submit" onClick={submitHandler}><i className="fas fa-search"></i></button>
       </form>
     </div>
   );

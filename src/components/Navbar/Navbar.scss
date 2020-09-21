@@ -6,8 +6,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: $bgMain;
-  color: $accentDark;
+  background-color: $bgAlt;
+  // color: $accentLight;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,12 +16,24 @@
   z-index: 200;
   a:link {
     text-decoration: none;
-    color: $accentDark;
+    color: $textMain;
   }
   
   a:visited {
     text-decoration: none;
-    color: $accentDark;
+    color: $textMain;
+  }
+
+  #logo {
+    color: $textMain;
+    
+  }
+  
+  #logo:hover {
+    color: $textMuted;
+    i {
+      color: $accentDark;
+    }
   }
 }
 

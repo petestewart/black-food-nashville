@@ -43,12 +43,13 @@ const RestaurantCard = (props) => {
                   starSpacing="1px"/>
               : ''
                 }
-                {distanceTo()}
               </div>
             <div className="location">
               <span>{rest.location.address1}</span>
-              <span>∙</span>
-              <span>{rest.phone}</span>
+              <span className="ml-1">{rest.phone}</span>
+              {<span className="ml-1 text-muted">
+                  {distanceTo()}
+                </span>}
             </div>
             <div className="categories">
               {rest.categories.join(', ')}
