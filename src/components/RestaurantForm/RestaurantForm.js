@@ -10,10 +10,15 @@ import './RestaurantForm.scss';
 
 const RestaurantForm = (props) => {
   const [restaurant, setRestaurant] = useState({
-    categories: [],
+    categories: ['none'],
     doordash: '',
     grubhub: '',
-    hours: [],
+    hours: [{
+      day: 0,
+      start: '0900',
+      end: '2100',
+      is_overnight: false,
+    }],
     latitude: 0,
     location: {
       address1: '',
@@ -35,6 +40,7 @@ const RestaurantForm = (props) => {
   });
 
   const [deleteWarning, setDeleteWarning] = useState(false);
+  const [allCategories, setAllCategories] = useState([]);
 
   useEffect(() => {
     // warning below about not adding restaurant to the dependency array, but that isn't what we want (?)
@@ -48,6 +54,12 @@ const RestaurantForm = (props) => {
       setRestaurant({ ...restaurant, ...props.restInfo });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    restaurantData.getAllCategories()
+      .then((res) => setAllCategories(res))
+      .catch((err) => console.error(err));
   }, []);
 
   const inputHandler = (e) => {
@@ -134,8 +146,6 @@ const RestaurantForm = (props) => {
     }
   });
 
-  // bout to break it
-
   const submitRest = (e) => {
     e.preventDefault();
     // let updatedRest = { ...restaurant };
@@ -190,6 +200,50 @@ const RestaurantForm = (props) => {
   const cancelDelete = (e) => {
     e.preventDefault();
     setDeleteWarning(false);
+  };
+
+  const catInputHandler = (e) => {
+    const updatedRest = { ...restaurant };
+    const index = Number(e.target.id.substring(3));
+    updatedRest.categories[index] = e.target.value;
+    setRestaurant({ ...updatedRest, categories: [...new Set(updatedRest.categories)] });
+  };
+
+  const addCatHandler = () => {
+    const updatedRest = { ...restaurant };
+    updatedRest.categories.push('none');
+    setRestaurant(updatedRest);
+  };
+  const removeCatHandler = () => {
+    const updatedRest = { ...restaurant };
+    updatedRest.categories.pop();
+    setRestaurant(updatedRest);
+  };
+
+  const categoriesForm = () => {
+    let catForm = '';
+    if (restaurant.categories) {
+      catForm = restaurant.categories.map((cat, index) => (
+      <div className="d-flex flex-row" key={index}>
+        <div className="form-group">
+          <select key={index} value={restaurant.categories[index]} id={`cat${index}`} className="form-control" onChange={catInputHandler}>
+            {allCategories.map((category, i) => <option value={category} key={i}>{category}</option>)}
+          </select>
+        </div>
+        <div>
+          { index < 2
+            ? <i className="fas fa-plus-circle text-success" id={`add${index}`} onClick={addCatHandler}></i>
+            : <i className="fas fa-plus-circle text-muted" id={`add${index}`}></i>
+          }
+          { index === 0
+            ? <i className="fas fa-minus-circle ml-2 text-light" id={`rmv${index}`}></i>
+            : <i className="fas fa-minus-circle ml-2 text-danger" id={`rmv${index}`} onClick={removeCatHandler}></i>
+          }
+        </div>
+      </div>
+      ));
+    }
+    return catForm;
   };
 
   const hoursForm = () => {
@@ -345,6 +399,10 @@ const RestaurantForm = (props) => {
           />
       </div>
       <div className="form-group">
+        <label>Categories:</label>
+        {categoriesForm()}
+      </div>
+      {/* <div className="form-group">
         <label htmlFor="categories">Category</label>
         <input
           type="text"
@@ -353,7 +411,7 @@ const RestaurantForm = (props) => {
           value={restaurant.categories}
           onChange={inputHandler}
           />
-      </div>
+      </div> */}
       <div className="form-check mb-4 ml-1">
         <input
           type="checkbox"

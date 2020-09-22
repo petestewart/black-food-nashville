@@ -32,7 +32,7 @@ const Navbar = (props) => {
 
   return (
     <div className="Navbar">
-      <NavLink tag={NavLink} to="/search"><h2 id="logo"><i className="fas fa-utensils"></i>RaisedFork</h2></NavLink>
+      <NavLink tag={NavLink} to="/search"><h2 id="logo"><i className="fas fa-utensils"></i>BlackFoodNashville</h2></NavLink>
       <div className="navbar-middle">
         { showSearchBar
           ? <div className="location-controls">
