@@ -53,9 +53,17 @@ const Results = (props) => {
     return cardList;
   };
 
-  const resultsCount = cards(results).length;
+  const resultsCount = (restaurants) => {
+    let cardList = [];
+    if (restaurants.length > 0) {
+      cardList = restaurants.map((restaurant, index) => index);
+    }
+    return cardList.length;
+  };
 
-  useEffect(() => { props.setResultsCount(resultsCount); }, [props, resultsCount]);
+  // const resultsCount = cards(results).length;
+
+  useEffect(() => { props.setResultsCount(resultsCount(results)); }, [props, results]);
 
   return (
     <div className="Results card-columns">
