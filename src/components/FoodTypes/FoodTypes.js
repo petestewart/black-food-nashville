@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 import FilterButton from '../../UI/FilterButton/FilterButton';
 
-// import './FoodTypes.scss';
+import './FoodTypes.scss';
 
 const FoodTypes = (props) => {
   const checkAllShownStatus = () => {

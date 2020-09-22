@@ -23,7 +23,7 @@ const RestaurantForm = (props) => {
     location: {
       address1: '',
       address2: '',
-      city: '',
+      city: 'Nashville',
       zipcode: '',
     },
     longitude: 0,
@@ -102,19 +102,31 @@ const RestaurantForm = (props) => {
     setRestaurant(updatedRest);
   };
 
-  const addDayHandler = () => {
+  const addScheduleHandler = (e) => {
     const updatedRest = { ...restaurant };
-    updatedRest.hours.push({
+    updatedRest.hours = [{
       day: 0,
       start: '0900',
       end: '2100',
       is_overnight: false,
+    }];
+    setRestaurant(updatedRest);
+  };
+
+  const addDayHandler = (e) => {
+    e.preventDefault();
+    const updatedRest = { ...restaurant };
+    const index = Number(e.target.id.substring(3));
+    const day = (restaurant.hours[index].day < 6 ? restaurant.hours[index].day + 1 : restaurant.hours[index].day);
+    updatedRest.hours.splice((index + 1), 0, {
+      ...restaurant.hours[index], day,
     });
     setRestaurant(updatedRest);
   };
-  const removeDayHandler = () => {
+  const removeDayHandler = (e) => {
     const updatedRest = { ...restaurant };
-    updatedRest.hours.pop();
+    const index = Number(e.target.id.substring(3));
+    updatedRest.hours.splice(index, 1);
     setRestaurant(updatedRest);
   };
 
@@ -206,17 +218,20 @@ const RestaurantForm = (props) => {
     const updatedRest = { ...restaurant };
     const index = Number(e.target.id.substring(3));
     updatedRest.categories[index] = e.target.value;
-    setRestaurant({ ...updatedRest, categories: [...new Set(updatedRest.categories)] });
+    setRestaurant({ ...updatedRest, categories: [...new Set(updatedRest.categories)].filter((cat) => cat !== 'none') });
   };
 
-  const addCatHandler = () => {
+  const addCatHandler = (e) => {
     const updatedRest = { ...restaurant };
-    updatedRest.categories.push('none');
+    const index = Number(e.target.id.substring(3));
+    updatedRest.categories.splice((index + 1), 0, 'none');
+    // updatedRest.categories.push('none');
     setRestaurant(updatedRest);
   };
-  const removeCatHandler = () => {
+  const removeCatHandler = (e) => {
     const updatedRest = { ...restaurant };
-    updatedRest.categories.pop();
+    const index = Number(e.target.id.substring(3));
+    updatedRest.categories.splice(index, 1);
     setRestaurant(updatedRest);
   };
 
@@ -231,11 +246,11 @@ const RestaurantForm = (props) => {
           </select>
         </div>
         <div>
-          { index < 2
+          { restaurant.categories.length < 3
             ? <i className="fas fa-plus-circle text-success" id={`add${index}`} onClick={addCatHandler}></i>
-            : <i className="fas fa-plus-circle text-muted" id={`add${index}`}></i>
+            : <i className="fas fa-plus-circle text-light" id={`add${index}`}></i>
           }
-          { index === 0
+          { restaurant.categories.length === 1
             ? <i className="fas fa-minus-circle ml-2 text-light" id={`rmv${index}`}></i>
             : <i className="fas fa-minus-circle ml-2 text-danger" id={`rmv${index}`} onClick={removeCatHandler}></i>
           }
@@ -248,7 +263,7 @@ const RestaurantForm = (props) => {
 
   const hoursForm = () => {
     let scheduleForm = '';
-    if (restaurant.hours) {
+    if (restaurant.hours.length > 0) {
       scheduleForm = restaurant.hours.map((block, index) => (
       <div className="d-flex flex-row" key={index}>
         <div className="form-group col-md-3">
@@ -374,12 +389,16 @@ const RestaurantForm = (props) => {
         <div>
           <i className="fas fa-plus-circle text-success" id={`add${index}`} onClick={addDayHandler}></i>
           { restaurant.hours.length === 1
-            ? ''
+            ? <i className="fas fa-minus-circle ml-2 text-danger" id={`rmv${index}`} onClick={removeDayHandler}></i>
             : <i className="fas fa-minus-circle ml-2 text-danger" id={`rmv${index}`} onClick={removeDayHandler}></i>
           }
         </div>
       </div>
       ));
+    } else {
+      scheduleForm = (
+        <button onClick={addScheduleHandler}>Add schedule</button>
+      );
     }
     return scheduleForm;
   };
@@ -399,7 +418,7 @@ const RestaurantForm = (props) => {
           />
       </div>
       <div className="form-group">
-        <label>Categories:</label>
+        <label>Categories (max 3):</label>
         {categoriesForm()}
       </div>
       {/* <div className="form-group">
