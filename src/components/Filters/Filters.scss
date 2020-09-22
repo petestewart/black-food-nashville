@@ -22,6 +22,10 @@
     color: $accentLight;
     cursor: pointer;
   }
+
+  .results-count {
+    color: $accentLight
+  }
 }
 
 @media (max-width: 760px) {

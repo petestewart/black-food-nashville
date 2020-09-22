@@ -53,7 +53,7 @@ const Filters = (props) => {
 
   return (
     <div className="Filters">
-      <div className="results-count mb-2 text-light">
+      <div className="results-count mb-2">
         Showing {props.resultsCount} of {props.areaRests.length} restaurants
       </div>
       <OpenNow status={props.openNow} toggleFilter={props.toggleFilter} />
