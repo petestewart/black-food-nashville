@@ -13,12 +13,7 @@ const RestaurantForm = (props) => {
     categories: ['none'],
     doordash: '',
     grubhub: '',
-    hours: [{
-      day: 0,
-      start: '0900',
-      end: '2100',
-      is_overnight: false,
-    }],
+    hours: [],
     latitude: 0,
     location: {
       address1: '',
@@ -388,16 +383,13 @@ const RestaurantForm = (props) => {
         </div>
         <div>
           <i className="fas fa-plus-circle text-success" id={`add${index}`} onClick={addDayHandler}></i>
-          { restaurant.hours.length === 1
-            ? <i className="fas fa-minus-circle ml-2 text-danger" id={`rmv${index}`} onClick={removeDayHandler}></i>
-            : <i className="fas fa-minus-circle ml-2 text-danger" id={`rmv${index}`} onClick={removeDayHandler}></i>
-          }
+          <i className="fas fa-minus-circle ml-2 text-danger" id={`rmv${index}`} onClick={removeDayHandler}></i>
         </div>
       </div>
       ));
     } else {
       scheduleForm = (
-        <button onClick={addScheduleHandler}>Add schedule</button>
+        <button className="ml-3" onClick={addScheduleHandler}>Add schedule</button>
       );
     }
     return scheduleForm;
