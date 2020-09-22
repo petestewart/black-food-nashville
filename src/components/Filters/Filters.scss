@@ -10,7 +10,7 @@
   // max-width: 70%;
   height: 100%;
   left: 0;
-  top: 56px;
+  top: 99px;
   z-index: 200;
   background-color: $bgAlt;
   padding: 32px 16px;
@@ -19,8 +19,12 @@
   overflow: scroll;
 
   .filter-switch:hover {
-    color: $textMuted;
+    color: $accentLight;
     cursor: pointer;
+  }
+
+  .results-count {
+    color: $accentLight
   }
 }
 

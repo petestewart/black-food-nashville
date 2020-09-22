@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useHistory } from 'react';
+import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 
 import './Filters.scss';
@@ -53,6 +53,9 @@ const Filters = (props) => {
 
   return (
     <div className="Filters">
+      <div className="results-count mb-2">
+        Showing {props.resultsCount} of {props.areaRests.length} restaurants
+      </div>
       <OpenNow status={props.openNow} toggleFilter={props.toggleFilter} />
       <DeliveryOnly status={props.deliveryOnly} toggleFilter={props.toggleFilter} />
       <VegOnly status={props.vegOnly} toggleFilter={props.toggleFilter} />

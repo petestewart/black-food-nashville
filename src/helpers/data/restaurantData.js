@@ -2,6 +2,7 @@ import axios from 'axios';
 import apiKeys from '../apiKeys.json';
 
 import utils from '../utils';
+import authData from './authData';
 import userData from './userData';
 // import mapquestData from './mapquestData';
 // import yelpData from './yelpData';
@@ -37,9 +38,24 @@ const deleteRestaurant = (restId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-const createRestaurant = (restaurant) => axios.post(`${baseUrl}/restaurants.json`, restaurant);
+const createRestaurant = (restaurant) => axios.post(`${baseUrl}/restaurants.json`, { ...restaurant, submittedBy: authData.getUid() });
 
-const updateRestaurant = (restaurant, restId) => axios.put(`${baseUrl}/restaurants/${restId}.json`, restaurant);
+const updateRestaurant = (restaurant, restId) => axios.put(`${baseUrl}/restaurants/${restId}.json`, { ...restaurant, editedBy: authData.getUid() });
+
+const getAllCategories = () => new Promise((resolve, reject) => {
+  getAllRestaurants()
+    .then((res) => {
+      const allRests = utils.convertFirebaseCollection(res);
+      const allCategories = [];
+      allRests.forEach((rest) => {
+        if (rest.categories) {
+          rest.categories.forEach((category) => allCategories.push(category));
+        }
+      });
+      resolve([...new Set(allCategories)].sort());
+    })
+    .catch((err) => reject(err));
+});
 
 // const convertYelpRestaurant = (oldRest) => {
 // const yelpId = oldRest.yelp.slice(25);
@@ -114,5 +130,5 @@ const updateRestaurant = (restaurant, restId) => axios.put(`${baseUrl}/restauran
 // };
 
 export default {
-  getAllRestaurants, getSingleRestaurant, deleteRestaurant, createRestaurant, updateRestaurant,
+  getAllRestaurants, getSingleRestaurant, deleteRestaurant, createRestaurant, updateRestaurant, getAllCategories,
 };

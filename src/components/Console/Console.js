@@ -32,6 +32,7 @@ const Console = (props) => {
   const [foodFilters, setFoodFilters] = useState({});
   const [user, setUser] = useState({});
   const [favorites, setFavorites] = useState([]);
+  const [resultsCount, setResultsCount] = useState(0);
 
   // const [openForm, setOpenForm] = useState(false);
 
@@ -149,8 +150,8 @@ const Console = (props) => {
           <Route path="/search">
             {/* this should load if openForm is set to false */}
             <React.Fragment>
-              <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter} updateAreaRests={updateAreaRests}/>
-              <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed} favorites={favorites} addFavorite={addFavorite} removeFavorite={removeFavorite}/>
+              <Filters foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} setFoodFilters={setFoodFilters} areaRests={areaRests} toggleFilter={toggleFilter} updateAreaRests={updateAreaRests} resultsCount={resultsCount}/>
+              <Results foodFilters={foodFilters} openNow={openNow} vegOnly={vegOnly} deliveryOnly={deliveryOnly} location={location} areaRests={areaRests} authed={props.authed} favorites={favorites} addFavorite={addFavorite} removeFavorite={removeFavorite} setResultsCount={setResultsCount}/>
             </React.Fragment>
           </Route>
           <Route path="/business/:restId">

@@ -14,7 +14,7 @@ import './ShareMenu.scss';
 
 const ShareMenu = (props) => {
   const { rest } = props;
-  const url = `http://blackownednashville.com/${rest.id}`;
+  const url = `http://blackfoodnashville.com/${rest.id}`;
 
   const links = () => {
     const message = `Check out ${rest.name} and support #Blackowned businesses in Nashville!`;

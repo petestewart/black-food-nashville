@@ -1,13 +1,12 @@
 @import '../../styles/variables';
 
 .Navbar {
-  height: 56px;
+  height: 99px;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   background-color: $bgAlt;
-  // color: $accentLight;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,13 +25,14 @@
 
   #logo {
     color: $textMain;
-    
+    // font-family: 'Ropa Sans', sans-serif;
+    font-weight: bold;
   }
   
   #logo:hover {
-    color: $textMuted;
+    color: $accentLight;
     i {
-      color: $accentDark;
+      color: $textMain;
     }
   }
 }

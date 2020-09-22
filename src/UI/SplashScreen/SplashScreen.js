@@ -20,8 +20,8 @@ const SplashScreen = (props) => {
   return (
     <div className="SplashScreen">
       <div className="message">
-        <h3>{props.location.message}</h3>
-        <button className="btn-btn-success" onClick={leaveSplash}>Ok</button>
+        <h3 className="mb-3">{props.location.message}</h3>
+        <button className="btn btn-outline-success" onClick={leaveSplash}>Ok</button>
       </div>
     </div>
   );
