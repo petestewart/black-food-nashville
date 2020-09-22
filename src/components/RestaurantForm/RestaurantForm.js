@@ -67,12 +67,14 @@ const RestaurantForm = (props) => {
     const updatedRest = { ...restaurant };
     const index = Number(e.target.id.substring(3));
     updatedRest.hours[index].day = Number(e.target.value);
+    updatedRest.hours.sort((x, y) => x.day - y.day || Number(x.start) - Number(y.start));
     setRestaurant(updatedRest);
   };
   const startInputHandler = (e) => {
     const updatedRest = { ...restaurant };
     const index = Number(e.target.id.substring(5));
     updatedRest.hours[index].start = e.target.value;
+    updatedRest.hours.sort((x, y) => x.day - y.day || Number(x.start) - Number(y.start));
     setRestaurant(updatedRest);
   };
   const endInputHandler = (e) => {
