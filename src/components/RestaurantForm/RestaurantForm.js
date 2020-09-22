@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 // import PropTypes from 'prop-types';
 
 import restaurantData from '../../helpers/data/restaurantData';
+import mapquestData from '../../helpers/data/mapquestData';
 import authData from '../../helpers/data/authData';
 
 import './RestaurantForm.scss';
@@ -118,31 +119,54 @@ const RestaurantForm = (props) => {
     });
   };
 
+  const confirmCoordinates = () => new Promise((resolve, reject) => {
+    if ((restaurant.latitude === 0 && restaurant.longitude === 0) || (props.restId && props.location.state.location !== restaurant.location)) {
+      mapquestData.getCoordinates(`${restaurant.location.address1} ${restaurant.location.city} TN ${restaurant.location.zipcode}`)
+        .then((res) => {
+          // const updatedRest = { ...restaurant, latitude: res.latitude, longitude: res.longitude };
+          const updatedRest = { ...restaurant, latitude: res.latitude, longitude: res.longitude };
+          // setRestaurant(updatedRest);
+          resolve(updatedRest);
+        })
+        .catch((err) => reject(err));
+    } else {
+      resolve(restaurant);
+    }
+  });
+
+  // bout to break it
+
   const submitRest = (e) => {
     e.preventDefault();
-    if (props.restId) {
-      restaurantData.updateRestaurant(restaurant, props.restId)
-        .then(() => {
-          props.updateAreaRests();
-          props.history.push({
-            pathname: '/splash',
-            message: 'Thank-you for your contribution. We will review and update the restaurant with your changes.',
-            next: '/home',
-          });
-        })
-        .catch((err) => console.error(err));
-    } else {
-      restaurantData.createRestaurant(restaurant)
-        .then(() => {
-          props.updateAreaRests();
-          props.history.push({
-            pathname: '/splash',
-            message: 'Thank-you for your contribution',
-            next: '/home',
-          });
-        })
-        .catch((err) => console.error(err));
-    }
+    // let updatedRest = { ...restaurant };
+    confirmCoordinates()
+      .then((res) => {
+        console.warn(res);
+        // if (res.newCoords) { updatedRest = { ...updatedRest, res }; }
+        if (props.restId) {
+          restaurantData.updateRestaurant(res, props.restId)
+            .then(() => {
+              props.updateAreaRests();
+              props.history.push({
+                pathname: '/splash',
+                message: 'Thank-you for your contribution. We will review and update the restaurant with your changes.',
+                next: '/home',
+              });
+            })
+            .catch((err) => console.error(err));
+        } else {
+          restaurantData.createRestaurant(res)
+            .then(() => {
+              props.updateAreaRests();
+              props.history.push({
+                pathname: '/splash',
+                message: 'Thank-you for your contribution',
+                next: '/home',
+              });
+            })
+            .catch((err) => console.error(err));
+        }
+      });
   };
 
   const deleteRest = (e) => {
