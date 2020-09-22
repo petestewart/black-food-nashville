@@ -53,6 +53,10 @@ const Results = (props) => {
     return cardList;
   };
 
+  const resultsCount = cards(results).length;
+
+  useEffect(() => { props.setResultsCount(resultsCount); }, [props, resultsCount]);
+
   return (
     <div className="Results card-columns">
       {cards(results)}
