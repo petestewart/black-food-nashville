@@ -7,7 +7,6 @@
   top: 0;
   left: 0;
   background-color: $bgAlt;
-  // color: $accentLight;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,9 +29,9 @@
   }
   
   #logo:hover {
-    color: $textMuted;
+    color: $accentLight;
     i {
-      color: $accentDark;
+      color: $textMain;
     }
   }
 }

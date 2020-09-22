@@ -4,7 +4,7 @@ import Switch from 'react-switch';
 
 const VegOnly = (props) => (
       <label className="d-flex align-items-center">
-        <Switch className={`mr-2 ${props.className}`} onChange={props.onChange} checked={props.checked} onColor={'#28A745'} uncheckedIcon={false} checkedIcon={false} height={20} width={35}/>
+        <Switch className={`mr-2 ${props.className}`} onChange={props.onChange} checked={props.checked} onColor={'#28A745'} offColor={'#696969'} uncheckedIcon={false} checkedIcon={false} height={20} width={35}/>
         <span style={{ fontSize: '0.9rem' }}>{props.children}</span>
       </label>
 );

@@ -10,7 +10,7 @@ import './RestaurantForm.scss';
 
 const RestaurantForm = (props) => {
   const [restaurant, setRestaurant] = useState({
-    categories: ['none'],
+    categories: ['American'],
     doordash: '',
     grubhub: '',
     hours: [],
@@ -242,7 +242,7 @@ const RestaurantForm = (props) => {
         </div>
         <div>
           { restaurant.categories.length < 3
-            ? <i className="fas fa-plus-circle text-success" id={`add${index}`} onClick={addCatHandler}></i>
+            ? <i className="fas fa-plus-circle text-success ml-2" id={`add${index}`} onClick={addCatHandler}></i>
             : <i className="fas fa-plus-circle text-light" id={`add${index}`}></i>
           }
           { restaurant.categories.length === 1
@@ -413,16 +413,6 @@ const RestaurantForm = (props) => {
         <label>Categories (max 3):</label>
         {categoriesForm()}
       </div>
-      {/* <div className="form-group">
-        <label htmlFor="categories">Category</label>
-        <input
-          type="text"
-          className="form-control"
-          id="categories"
-          value={restaurant.categories}
-          onChange={inputHandler}
-          />
-      </div> */}
       <div className="form-check mb-4 ml-1">
         <input
           type="checkbox"
