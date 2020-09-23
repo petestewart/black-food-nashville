@@ -53,9 +53,18 @@ const RestaurantForm = (props) => {
 
   useEffect(() => {
     restaurantData.getAllCategories()
-      .then((res) => setAllCategories(res))
+      .then((res) => {
+        if (props.location.restaurantInfo) {
+          if (props.location.restaurantInfo.categories) {
+            const restCats = props.location.restaurantInfo.categories;
+            restCats.forEach((cat) => res.push(cat));
+          }
+        }
+        const allCats = ([...new Set(res)]);
+        setAllCategories(allCats);
+      })
       .catch((err) => console.error(err));
-  }, []);
+  }, [props.location.restaurantInfo]);
 
   const inputHandler = (e) => {
     e.preventDefault();
@@ -552,7 +561,7 @@ const RestaurantForm = (props) => {
           : '' }
         { deleteWarning
           ? <button className="btn btn-secondary mr-5" onClick={cancelDelete}>No, Cancel</button>
-          : <button className="btn btn-success mr-2" onClick={submitRest}>Submit</button>
+          : <button className="btn btn-warning mr-2" onClick={submitRest}>Submit</button>
         }
         { deleteWarning
           ? ''
