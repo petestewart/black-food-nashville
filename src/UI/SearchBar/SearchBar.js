@@ -8,6 +8,8 @@ const SearchBar = (props) => {
 
   useEffect(() => setValue(props.placeholder), [props.placeholder]);
 
+  // useEffect(() => props.click(value), [value]);
+
   const inputHandler = (e) => {
     setValue(e.target.value);
   };

@@ -40,10 +40,10 @@ const Results = (props) => {
         filteredRests = filteredRests.filter((rest) => utils.checkIfOpen(rest.hours));
       }
       setResults(filteredRests);
-    }
+    } else { setResults([]); }
   };
 
-  useEffect(applyFilters, [activeFilters]);
+  useEffect(applyFilters, [activeFilters], props);
 
   const cards = (restaurants) => {
     let cardList = 'No Results To Display';
