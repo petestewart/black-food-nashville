@@ -52,7 +52,7 @@ const Filters = (props) => {
   // useEffect(() => { if (props.refresh) { props.updateAreaRests(); } }, [props, props.refresh, props.updateAreaRests]); THIS DOESNT SEEM RIGHT
 
   return (
-    <div className="Filters">
+    <div className="Filters mb-2">
       <div className="results-count mb-2">
         Showing {props.resultsCount} of {props.areaRests.length} restaurants
       </div>
