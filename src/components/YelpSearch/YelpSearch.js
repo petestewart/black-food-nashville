@@ -14,14 +14,18 @@ const YelpSearch = (props) => {
   const [showResult, setShowResult] = useState(false);
   const [notFound, setNotFound] = useState(false);
 
+  window.scrollTo(0, 0);
+
   const searchInputHandler = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
+    if (notFound) { setNotFound(false); }
   };
 
   const searchAreaHandler = (e) => {
     e.preventDefault();
     setSearchArea(e.target.value);
+    if (notFound) { setNotFound(false); }
   };
 
   useEffect(() => {
@@ -70,6 +74,7 @@ const YelpSearch = (props) => {
 
   const performYelpSearch = (e) => {
     e.preventDefault();
+    setNotFound(false);
     if (!searchInput) { return; }
     if (searchInput.slice(0, 25) === 'https://www.yelp.com/biz/') {
       // get Id and search yelp
@@ -84,13 +89,17 @@ const YelpSearch = (props) => {
           setNotFound(true);
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setNotFound(true);
+      });
   };
 
   const createFromScratch = (e) => {
     e.preventDefault();
     props.history.push({
       pathname: '/restaurantform',
+      restaurantInfo: { name: searchInput },
     });
   };
 

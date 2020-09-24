@@ -22,7 +22,8 @@ const getRestaurantInfo = (yelpId) => new Promise((resolve, reject) => {
 });
 
 const searchByName = (restName, area) => new Promise((resolve, reject) => {
-  yelpREST(`/businesses/search?categories=&22food%22&location=${area ? `${area} TN` : '%22Nashville,%20TN%22'}&term=%22${restName}%22`)
+  const cleanName = restName.replace(/[^0-9a-zA-Z ]/g, '');
+  yelpREST(`/businesses/search?categories=&22food%22&location=${area ? `${area} TN` : '%22Nashville,%20TN%22'}&term=%22${cleanName}%22`)
     .then(({ data }) => {
       resolve(utils.convertYelpSearchResult(data.businesses));
     })

@@ -21,7 +21,7 @@ const SplashScreen = (props) => {
     <div className="SplashScreen">
       <div className="message">
         <h3 className="mb-3">{props.location.message}</h3>
-        <button className="btn btn-outline-warning" onClick={leaveSplash}>Ok</button>
+        <button className="btn btn-outline-dark" onClick={leaveSplash}>Ok</button>
       </div>
     </div>
   );

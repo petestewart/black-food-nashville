@@ -175,7 +175,7 @@ const RestaurantForm = (props) => {
               props.updateAreaRests();
               props.history.push({
                 pathname: '/splash',
-                message: 'Thank-you for your contribution. We will review and update the restaurant with your changes.',
+                message: 'Thank-you for helping to improve BlackFoodNashville.com.',
                 next: '/home',
               });
             })
@@ -186,7 +186,7 @@ const RestaurantForm = (props) => {
               props.updateAreaRests();
               props.history.push({
                 pathname: '/splash',
-                message: 'Thank-you for your contribution',
+                message: 'Thank-you for your contribution to BlackFoodNashville.com',
                 next: '/home',
               });
             })
