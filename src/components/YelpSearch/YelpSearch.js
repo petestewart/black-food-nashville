@@ -142,7 +142,7 @@ const YelpSearch = (props) => {
               </p>
             </div>
 
-              <button className="btn btn-warning" onClick={createFromScratch}>Yes, Create New Restaurant</button>
+              <button className="btn btn-outline-dark" onClick={createFromScratch}>Yes, Create New Restaurant</button>
               <button className="btn btn-outline-secondary ml-3" onClick={cancelForm}>No, thank-you</button>
 
           </div>

@@ -15,7 +15,7 @@ const FavoriteSwitch = (props) => {
   return (
     <div className="FavoriteSwitch" onClick={toggleFavorite}>
       { props.isFavorite
-        ? <i className="fas fa-heart fa-2x cardlink text-success"></i>
+        ? <i className="fas fa-heart fa-2x cardlink text-danger"></i>
         : <i className="far fa-heart fa-2x cardlink text-muted"></i>
       }
     </div>

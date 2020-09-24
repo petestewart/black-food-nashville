@@ -22,6 +22,13 @@ html {
   a:hover {
     text-decoration: none;
   }
+
+  input {
+    background-color: #F6F6F6 !important;
+    border: 1px solid #ced4da;
+    line-height: 1.5;
+    height: calc(1.5em + .75rem + 2px);
+  }
   
 }
 

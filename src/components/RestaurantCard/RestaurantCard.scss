@@ -4,6 +4,7 @@
   color: $textMain;
   // border: 1px solid grey;
   background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 16px;
   // padding: 3px;
   border-radius: 3%;
   // overflow: hidden;
@@ -35,7 +36,7 @@
       cursor: pointer;
     }
     .rest-name:hover {
-      color: $accentDark;
+      color: $textMuted;
     }
     
     .rest-body {
@@ -76,5 +77,5 @@
 }
 
 .RestaurantCard:hover {
-  box-shadow: 5px 5px rgba(40, 167, 69, 0.1)
+  box-shadow:  rgba(153, 108, 108, 0.1) 0px 2px 16px;
 }

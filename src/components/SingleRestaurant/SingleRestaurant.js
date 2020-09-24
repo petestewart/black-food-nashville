@@ -131,8 +131,8 @@ const SingleRestaurant = (props) => {
   };
 
   const favoriteButton = () => (props.isFavorite(restId)
-    ? <button className="btn btn-warning" onClick={() => props.removeFavorite(restId)}><i className="fas fa-heart"></i> Saved</button>
-    : <button className="btn btn-outline-warning" onClick={() => props.addFavorite(restId)}><i className="far fa-heart"></i> Save</button>);
+    ? <button className="btn btn-danger" onClick={() => props.removeFavorite(restId)}><i className="fas fa-heart"></i> Saved</button>
+    : <button className="btn btn-outline-dark" onClick={() => props.addFavorite(restId)}><i className="far fa-heart"></i> Save</button>);
 
   return (
     <div className="SingleRestaurant">
@@ -149,13 +149,13 @@ const SingleRestaurant = (props) => {
               </div>
               <div className="categories">
                 {rest.categories.join(', ')}
-                {utils.checkIfOpen(rest.hours) ? <span className="open-now ml-3">Open Now</span> : ''}
+                {utils.checkIfOpen(rest.hours) ? <span className="open-now ml-3 text-warning">Open Now</span> : ''}
               </div>
               <div className="rest-rating">
                 {rest.rating
                   ? <StarRatings
                       rating={Number(rest.rating)}
-                      starRatedColor="black"
+                      starRatedColor="#6C757D"
                       numberOfStars={5}
                       starDimension="13px"
                       starSpacing="1px"/>
@@ -176,7 +176,7 @@ const SingleRestaurant = (props) => {
             </div>
             <div className="controls px-3 pb-2">
               <ShareMenu className="cardlink" rest={{ ...rest, id: restId }}>
-                <button className="btn btn-outline-warning"><i className="fas fa-share-alt"></i> Share</button>
+                <button className="btn btn-outline-dark"><i className="fas fa-share-alt"></i> Share</button>
               </ShareMenu>
 
               { props.authed ? favoriteButton() : ''}

@@ -7,14 +7,11 @@
   padding: 0;
 
   form {
-    border: 1px solid $accentDark;
+    border: 1px solid $textMain;
+    border-radius: 10px;
     margin: 15px;
     padding: 20px;
     background-color: white;
-  }
-
-  label {
-    color: $accentDark;
   }
 
   input[type="checkbox"]{

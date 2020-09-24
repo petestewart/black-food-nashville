@@ -32,8 +32,8 @@ const FoodTypes = (props) => {
 
   return (
     <div className="FoodTypes pb-3">
-      Food Types:<br/>
-      <FilterButton isActive={props.allActive} dim={!props.allActive} click={props.resetFilters}>Show All</FilterButton><br/>
+      Cuisines:<br/>
+      <FilterButton isActive={props.allActive} dim={!props.allActive} click={props.resetFilters} btnClass='btn-secondary'>All</FilterButton><br/>
       {createFilterButtons()}
     </div>
   );
