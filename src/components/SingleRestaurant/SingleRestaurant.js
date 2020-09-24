@@ -168,11 +168,14 @@ const SingleRestaurant = (props) => {
           <div className="rest-body-top-r">
             <div className="rest-edit text-right pt-1">
               <span className="text-muted text-nowrap submit-link">
-                <Link to={{ pathname: `/edit/${restId}`, state: { restaurant } }}>
+                { props.authed
+                  ? <Link to={{ pathname: `/edit/${restId}`, state: { restaurant } }}>
                   <i className="fas fa-edit"></i> Submit changes
                 </Link>
+                  : ''
+              }
               </span>
-              {/* TODO: add submit link */}
+
             </div>
             <div className="controls px-3 pb-2">
               <ShareMenu className="cardlink" rest={{ ...rest, id: restId }}>
