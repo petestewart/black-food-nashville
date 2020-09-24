@@ -13,27 +13,36 @@
   padding: 0 20px;
   box-sizing: border-box;
   z-index: 200;
+  color: $textNav;
+  
   a:link {
     text-decoration: none;
-    color: $textMain;
+    color: $textNav;
   }
   
   a:visited {
     text-decoration: none;
-    color: $textMain;
+    color: $textNav;
   }
 
   #logo {
-    color: $textMain;
+    color: $textNav;
     // font-family: 'Ropa Sans', sans-serif;
     font-weight: bold;
+    i {
+      // color: $textMuted;
+    }
   }
   
   #logo:hover {
-    color: $accentLight;
+    color: $textMuted;
     i {
-      color: $textMain;
+      color: $textNav;
     }
+  }
+
+  .tagline {
+    color: $textMuted;
   }
 }
 

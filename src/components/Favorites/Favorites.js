@@ -7,6 +7,8 @@ import RestaurantCard from '../RestaurantCard/RestaurantCard';
 import './Favorites.scss';
 
 const Favorites = (props) => {
+  window.scrollTo(0, 0);
+
   const cards = (restaurants) => {
     let cardList = <div className="text-center w-100 border-blue">You don't have any favorites yet!</div>;
     if (restaurants.length > 0) {

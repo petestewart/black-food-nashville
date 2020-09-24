@@ -561,14 +561,14 @@ const RestaurantForm = (props) => {
           : '' }
         { deleteWarning
           ? <button className="btn btn-secondary mr-5" onClick={cancelDelete}>No, Cancel</button>
-          : <button className="btn btn-warning mr-2" onClick={submitRest}>Submit</button>
+          : <button className="btn btn-outline-dark mr-2" onClick={submitRest}>Submit</button>
         }
         { deleteWarning
           ? ''
-          : <button className="btn btn-secondary mx-2" onClick={cancelForm}>Cancel</button>
+          : <button className="btn btn-outline-secondary mx-2" onClick={cancelForm}>Cancel</button>
         }
         {props.restId
-          ? <button className="btn btn-danger ml-2" onClick={deleteRest}>{deleteWarning ? 'Yes, ' : '' }Delete</button>
+          ? <button className={`btn ${deleteWarning ? 'btn-danger' : 'btn-outline-danger'} ml-2`} onClick={deleteRest}>{deleteWarning ? 'Yes, ' : '' }Delete</button>
           : ''
         }
         </div>

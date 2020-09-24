@@ -73,7 +73,7 @@ const YelpSearchResults = (props) => {
           </div>
         </div>
         <div className="d-flex justify-content-center w-100">
-        <button className={'btn btn-sm m-1 btn-outline-warning'} onClick={acceptResultHandler}>Yes</button>
+        <button className={'btn btn-sm m-1 btn-outline-secondary'} onClick={acceptResultHandler}>Yes</button>
         <button className={'btn btn-sm m-1 btn-outline-secondary'} onClick={denyResultHandler}>No</button>
 
         </div>

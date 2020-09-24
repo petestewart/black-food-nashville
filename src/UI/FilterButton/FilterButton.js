@@ -3,11 +3,15 @@ import React from 'react';
 
 import './FilterButton.scss';
 
-const FilterButton = (props) => (
-    <button className={`btn btn-sm m-1 ${props.isActive ? 'btn-warning' : 'btn-light'}`} style={props.dim ? { color: 'grey' } : {} } onClick={props.click}>
+const FilterButton = (props) => {
+
+  const btnClass = props.btnClass || 'btn-danger';
+
+  return (
+    <button className={`FilterButton btn btn-sm m-1 ${props.isActive ? btnClass : 'btn-light'}`} style={props.dim ? { color: 'grey' } : {} } onClick={props.click}>
       {props.children}
     </button>
-);
+)};
 
 // FilterButton.propTypes = {}
 

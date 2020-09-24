@@ -17,6 +17,7 @@
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
   overflow: scroll;
+  color: $textNav;
 
   .filter-switch:hover {
     color: $accentLight;
@@ -24,7 +25,8 @@
   }
 
   .results-count {
-    color: $accentLight
+    color: $accentLight;
+    font-weight: bold;
   }
 }
 

@@ -37,7 +37,7 @@ const RestaurantCard = (props) => {
             {rest.rating
               ? <StarRatings
                   rating={Number(rest.rating)}
-                  starRatedColor="black"
+                  starRatedColor="#6C757D"
                   numberOfStars={5}
                   starDimension="13px"
                   starSpacing="1px"/>
