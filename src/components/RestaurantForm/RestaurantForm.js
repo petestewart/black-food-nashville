@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 
 import restaurantData from '../../helpers/data/restaurantData';
 import mapquestData from '../../helpers/data/mapquestData';
-import authData from '../../helpers/data/authData';
+import submissionData from '../../helpers/data/submissionData';
 
 import './RestaurantForm.scss';
 
@@ -167,10 +167,10 @@ const RestaurantForm = (props) => {
     // let updatedRest = { ...restaurant };
     confirmCoordinates()
       .then((res) => {
-        console.warn(res);
+        // console.warn(res);
         // if (res.newCoords) { updatedRest = { ...updatedRest, res }; }
         if (props.restId) {
-          restaurantData.updateRestaurant(res, props.restId)
+          submissionData.submitRestaurant(res, props.restId)
             .then(() => {
               props.updateAreaRests();
               props.history.push({
@@ -181,7 +181,7 @@ const RestaurantForm = (props) => {
             })
             .catch((err) => console.error(err));
         } else {
-          restaurantData.createRestaurant(res)
+          submissionData.submitRestaurant(res)
             .then(() => {
               props.updateAreaRests();
               props.history.push({

@@ -59,6 +59,7 @@ const Results = (props) => {
         }
         return res;
       });
+      // eslint-disable-next-line max-len
       cardList = sortedRests.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant} userLocation={props.location} isFavorite={isFavorite(restaurant.id)} addFavorite={props.addFavorite} removeFavorite={props.removeFavorite} authed={props.authed} />);
     }
     return cardList;
