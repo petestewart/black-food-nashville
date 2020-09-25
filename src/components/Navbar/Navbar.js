@@ -46,7 +46,7 @@ const Navbar = (props) => {
         }
       </div>
       <div className="userMenu">
-        <UserMenu user={props.user} authed={props.authed} openNewRestForm={props.openNewRestForm}/>
+        <UserMenu user={props.user} authed={props.authed} openNewRestForm={props.openNewRestForm} isAdmin={props.isAdmin}/>
       </div>
     </div>
   );
