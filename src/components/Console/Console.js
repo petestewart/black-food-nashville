@@ -174,7 +174,7 @@ const Console = (props) => {
             <Favorites uid={props.uid} location={location} favorites={favorites} authed={props.authed} removeFavorite={removeFavorite} isFavorite={isFavorite}/>
           </Route>
           <Route path="/admin">
-            <Admin uid={props.uid} isAdmin={isAdmin}/>
+            <Admin uid={props.uid} isAdmin={isAdmin} location={location}/>
           </Route>
           <Route path="/splash">
             <SplashScreen />
