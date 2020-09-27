@@ -12,6 +12,7 @@ import './Admin.scss';
 const Admin = (props) => {
   const [newRests, setNewRests] = useState([]);
   const [revisedRests, setRevisedRests] = useState([]);
+  const [deleteRests, setDeleteRests] = useState([]);
   const [checked, setChecked] = useState(false);
   const [typeOfSubmissions, setTypeOfSubmissions] = useState('');
 
@@ -22,7 +23,8 @@ const Admin = (props) => {
       .then((res) => {
         setChecked(true);
         setNewRests(res.filter((sub) => !sub.restaurantId));
-        setRevisedRests(res.filter((sub) => sub.restaurantId));
+        setRevisedRests(res.filter((sub) => sub.restaurantId && !sub.DELETE));
+        setDeleteRests(res.filter((sub) => sub.restaurantId && sub.DELETE));
       });
   };
 
@@ -57,6 +59,7 @@ const Admin = (props) => {
       { checked
         ? <>
             <p>There are {newRests.length} new submissions and {revisedRests.length} revisions submitted.</p>
+            <p>There are {deleteRests.length} delete requests</p>
             {/* <Dropdown links={menuLinks()}><button className="btn btn-outline-secondary">Show Submissions</button> </Dropdown> */}
             <label htmlFor="submissionType">Show:</label>
 
@@ -64,13 +67,14 @@ const Admin = (props) => {
             <option hidden disabled value=""> -- select an option -- </option>
               <option value="new">New Restaurants</option>
               <option value="revised">Revisions</option>
+              <option value="delete">Delete Requests</option>
             </select>
           </>
         : ''
       }
       {
         typeOfSubmissions
-          ? <AdminPreview typeOfSubmissions={typeOfSubmissions} new={newRests} revised={revisedRests} userLocation={props.location} getSubmissions={getSubmissions}/>
+          ? <AdminPreview typeOfSubmissions={typeOfSubmissions} new={newRests} revised={revisedRests} delete={deleteRests} userLocation={props.location} getSubmissions={getSubmissions}/>
           : ''
       }
     </div>

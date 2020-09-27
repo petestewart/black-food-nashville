@@ -18,6 +18,17 @@ const AdminPreview = (props) => {
   }, [props]);
 
   const approveSubmission = (submission) => new Promise((resolve, reject) => {
+    if (submission.DELETE) {
+      restaurantData.deleteRestaurant(submission.restaurantId)
+        .then((res) => {
+          submissionData.deleteSubmission(submission.id)
+            .then(() => {
+              props.getSubmissions();
+              resolve(res);
+            })
+            .catch((err) => console.error(err));
+        });
+    }
     if (submission.restaurantId) {
       restaurantData.updateRestaurant(submission, submission.restaurantId)
         .then((res) => {

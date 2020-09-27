@@ -195,10 +195,27 @@ const RestaurantForm = (props) => {
       });
   };
 
+  // const deleteRest = (e) => {
+  //   e.preventDefault();
+  //   if (deleteWarning) {
+  //     restaurantData.deleteRestaurant(props.restId)
+  //       .then((res) => {
+  //         props.updateAreaRests();
+  //         props.history.push({
+  //           pathname: '/splash',
+  //           message: `${restaurant.name} has been deleted from the database.`,
+  //           next: '/home',
+  //         });
+  //       })
+  //       .catch((err) => console.error(err));
+  //   } else {
+  //     setDeleteWarning(true);
+  //   }
+  // };
   const deleteRest = (e) => {
     e.preventDefault();
     if (deleteWarning) {
-      restaurantData.deleteRestaurant(props.restId)
+      submissionData.submitRestaurant({ ...restaurant, DELETE: true })
         .then((res) => {
           props.updateAreaRests();
           props.history.push({
