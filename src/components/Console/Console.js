@@ -37,8 +37,6 @@ const Console = (props) => {
   const [favorites, setFavorites] = useState([]);
   const [resultsCount, setResultsCount] = useState(0);
 
-  // const [openForm, setOpenForm] = useState(false);
-
   // *** URL MANIPULATION:
   // const params = new URLSearchParams(location.search);
   // params.set('search', 2.0);
@@ -143,10 +141,6 @@ const Console = (props) => {
     return placeholder;
   };
 
-  // ARE WE NOT USING THIS ANYMORE?
-  // const openNewRestForm = () => setOpenForm(true);
-  // const closeForm = () => setOpenForm(false);
-
   return (
   <BrowserRouter>
     <React.Fragment>
@@ -167,7 +161,6 @@ const Console = (props) => {
             <EditRestaurant authed={props.authed} updateAreaRests={updateAreaRests}/>
           </Route>
           <Route path="/submit">
-            {/* this should load if openForm is set to true (newRest prop will eventually change based on new or existing restaurant) */}
             <SubmitRestaurant authed={props.authed}/>
           </Route>
           <Route path="/restaurantform">

@@ -4,8 +4,6 @@ import apiKeys from '../apiKeys.json';
 import utils from '../utils';
 import authData from './authData';
 import favoritesData from './favoritesData';
-// import mapquestData from './mapquestData';
-// import yelpData from './yelpData';
 
 const baseUrl = apiKeys.firebaseConfig.databaseURL;
 
