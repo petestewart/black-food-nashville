@@ -175,7 +175,7 @@ const RestaurantForm = (props) => {
               props.updateAreaRests();
               props.history.push({
                 pathname: '/splash',
-                message: 'Thank-you for helping to improve BlackFoodNashville.com.',
+                message: 'Thank-you for your contribution to BlackFoodNashville.com. We will review your request shortly.',
                 next: '/home',
               });
             })
@@ -186,7 +186,7 @@ const RestaurantForm = (props) => {
               props.updateAreaRests();
               props.history.push({
                 pathname: '/splash',
-                message: 'Thank-you for your contribution to BlackFoodNashville.com',
+                message: 'Thank-you for your contribution to BlackFoodNashville.com. We will review your request shortly.',
                 next: '/home',
               });
             })
@@ -220,7 +220,7 @@ const RestaurantForm = (props) => {
           props.updateAreaRests();
           props.history.push({
             pathname: '/splash',
-            message: `${restaurant.name} has been deleted from the database.`,
+            message: 'Thank-you for your contribution to BlackFoodNashville.com. We will review your request shortly.',
             next: '/home',
           });
         })
@@ -573,7 +573,7 @@ const RestaurantForm = (props) => {
         <div className="">
         { deleteWarning
           ? <div className="alert alert-danger" role="alert">
-            Are you sure you want to delete {restaurant.name}?
+            Are you sure you want to request {restaurant.name} to be deleted?
           </div>
           : '' }
         { deleteWarning

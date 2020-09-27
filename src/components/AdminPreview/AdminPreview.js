@@ -71,7 +71,7 @@ const AdminPreview = (props) => {
   };
 
   return (
-    <div>
+    <div className="AdminPreview">
       {cards(submissions)}
     </div>
   );
