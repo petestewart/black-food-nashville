@@ -14,6 +14,7 @@ import RestaurantForm from '../RestaurantForm/RestaurantForm';
 import SplashScreen from '../../UI/SplashScreen/SplashScreen';
 import SingleRestaurant from '../SingleRestaurant/SingleRestaurant';
 import Favorites from '../Favorites/Favorites';
+import Admin from '../Admin/Admin';
 
 import filterActions from '../../helpers/filterActions';
 import restaurantData from '../../helpers/data/restaurantData';
@@ -31,6 +32,7 @@ const Console = (props) => {
   const [vegOnly, setVegOnly] = useState(false);
   const [foodFilters, setFoodFilters] = useState({});
   const [user, setUser] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [resultsCount, setResultsCount] = useState(0);
 
@@ -100,15 +102,18 @@ const Console = (props) => {
   };
 
   const getFavorites = () => {
-    userData.getFavorites(props.uid)
-      .then((res) => setFavorites(res))
-      .catch((err) => console.error(err));
+    if (props.uid) {
+      userData.getFavorites(props.uid)
+        .then((res) => setFavorites(res))
+        .catch((err) => console.error(err));
+    }
   };
 
   useEffect(getUserLocation, []);
   useEffect(updateAreaRests, [location.latitude, radius], props.authed);
   useEffect(getUserInfo, [props.authed, props.uid]);
-  useEffect(getFavorites, [props.uid]);
+  useEffect(getFavorites, [props.uid, props.authed]);
+  useEffect(() => setIsAdmin(user.isAdmin), [user]);
 
   const isFavorite = (restId) => favorites.some((rest) => rest.id === restId);
 
@@ -144,7 +149,7 @@ const Console = (props) => {
   return (
   <BrowserRouter>
     <React.Fragment>
-      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius} authed={props.authed} user={user}/>
+      <Navbar placeholder={displayLocation()} setLocation={setLocation} setRadius={setRadius} radius={radius} authed={props.authed} user={user} isAdmin={isAdmin}/>
       <div className="content">
         <Switch>
           <Route path="/search">
@@ -169,6 +174,9 @@ const Console = (props) => {
           </Route>
           <Route path="/favorites">
             <Favorites uid={props.uid} location={location} favorites={favorites} authed={props.authed} removeFavorite={removeFavorite} isFavorite={isFavorite}/>
+          </Route>
+          <Route path="/admin">
+            <Admin uid={props.uid} isAdmin={isAdmin} location={location}/>
           </Route>
           <Route path="/splash">
             <SplashScreen />

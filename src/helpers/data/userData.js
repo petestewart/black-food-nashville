@@ -34,7 +34,8 @@ const createNewUser = (uid) => new Promise((resolve, reject) => {
 });
 
 const getFavorites = (uid) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/userFavorites.json?orderBy="uid"&equalTo"${uid}"`)
+  console.warn(uid);
+  axios.get(`${baseUrl}/userFavorites.json?orderBy="uid"&equalTo="${uid}"`)
     .then(({ data }) => {
       const allPromises = utils.convertFirebaseCollection(data).map((obj) => restaurantData.getSingleRestaurant(obj.restId, { favId: obj.id }));
       Promise.all(allPromises)

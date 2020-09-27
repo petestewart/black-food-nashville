@@ -18,6 +18,9 @@ const UserMenu = (props) => {
     if (props.authed) {
       items.push({ name: 'Submit a restaurant', rrlink: '/submit' });
     }
+    if (props.isAdmin) {
+      items.push({ name: 'Administrator console', rrlink: '/admin' });
+    }
     items.push(auth.auth(props.authed));
     return items;
   };
