@@ -20,6 +20,7 @@ import filterActions from '../../helpers/filterActions';
 import restaurantData from '../../helpers/data/restaurantData';
 import mapquestData from '../../helpers/data/mapquestData';
 import userData from '../../helpers/data/userData';
+import favoritesData from '../../helpers/data/favoritesData';
 
 import './Console.scss';
 
@@ -35,8 +36,6 @@ const Console = (props) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [resultsCount, setResultsCount] = useState(0);
-
-  // const [openForm, setOpenForm] = useState(false);
 
   // *** URL MANIPULATION:
   // const params = new URLSearchParams(location.search);
@@ -103,7 +102,7 @@ const Console = (props) => {
 
   const getFavorites = () => {
     if (props.uid) {
-      userData.getFavorites(props.uid)
+      favoritesData.getFavorites(props.uid)
         .then((res) => setFavorites(res))
         .catch((err) => console.error(err));
     }
@@ -119,7 +118,7 @@ const Console = (props) => {
 
   const addFavorite = (restId) => {
     if (!props.authed) { return; }
-    userData.addFavorite(restId)
+    favoritesData.addFavorite(restId)
       .then(() => getFavorites())
       .catch((err) => console.error(err));
   };
@@ -128,7 +127,7 @@ const Console = (props) => {
     if (!props.authed) { return; }
     const favIndex = favorites.findIndex((fav) => fav.id === restId);
     const { favId } = favorites[favIndex];
-    userData.removeFavorite(favId)
+    favoritesData.removeFavorite(favId)
       .then(() => getFavorites())
       .catch((err) => console.error(err));
   };
@@ -141,10 +140,6 @@ const Console = (props) => {
     }
     return placeholder;
   };
-
-  // ARE WE NOT USING THIS ANYMORE?
-  // const openNewRestForm = () => setOpenForm(true);
-  // const closeForm = () => setOpenForm(false);
 
   return (
   <BrowserRouter>
@@ -166,7 +161,6 @@ const Console = (props) => {
             <EditRestaurant authed={props.authed} updateAreaRests={updateAreaRests}/>
           </Route>
           <Route path="/submit">
-            {/* this should load if openForm is set to true (newRest prop will eventually change based on new or existing restaurant) */}
             <SubmitRestaurant authed={props.authed}/>
           </Route>
           <Route path="/restaurantform">
