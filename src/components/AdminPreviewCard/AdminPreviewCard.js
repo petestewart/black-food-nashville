@@ -65,8 +65,8 @@ const AdminPreviewCard = (props) => {
               <OrderLinks className="cardlink" rest={rest}><i className="fas fa-car-side fa-2x text-muted" /></OrderLinks>
             </div>
             <div className="approvalButtons d-flex justify-content-center w-100 p-3">
-              <button className="btn btn-outline-success mr-2">Approve</button>
-              <button className="btn btn-outline-danger ml-2">Deny</button>
+              <button className="btn btn-outline-success mr-2" onClick={() => props.approveSubmission(rest)}>Approve</button>
+              <button className="btn btn-outline-danger ml-2" onClick={() => props.denySubmission(rest)}>Deny</button>
             </div>
           </div>
         </div>

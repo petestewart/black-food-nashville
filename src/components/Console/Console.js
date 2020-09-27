@@ -102,15 +102,17 @@ const Console = (props) => {
   };
 
   const getFavorites = () => {
-    userData.getFavorites(props.uid)
-      .then((res) => setFavorites(res))
-      .catch((err) => console.error(err));
+    if (props.uid) {
+      userData.getFavorites(props.uid)
+        .then((res) => setFavorites(res))
+        .catch((err) => console.error(err));
+    }
   };
 
   useEffect(getUserLocation, []);
   useEffect(updateAreaRests, [location.latitude, radius], props.authed);
   useEffect(getUserInfo, [props.authed, props.uid]);
-  useEffect(getFavorites, [props.uid]);
+  useEffect(getFavorites, [props.uid, props.authed]);
   useEffect(() => setIsAdmin(user.isAdmin), [user]);
 
   const isFavorite = (restId) => favorites.some((rest) => rest.id === restId);

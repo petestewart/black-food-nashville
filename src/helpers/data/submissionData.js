@@ -24,6 +24,8 @@ const getSubmissions = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const deleteSubmission = (submissionId) => axios.delete(`${baseUrl}/submissions/${submissionId}.json`);
+
 export default {
-  submitRestaurant, getSubmissions,
+  submitRestaurant, getSubmissions, deleteSubmission,
 };

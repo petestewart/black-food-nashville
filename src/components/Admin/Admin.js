@@ -70,7 +70,7 @@ const Admin = (props) => {
       }
       {
         typeOfSubmissions
-          ? <AdminPreview typeOfSubmissions={typeOfSubmissions} new={newRests} revised={revisedRests} userLocation={props.location}/>
+          ? <AdminPreview typeOfSubmissions={typeOfSubmissions} new={newRests} revised={revisedRests} userLocation={props.location} getSubmissions={getSubmissions}/>
           : ''
       }
     </div>
