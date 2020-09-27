@@ -3,7 +3,7 @@ import apiKeys from '../apiKeys.json';
 
 import utils from '../utils';
 import authData from './authData';
-import userData from './userData';
+import favoritesData from './favoritesData';
 // import mapquestData from './mapquestData';
 // import yelpData from './yelpData';
 
@@ -23,14 +23,12 @@ const getSingleRestaurant = (restId, extraData) => new Promise((resolve, reject)
     .catch((err) => reject(err));
 });
 
-// const deleteRestaurant = (restId) => axios.delete(`${baseUrl}/restaurants/${restId}.json`);
-
 const deleteRestaurant = (restId) => new Promise((resolve, reject) => {
   axios.delete(`${baseUrl}/restaurants/${restId}.json`)
     .then(() => {
       axios.get(`${baseUrl}/userFavorites.json?orderBy="restId"&equalTo="${restId}"`)
         .then(({ data }) => {
-          utils.convertFirebaseCollection(data).forEach((fav) => userData.removeFavorite(fav.id));
+          utils.convertFirebaseCollection(data).forEach((fav) => favoritesData.removeFavorite(fav.id));
           resolve();
         })
         .catch((err) => console.error(err));
