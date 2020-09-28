@@ -23,13 +23,28 @@
     }}
 }
 
+form {
+  margin: 0 !important;
+  input[type="search"] {
+    // font-size:12px;
+    max-width: 25vw !important;
+  }
+}
+
 
 @media (max-width: 760px) {
-  #location-input {
-    width: 80vw !important;
-  }
-  .search-button {
-    display: none;
+  .SearchBar {
+    #location-input {
+      width: 40vw !important;
+    }
+
+    form {
+      margin: 0 !important;
+      input[type="search"] {
+        font-size:12px;
+        max-width: 35vw !important;
+      }
+    }
   }
 }
 
