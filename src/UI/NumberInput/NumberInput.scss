@@ -1,3 +1,11 @@
 .NumberInput {
   margin-right: 5px;
 }
+
+@media (max-width: 759px) {
+  .NumberInput{
+    input[type="number"] {
+      font-size:12px;
+    }
+  }
+}

@@ -25,13 +25,15 @@
     color: $textNav;
   }
 
+  .logo {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
   #logo {
     color: $textNav;
     // font-family: 'Ropa Sans', sans-serif;
     font-weight: bold;
-    i {
-      // color: $textMuted;
-    }
   }
   
   #logo:hover {
@@ -44,6 +46,12 @@
   .tagline {
     color: $textMuted;
   }
+}
+
+.navbar-middle {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
 }
 
 .location-controls {
@@ -60,11 +68,42 @@
 // }
 
 @media (max-width: 759px) {
-  // .DesktopOnly {
-  //   display: none;
-  // }
+  .DesktopOnly {
+    display: none;
+  }
   .Navbar {
-    height: 100px;
-    flex-direction: column;
+    position: absolute;
+    height: 80px;
+    // flex-direction: column;
+
+    padding: 0;
+    display: grid;
+    grid-template-areas:
+      'navtopleft navtopright'
+      'navbottom navbottom';
+    grid-gap: 10px;
+
+    .logo { 
+      grid-area: navtopleft;
+    }
+
+    #logo, .tagline {
+      margin-left: 5px;
+    }
+
+    .userMenu { 
+      grid-area: navtopright; 
+      margin-left: auto; 
+      margin-bottom: auto;
+      padding-top: 5px;
+
+    }
+    .navbar-middle { 
+      grid-area: navbottom; 
+      margin: auto;
+      width: 100%;
+      padding: 0;
+      background-color: $bgAlt;
+    }
   }
 }

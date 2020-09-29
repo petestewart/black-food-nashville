@@ -286,7 +286,7 @@ const RestaurantForm = (props) => {
     let scheduleForm = '';
     if (restaurant.hours.length > 0) {
       scheduleForm = restaurant.hours.map((block, index) => (
-      <div className="d-flex flex-row" key={index}>
+      <div className="d-flex flex-row schedule-block" key={index}>
         <div className="form-group col-md-3">
           <label htmlFor={`hours-day${index}`}>Day</label>
           <select key={index} value={block.day} id={`day${index}`} className="form-control" onChange={dayInputHandler}>

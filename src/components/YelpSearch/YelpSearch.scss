@@ -12,6 +12,9 @@
     margin: 15px;
     padding: 20px;
     background-color: white;
+    width: 90vw !important;
+
+    max-width: 550px;
   }
 
   input[type="checkbox"]{
@@ -19,3 +22,4 @@
     height: 15px; /*Desired height*/
   }
 }
+

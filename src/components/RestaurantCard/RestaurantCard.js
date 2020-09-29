@@ -28,12 +28,12 @@ const RestaurantCard = (props) => {
 
   const rest = props.restaurant;
   return (
-      <div className="RestaurantCard">
+      <div className="RestaurantCard ">
         <div className="rest-img" onClick={goToSingleView}><img className="card-img-top" src={rest.photo} alt="" /></div>
         <div className="">
           <h6 className="mb0 rest-name" onClick={goToSingleView}>{rest.name}</h6>
           <div className="rest-body">
-          <div className="rest-subheading">
+            <div className="rest-subheading">
             {rest.rating
               ? <StarRatings
                   rating={Number(rest.rating)}
@@ -43,7 +43,7 @@ const RestaurantCard = (props) => {
                   starSpacing="1px"/>
               : ''
                 }
-              </div>
+            </div>
             <div className="location">
               <span>{rest.location.address1}</span>
               <span className="ml-1">{rest.phone}</span>
