@@ -56,7 +56,7 @@ const YelpSearchResults = (props) => {
     <div className="YelpSearchResults d-flex justify-content-center w-100">
       <div className="restaurant-chooser">
         <h6 className="text-center m-3">Is this your restaurant?</h6>
-        <div className="RestaurantCard">
+        <div className="">
           <div className="rest-img"><img className="card-img-top" src={rest.photo} alt="" /></div>
           <div className="">
             <h6 className="mb0">{rest.name}</h6>

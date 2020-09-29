@@ -105,7 +105,7 @@ const YelpSearch = (props) => {
 
   return (
     <div className = "YelpSearch d-flex justify-content-center w-100">
-      <form className="col-6 m-3">
+      <form className="m-3">
         <h6 className="text-center m-3">Let's see if we can find your restaurant on Yelp</h6>
         <div className="form-group">
           <label htmlFor="yelp">Name</label>
