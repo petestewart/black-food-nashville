@@ -4,8 +4,6 @@
   font-size: 1.1rem;
   color: $textMain;
   background-color: white;
-  // min-width: 100vw;
-  // max-width: 100vw;
   .rest-img {
     overflow: hidden;
           img {
@@ -21,7 +19,6 @@
       margin-right: 10vw;
       display: flex;
       flex-direction: column;
-      // width: 100%;
 
       .rest-body-top {
         display: flex;
@@ -56,12 +53,9 @@
             display: flex;
             justify-content: space-between;
           }
-        }
 
-        // .btn:hover {
-        //   background-color: $accentLight;
-        // }
-        
+        }
+      
 
       }
 
@@ -74,9 +68,6 @@
             width: 250px;
           }
         
-          // .cardlink {
-          //   cursor: pointer;
-          // }
         }
         
     }
@@ -93,4 +84,44 @@
       cursor: pointer;
     }
     }
+}
+
+@media (max-width: 759px) {
+  .SingleRestaurant {
+
+    .rest-body {
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0px 15px 15px;;
+
+      .rest-body-top {
+        // background-color: lightblue;
+        display: block;
+        // display: none;
+        .rest-body-top-l {
+          // background-color: pink;
+
+        }
+        .rest-body-top-r {
+        // background-color: lightgreen;
+          // display: none;
+          min-height: 0;
+        }
+
+      }
+      .rest-body-btm {
+        // background-color: lightgrey;
+        display: flex;
+        flex-direction: column;
+        justify-items: reverse;
+
+      }
+    }
+        .LinksMenu, .Schedule {
+          width: 95vw;
+          margin: 0;
+        }
+
+  }
 }

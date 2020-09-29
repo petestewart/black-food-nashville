@@ -139,7 +139,7 @@ const SingleRestaurant = (props) => {
       <div className="rest-img">
         <img className="card-img-top" src={rest.photo} alt="" />
       </div>
-      <div className="rest-body px-3">
+      <div className="rest-body">
         <div className="rest-body-top">
           <div className="rest-body-top-l">
             <div className="rest-info">
@@ -167,7 +167,7 @@ const SingleRestaurant = (props) => {
           </div>
           <div className="rest-body-top-r">
             <div className="rest-edit text-right pt-1">
-              <span className="text-muted text-nowrap submit-link">
+              <span className="text-muted text-nowrap submit-link DesktopOnly">
                 { props.authed
                   ? <Link to={{ pathname: `/edit/${restId}`, state: { restaurant } }}>
                   <i className="fas fa-edit"></i> Submit changes
