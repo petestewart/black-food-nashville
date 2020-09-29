@@ -1,6 +1,8 @@
 @media (max-width: 759px) {
-  .restaurant-chooser, .rest-img {
-    max-width: 90vw;
+  .YelpSearchResults {
+    .restaurant-chooser .rest-img {
+      max-width: 90vw;
+    }
   }
-}
+  }
 

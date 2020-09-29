@@ -86,6 +86,11 @@
     .logo { 
       grid-area: navtopleft;
     }
+
+    #logo, .tagline {
+      margin-left: 5px;
+    }
+
     .userMenu { 
       grid-area: navtopright; 
       margin-left: auto; 
