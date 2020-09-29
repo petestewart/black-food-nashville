@@ -34,12 +34,11 @@ const Navbar = (props) => {
     <div className="Navbar">
       <div className="logo">
         <NavLink tag={NavLink} to="/search">
-          <h2 id="logo"><i className="fas fa-utensils"></i>BlackFoodNashville</h2>
+          <h2 id="logo"><i className="fas fa-utensils DesktopOnly"></i>BlackFoodNashville</h2>
           <div className="tagline">Supporting Black-owned businesses in Music City</div>
         </NavLink>
       </div>
       <div className="navbar-middle">
-        
         { showSearchBar
           ? <div className="location-controls">
               <NumberInput click={setRadius} value={props.radius}/>
