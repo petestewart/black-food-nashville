@@ -74,34 +74,38 @@
   .Navbar {
     position: absolute;
     height: 80px;
+    width: 100vw;
     // flex-direction: column;
 
-    padding: 0;
+    padding: 0px;
     display: grid;
     grid-template-areas:
       'navtopleft navtopright'
       'navbottom navbottom';
-    grid-gap: 10px;
+    // grid-gap: 10px;
 
     .logo { 
       grid-area: navtopleft;
     }
 
     #logo, .tagline {
-      margin-left: 5px;
+      margin-left: 10px;
+      margin-top: 5px;
     }
 
     .userMenu { 
       grid-area: navtopright; 
-      margin-left: auto; 
+      margin-left: auto;
+      margin-right: 5px;
       margin-bottom: auto;
-      padding-top: 5px;
+      padding-top: 10px;
 
     }
     .navbar-middle { 
       grid-area: navbottom; 
-      margin: auto;
+      margin: 0;
       width: 100%;
+      max-width: 100vw;
       padding: 0;
       background-color: $bgAlt;
     }

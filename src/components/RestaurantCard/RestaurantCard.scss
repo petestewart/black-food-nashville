@@ -83,8 +83,10 @@
 
 @media (max-width: 759px) {
   .RestaurantCard {
+    min-width: 0;
     max-width: 100vw !important;
     margin: 10px 0;
+    // overflow: hidden;
     .rest-img, .rest-body {
       width: 100vw;
     border-radius: 0;
