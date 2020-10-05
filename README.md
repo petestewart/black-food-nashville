@@ -18,17 +18,17 @@ After seeing a number of posts on social media with lists of local Black-owned r
 
 ### Screenshots
 
-Searching for restaurants:
+##### Searching for restaurants:
 
 [![screenshot1](https://media.giphy.com/media/JS5IcgsmNLNIJm6bj8/giphy.gif)](#)  
 <br>
    
-Detailed restaurant view:
+##### Detailed restaurant view:
 
 [![screenshot2](https://media.giphy.com/media/n30bSFEqMeJU9kPvuC/giphy.gif)](#)  
 <br>
   
-Submitting a new restaurant:
+##### Submitting a new restaurant:
 
 [![screenshot3](https://media.giphy.com/media/gpmFTuBihAhZ62xQi4/giphy.gif)](#)  
 <br>
