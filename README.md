@@ -36,7 +36,7 @@ Submitting a new restaurant:
 ### Developer
 Pete Stewart : https://github.com/petestewart
 
-### How To Run
+### How To Use
 The project is deployed at [https://blackownednashville-1af30.web.app/](https://blackownednashville-1af30.web.app/search)
 
 ### Technologies Used
