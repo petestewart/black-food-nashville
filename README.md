@@ -21,6 +21,7 @@ After seeing a number of posts on social media with lists of local Black-owned r
 * Optional user login/registration with Google
 * Registered user can save restaurants to favorites list
 * Registered user can submit new restaurants or changes to existing restaurants
+* Integrated Yelp search when submitting a new restaurant to import existing business data
 * User authorized as an administrator can approve or deny user submissions
 
 ### Screenshots
