@@ -1,3 +1,10 @@
+<p align="center">
+  <br>
+  <img src="https://user-images.githubusercontent.com/62906411/95119565-c2dc7b80-0711-11eb-81e4-f00b829b276e.png" alt="Black Food Nashville">
+  <br>
+  <br>
+</p>
+
 # Black Food Nashville
 
 This is a single-page web application I created for users to be able to both discover and support Black-owned restaurants in the Nashville area. I built this app with React and utilized REST API's from [Yelp](https://www.yelp.com/fusion), [MapQuest](https://developer.mapquest.com/) and [Firebase](https://firebase.google.com/). It was my front-end capstone project while enrolled at [Nashville Software School](http://nashvillesoftwareschool.com/).
