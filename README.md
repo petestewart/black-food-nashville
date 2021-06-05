@@ -45,7 +45,7 @@ After seeing a number of posts on social media with lists of local Black-owned r
 Pete Stewart : https://github.com/petestewart
 
 ### How To Use
-The project is deployed at [https://blackownednashville-1af30.web.app/](https://blackownednashville-1af30.web.app/search)
+The project is deployed at [https://blackfoodnashville.com/](https://blackfoodnashville.com)
 
 ### Technologies Used
 [![React](https://img.shields.io/badge/-React-2c9fcc?style=flat-square)](#) [![JavaScript](https://img.shields.io/badge/-JavaScript-2c9fcc?style=flat-square)](#) [![SASS](https://img.shields.io/badge/-SASS-2c9fcc?style=flat-square)](#) [![HTML](https://img.shields.io/badge/-HTML-2c9fcc?style=flat-square)](#) [![Firebase](https://img.shields.io/badge/-Firebase-2c9fcc?style=flat-square)](#) [![Axios](https://img.shields.io/badge/-Axios-2c9fcc?style=flat-square)](#)
